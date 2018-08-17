@@ -1,0 +1,89 @@
+/*sup/sup ordlist*/
+.fix .oHeader {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+.oHeader .leftR {
+	padding: 0.05rem 0;
+}
+.leftA .icon-jiantou-copy {
+	font-size: 0.36rem !important;
+}
+.goodsCon {
+	position: absolute;
+	left: 0;
+	top: 0.88rem;
+	width: 100%;
+}
+
+/*goodstab*/	
+.goodTab {
+	padding: 0.24rem 0.15rem;
+	background: #fff;
+	border-bottom: 0.15rem solid #ececec;
+}	
+.goodTab li {
+	width: 20%;
+	text-align: center;
+	font-size: 0.28rem;
+	float: left;
+	padding: 0.05rem 0;
+}	
+.active {
+	background: #333;
+	border-radius: 0.08rem;
+	border: none;
+	color: #fff;
+}
+
+/*订单列表*/
+.ordList {
+	background: #fff;
+	border-bottom: 0.15rem solid #ececec;
+}
+.ordList .ordCode {
+	padding: 0.2rem 0.2rem;
+	color: #333;
+	font-size: 0.24rem;
+	border-bottom: 0.02rem solid #eeeeee;
+}
+.ordList .ordCode span {
+	color: #757575;
+}
+.ordDet {
+	padding: 0.2rem;
+	border-bottom: 0.02rem solid #eeeeee;
+}
+.ordDet .detImg {
+	width: 20%;
+	height: 1.28rem;
+}
+.ordDet .detImg img {
+	width: 1.2rem;
+}
+.ordDet .detTit {
+	width: 58%;
+	font-size: 0.24rem;
+}
+.ordDet .detPri {
+	width: 20%;
+	font-size: 0.24rem;
+}
+.ordDet .delNum {
+	color: #757575;
+	padding-top: 0.05rem;
+}
+.totalPri {
+	text-align: right;
+	padding: 0.2rem;
+	border-bottom: 0.02rem solid #eeeeee;
+	color: #757575;
+	font-size: 0.24rem;
+}
+.totalPri .tpri {
+	color: #ff4f54;
+	font-size: 0.3rem;
+}

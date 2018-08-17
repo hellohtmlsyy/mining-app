@@ -1,0 +1,16 @@
+.oheader .vux-header{
+	padding:7px 0 !important;	
+}
+.oheader .lefttext{
+	color:#fff;
+}
+.oheader .searchbox{
+	background-color:#fff;
+	border-radius: 25px;
+}
+.oheader .searchtext{
+	color:#000000;
+	font-size:14px
+}
+
+

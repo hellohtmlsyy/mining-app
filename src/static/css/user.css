@@ -1,0 +1,193 @@
+.userCenter .content {
+	margin-bottom: 1.16rem;
+	background:#fff;
+}
+
+/*个人top/logintop*/	
+.entaccount_top {
+	position: relative;
+	padding: 0.2rem;
+}	
+.entaccount_top .icon-shezhi1{
+	color: #fff;
+	width: 0.6rem;
+	position: absolute;
+	right: 0.2rem;
+	top: 0.2rem;
+}	
+.entaccount_top .icon-jiantou-copy,.login_top .icon-jiantou-copy{
+	color:#fff;
+	font-size:0.5rem;
+	position: absolute;
+    left: 0.2rem;
+    top: 0.1rem;
+}
+.bg_img,
+.icon-wode-F,
+.user_name,
+.user_con {
+	position: absolute;
+}
+.entaccount_top .bg_img {
+	width: 100%;
+	left: 0;
+	top: 0;
+	z-index: -1;
+	height: 3.6rem;
+}
+.entaccount_top .icon-wode-F {
+	width: 1.25rem;
+	color: #fff;
+	left: 0.2rem;
+	top: 50%;
+	margin-top: 1.2rem;
+}
+.entaccount_top .user_name {
+	color: #fff;
+	font-size: 0.24rem;
+	left: 0.2rem;
+	bottom: -2.7rem;
+	width: 1.25rem;
+	text-align: center;
+	overflow: hidden;
+}
+.entaccount_top .log_userCon {
+	left: 28%;
+	bottom: -2.4rem !important;
+	color: #fff;
+}
+.user_con .firstp {
+	font-size: 0.36rem;
+	margin-bottom: 0.3rem;
+}
+.entaccount_top .user_con .vip_leval {
+	color: #fff;
+	font-size: 0.24rem;
+	padding-top: 0.1rem;
+}
+.entaccount_top .user_con .vip_leval img {
+	width: 0.3rem;
+	margin-right: 0.1rem;
+	vertical-align: top;
+}
+.user_con .total_assets,
+.usable_balance {
+	font-size: 0.28rem;
+	margin-top: 0.1rem;
+}
+
+/* entaccount_topb */
+.entaccount_topb {
+	margin-top: 3.2rem;
+	background: #fff;
+}
+.entaccount_topb .weui-grid__icon {
+	width: 0.36rem;
+	height: auto;
+	display: inline-block;
+}
+.entaccount_topb .weui-grid__label {
+	display: inline-block;
+	color: #747474;
+	font-size: 0.28rem;
+	margin-left: 0.1rem;
+}
+.entaccount_topb .weui-grid {
+	padding: 0.16rem 0.7rem;
+}
+
+/* 个人con */
+.per .mtool {
+	/*border-top: 0.15rem solid rgb(233, 233, 233);*/
+	padding: 0.25rem 0.2rem;
+}
+.per .mtool p {
+	color: #757575;
+	font-size: 0.28rem;
+}
+.per .mtool .weui-grid {
+	padding: 18px 10px;
+	width: 25%;
+}
+.per .mtool .weui-grid__label {
+	font-size: 0.24rem;
+	color: #333;
+}
+.mtool .weui-grid__icon {
+	width: 0.8rem;
+	height: 0.8rem;
+}
+.mtool .weui-grids:before,
+.weui-grid:after {
+	border: none !important;
+}
+
+/*企业top*/	
+.entaccount_top .icon-wode-F {
+	width: 1.25rem;
+	color: #fff;
+	left: 0.2rem;
+	top: 50%;
+	margin-top: 1.2rem;
+}	
+.entaccount_top .user_name {
+	color: #fff;
+	font-size: 0.24rem;
+	left: 0.2rem;
+	bottom: -2.7rem;
+	width: 1.25rem;
+	text-align: center;
+	overflow: hidden;
+}	
+.entaccount_top .user_con {
+	left: 28%;
+	bottom: -2.75rem;
+	color: #fff;
+}
+.user_con span {
+	color: #fbd97f;
+	font-size: 0.36rem;
+}
+
+/* 企业con */
+.ent .mtool {
+	border-top: 0.15rem solid rgb(233, 233, 233);
+	background: #fff;
+}
+.ent .mtool .tit {
+	padding: 0.25rem 0.2rem;
+	border-bottom: 0.01rem solid rgb(233, 233, 233);
+}
+.ent .mtool .tit p {
+	color: #333;
+	font-size: 0.28rem;
+}
+.ent .mtool .weui-grid {
+	padding: 0.3rem 0.2rem;
+}
+.ent .mtool .weui-grid__label {
+	display: inline-block;
+}
+.ent .mtool .weui-grid__icon {
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* 企业管理 */
+.ent .mtool_con {
+	display: inline-block;
+	margin-left: 0.15rem;
+	padding: 0.04rem 0;
+}
+.ent .mtool_con p {
+	font-size: 0.26rem;
+	color: #333;
+	margin-bottom: 0.08rem;
+}
+.ent .mtool_con span {
+	color: #757575;
+	font-size: 0.22rem;
+}
+.ent .mtool_ser .weui-grid {
+	padding: 0.3rem 0.1rem 0.3rem 0.1rem;
+}

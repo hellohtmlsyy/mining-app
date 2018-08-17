@@ -1,0 +1,1459 @@
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+p,
+blockquote,
+th,
+td {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 12px;
+	/*color: #666;*/
+	font-family: Microsoft YaHei, SimSun;
+	background: #E9E9E9;
+	/* line-height: 2; */
+}
+/*body{
+  -webkit-overflow-scrolling: touch;
+}*/
+body{overflow-x: hidden}
+fieldset,
+img {
+	border: 0;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 100%;
+}
+
+em {
+	font-style: normal;
+}
+
+input,
+button,
+select,
+textarea {
+	outline: none;
+}
+
+textarea {
+	resize: none;
+}
+
+
+/* //禁用了文本的拖拉，尤其在谷歌下 */
+
+p {
+	text-align: justify;
+	text-justify: distribute;
+}
+
+
+/* //为了使文本段落左右两边对齐 */
+
+p {
+	word-wrap: break-word
+}
+
+a {
+	text-decoration: none;
+}
+
+i {
+	display: inline-block;
+}
+
+span {
+	/*display: inline-block;*/
+}
+
+.color_f {
+	color: #fff;
+}
+
+address,
+cite,
+code,
+em,
+th {
+	font-weight: normal;
+	font-style: normal;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+	display: inline-block;
+}
+
+a:hover,
+a:active,
+a:focus,
+a:visited {
+	text-decoration: none;
+}
+
+a,
+a:hover,
+a:active,
+a:visited,
+a:link,
+a:focus {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-user-select: none;
+	-moz-user-focus: none;
+	-moz-user-select: none;
+}
+
+
+.clamp{
+	display: -webkit-box;
+	/*! autoprefixer: off */  
+    -webkit-box-orient: vertical;  
+     /* autoprefixer: on */
+	overflow: hidden;
+	-webkit-line-clamp: 1;
+}
+
+.clamp2{
+	display: -webkit-box;
+	/*! autoprefixer: off */  
+    -webkit-box-orient: vertical;  
+     /* autoprefixer: on */
+	overflow: hidden;
+	-webkit-line-clamp: 2;
+}
+
+.clamp3{
+	display: -webkit-box;
+	/*! autoprefixer: off */  
+    -webkit-box-orient: vertical;  
+     /* autoprefixer: on */
+	overflow: hidden;
+	-webkit-line-clamp: 3;
+}
+
+
+/*分享的蒙层*/
+.shareMC {
+		background: url(../../../static/img/sharewpq.png) 50% 85% / 80% no-repeat rgba(0, 0, 0, 0.8);
+		width: 100%;
+		height: 100%;
+		z-index: 99999;
+		position: fixed;
+		left: 0px;
+		top: 0px
+	}
+
+
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.fr {
+	float: right;
+	*display: inline;
+}
+
+.fl {
+	float: left;
+	*display: inline;
+}
+
+
+/*文本超出显示省略号*/
+
+.ehn,
+.otw,
+.tow {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+
+/*清除浮动*/
+
+.clearfix {
+	clear: both;
+	*zoom: 1;
+}
+
+.clearfix:after {
+	display: block;
+	clear: both;
+	content: "\0020";
+	visibility: hidden;
+	height: 0;
+}
+
+.locati {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+/*公共的颜色和margin,padding*/
+
+.bgcolor_f {
+	background-color: #fff;
+	padding: 0.2rem;
+	margin-top: 0.15rem;
+}
+
+
+/*为您推荐的margin,padding*/
+
+.mp {
+	padding: 0.1rem;
+	margin-top: 0.2rem;
+}
+
+.bgcolor {
+	background-color: #fff;
+}
+
+
+/*每个频道详情页的tab样式*/
+
+.swiperr {
+	background-color: #fff
+}
+
+.vux-tab-wrap {
+	height: 0.8rem;
+	padding: 0 !important
+}
+
+.vux-tab-wrap .vux-tab-container {
+	height: 0.8rem;
+}
+
+.vux-tab-wrap .vux-tab-container .vux-tab {
+	height: 0.8rem;
+}
+
+.vux-tab-wrap .vux-tab-container .vux-tab .vux-tab-item {
+	line-height: 0.8rem;
+	font-size: 0.28rem !important;
+	color: #000000
+}
+
+.vux-tab-selected {
+	font-weight: 600;
+}
+
+
+/*每个频道详情页的旗舰店*/
+
+.flagship .logo {
+	background-color: blue;
+}
+
+.flagship .vux-flex-row {
+	text-align: center;
+}
+
+.flagship i {
+	color: rgb(17, 159, 233);
+	margin-left: 0.1rem;
+}
+
+.componyIntroduc p {
+	line-height: 0.3rem
+}
+
+
+/*每个频道详情页的bottom样式*/
+
+.bottom {
+	background-color: #Fff
+}
+
+.bottom .vux-flex-row {
+	text-align: center
+}
+
+.bottom .icon-xinxi {
+	color: rgb(0, 161, 236)
+}
+
+.bottom .btn1 {
+	background-color: #FF9D57;
+	line-height: 0.7rem;
+}
+
+.bottom .btn2 {
+	background-color: #FF5155;
+	line-height: 0.7rem;
+}
+
+
+/*字号*/
+
+.commonfonts2 {
+	font-size: 0.18rem;
+}
+
+.commonfonts2 {
+	font-size: 0.2rem;
+}
+
+.commonfont24 {
+	font-size: 0.24rem;
+}
+
+.commonfont28 {
+	font-size: 0.28rem;
+}
+
+.comtitlefontsize26 {
+	font-size: 0.26rem
+}
+
+.comsmalltitlefontsize20 {
+	font-size: 0.2rem;
+}
+
+
+/*颜色*/
+
+.color_r {
+	color: red;
+}
+
+
+/*tab*/
+
+.channelBTab {
+	margin-bottom: 0.15rem;
+	z-index:999;
+}
+
+.channelBTab .vux-tab .vux-tab-item {
+	background: none !important
+}
+
+.channelBTab .icoliebiao {
+	padding: 0.2rem 0;
+	background-color: #fff;
+	box-shadow: -2px 0 0 rgb(203, 203, 203);
+}
+
+.channelBTab .icon-liebiao {
+	font-size: 0.35rem;
+	padding-left: 0.1rem;
+	width: 0.35rem;
+	height: 0.35rem;
+}
+
+.channelBTab .icon-liebiao1 {
+	font-size: 0.35rem;
+	margin: 0 0.1rem;
+}
+
+.channelTab img {
+	width: 100%;
+}
+
+
+/*会议通知盒子头*/
+
+.channelTab {
+	padding: 0.2rem;
+	background: #fff;
+	margin-top: 0.15rem;
+}
+
+.channelTab .topA .titleBox {
+	font-size: 0.28rem;
+	text-align: center;
+}
+
+.channelTab .topA .line {
+	width: 0.5rem;
+	height: 0.02rem;
+	background: #D3D3D3;
+	margin: 0 auto;
+	margin-top: 0.2rem;
+}
+
+.channelTab .content {
+	margin-top: 0.35rem;
+	margin-bottom: 0.35rem;
+}
+
+
+/*.channelTab .bottomA{
+		
+	    font-size: 0.2rem;
+	    line-height: 0.35rem;
+
+	}
+	.malldetails .bottomA strong{
+		font-size: 0.24rem;
+	}*/
+
+
+/*详情页的旗舰店部分*/
+
+.flagshipS {
+	margin-top: 0.15rem;
+	background-color: #fff;
+	padding: 0.2rem 0.4rem;
+}
+
+.flagshipS img {
+	width: 0.75rem;
+	height: 0.75rem;
+}
+
+.flagshipS .topA .companyBox {
+	margin-left: 0.3rem;
+	width: 4.2rem
+}
+
+.flagshipS .topA .companyBox .name {
+	font-size: 0.28rem;
+	font-weight: 500;
+}
+
+.flagshipS .topA .companyBox .componyIntro p {
+	font-size: 0.24rem;
+	color: rgb(125, 125, 125);
+	line-height: 0.5rem;
+	height: 0.5rem;
+}
+
+.flagshipS .topA .btnEnter {
+	font-size: 0.2rem;
+	color: rgb(212, 17, 32);
+	border: 1px solid rgb(212, 17, 32);
+	border-radius: 0.15rem;
+	padding: 0.01rem 0.1rem;
+}
+
+
+/*频道页详情页的短文字介绍*/
+
+.channelDetailText {
+	padding: 0.2rem;
+	background-color: #fff;
+}
+
+.channelDetailText .title {
+	font-size: 0.26rem
+}
+
+.channelDetailText .row {
+	line-height: 0.4rem;
+}
+
+.channelDetailText .small_content {
+	font-size: 0.24rem;
+	margin-top: 0.2rem;
+}
+
+.channelDetailText .small_content label {
+	color: rgb(135, 135, 135);
+}
+
+
+/*矿权详情*/
+
+.channelSec {
+	background-color: #Fff;
+	border-top: 1px solid rgb(229, 229, 229);
+}
+
+.channelSec .title {
+	font-size: 0.28rem;
+	color: #E88233;
+	padding: 0.2rem 0.2rem 0.1rem 0.2rem;
+}
+
+.channelSec .content {
+	font-size: 0.24rem;
+	color: rgb(140, 140, 140);
+	line-height: 0.4rem;
+	padding: 0 0.2rem 0 0.2rem;
+}
+
+.channelSec .more {
+	/*display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;*/
+	margin-bottom: 0.2rem;
+}
+
+.channelSec fieldset {
+	width: 100%;
+	border-top: 1px solid #E6E6E6;
+	padding-bottom: 0.1rem;
+}
+
+.channelSec fieldset span {
+	width: 0.35rem;
+	height: 0.25rem;
+	background-size: 0.35rem 0.25rem !important;
+	display:block;
+}
+
+.channelSec fieldset .icos {
+	background: url(../../../static/img/ico6.png) no-repeat center center;
+}
+
+.channelSec fieldset .icox {
+	background: url(../../../static/img/ico7.png) no-repeat center center;
+}
+
+.channelDetailText .small_content span {
+	color: rgb(51, 51, 51)
+}
+
+
+/*频道详情页的footer*/
+
+.channelFooter .btn1 {
+	background-color: rgb(255, 170, 118);
+}
+
+.channelFooter .btn2 {
+	background-color: rgb(255, 79, 84);
+}
+
+.channelFooter .icon-xiaoxi {
+	color: rgb(6, 167, 247);
+}
+
+.channelFooter {
+	font-size: 0.2rem;
+	color: rgb(117, 117, 117);
+	background-color: #fff;
+	margin-top: 0.15rem;
+	display: flex;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+}
+
+.channelFooter .colm {
+	width: 1rem;
+	text-align: center;
+	height: 0.6rem;
+	padding: 0.07rem 0;
+}
+
+.channelFooter i {
+	font-size: 0.32rem;
+}
+
+.channelFooter .followBox {
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+
+.channelFooter .btn {
+	font-size: 0.32rem;
+	color: #fff;
+	width: 2.2rem;
+	line-height: 0.6rem;
+}
+
+.mineralDetails .textBox {
+	margin-top: 0.15rem;
+	padding: 0.2rem;
+	font-size: 0.24rem;
+	background: #fff
+}
+
+.mineralDetails .textBox .mrow {
+	line-height: 0.45rem;
+}
+
+.mineralDetails .textBox .mcol {
+	width: 3.54rem;
+}
+
+.mineralDetails .textBox label {
+	width: 1.8rem;
+	display: inline-block;
+	color: #7B7B7B;
+}
+
+.mineralDetails .textBox .akey {
+	color: #EF852C
+}
+
+
+/*频道详情页的图片*/
+.channelDetalImage_box{
+	position: relative;
+}
+.channelDetalImage_box img {
+	width: 7.5rem;
+	height: 4.2rem;
+	position: relative;
+}
+
+.channelDetalImage_box .revert,
+.channelDetalImage_box .info {
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 0.6rem;
+	background-color: rgba(119, 110, 93, .6);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 0.2rem;
+}
+
+.channelDetalImage_box .icon-jiantou3,
+.icon-tubiao212 {
+	font-size: 0.3rem;
+	color: #fff
+}
+
+.channelDetalImage_box .revert {
+	left: 0.2rem;
+}
+
+.channelDetalImage_box .info {
+	right: 0.2rem;
+}
+
+.channelDetalImage_box .icon-tubiao212 {
+	font-size: 0.3rem;
+}
+
+
+/* 详情页footer */
+
+.footer {
+	width: 100%;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+}
+
+
+/*头部*/
+
+.oHeader {
+	padding: 0.2rem;
+	font-size: 0.36rem;
+	background-color: #333333;
+	color: #fff;
+    height: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    box-sizing: border-box;
+}
+/*小页面头部*/
+.oHeader .leftA {
+	margin-right: 0.36rem;
+}
+.oHeader .rightA .icon-iconfontadd{
+	font-size: 0.36rem;
+}
+.oHeader i{
+	font-size: 0.36rem;
+}
+
+
+/*约谈弹出框*/
+
+.comSpeakDial .weui-dialog {
+	max-width: 7.1rem;
+}
+
+.dialogHeader {
+	padding: 0.2rem;
+	font-size: 0.22rem;
+	background: #F2F2F2;
+	height: 0.22rem;
+}
+
+.bd {
+	padding: 0.2rem;
+	font-size: 0.24rem;
+}
+
+.bd .p1 {
+	line-height: 0.5rem;
+}
+
+.bd .p2 {
+	line-height: 0.38rem;
+}
+
+.textM {
+	margin: 0.2rem 0;
+}
+
+.textM textarea {
+	font-size: 0.22rem;
+}
+
+.comSpeakDial button {
+	font-size: 0.24rem;
+	background: #F15358;
+	color: #fff;
+	padding: 0.05rem 0.5rem;
+	border-radius: 5rem;
+}
+.comSpeakDial .icon-cuohao{
+	font-size: 0.28rem;
+	color: rgb(170,170,170);
+}
+
+/*报名和地址表单*/
+
+.comform .form .vux-no-group-title {
+	margin: 0;
+	height: 1rem;
+	line-height: 1rem;
+	font-size: 0.28rem;
+	padding-left: 0.15rem;
+}
+
+.comform .form .xinghao {
+	color: red;
+	line-height: 1rem;
+}
+
+.comform .form .vux-x-input {
+	height: 0.8rem;
+	padding-left: 0.1rem;
+}
+
+/*.comform .endSave button {
+	background-color: #FF5155;
+	color: #fff;
+	text-align: center;
+	font-size: 0.28rem;
+	height: 1rem;
+	line-height: 1rem;
+	width: 100%;
+}*/
+
+.comform .exForm .weui-toast__content {
+	text-align: center;
+}
+
+.comform .weui-cell .weui-cell__ft {
+	padding-right: 0.3rem;
+}
+
+.comform .address .weui-cell {
+	padding-top: 0;
+	padding-left: 0.1rem;
+}
+
+.comform .weui-cell_access .weui-cell__ft:after {
+	width: 0.15rem;
+	height: 0.15rem;
+}
+
+
+/*列表*/
+
+/*.comlist input:checked {
+	-webkit-appearance: none;
+	background: url(../../../static/img/ico8.png);
+	background-size: 100% 100%;
+}*/
+
+.comlist .checkbox {
+	margin-left: 0.2rem;
+	width: 0.25rem;
+	height: 0.25rem;
+	/* color: #FF4E56; */
+	margin-top: 0.1rem;
+	background-color: #FF4E56;
+}
+
+.comlist .icon-icon7 {
+	font-size: 0.36rem;
+	color: #A2A2A2;
+	margin-right: 0.2rem;
+}
+
+/*会展报名list*/
+	/*.comlist input:checked{
+		-webkit-appearance:none;
+		background: url(../../../static/img/ico8.png);
+		background-size: 100% 100%;
+	}*/
+	.comlist .table,
+	.addBtn {
+		background: #fff;
+	}
+	
+	.comlist table {
+		font-size: 0.28rem;
+		margin: 1rem 0;
+	}
+	.comlist table .checkbox{
+		
+	    margin-left: 0.2rem;
+	    width: 0.25rem;
+	    height: 0.25rem;
+	    /* color: #FF4E56; */
+	    margin-top: 0.1rem;
+	    background-color: #FF4E56;
+
+	}
+	.comlist table tr {
+		height: 1rem;
+		border-bottom:0.01rem solid #E4E4E4;
+	}
+	
+	.comlist .icon-icon7 {
+		font-size: 0.36rem;
+		color: #A2A2A2;
+    	margin-right: 0.2rem;
+	}
+	
+	.comlist .vux-check-icon>.weui-icon-success:before,
+	.vux-check-icon>.weui-icon-success-circle:before {
+		color: #FB5250;
+	}
+	
+	/*.comlist .endSave {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+	}
+	*/
+	/*.comlist .endSave button {
+		background-color: #FF5155;
+		color: #fff;
+		text-align: center;
+		font-size: 0.28rem;
+		height: 1rem;
+		line-height: 1rem;
+		width: 100%;
+	}*/
+	
+	.comlist .exForm .weui-toast__content {
+		text-align: center;
+	}
+
+
+
+
+/*加减数量*/
+
+.comNumb .vux-number-selector-sub {
+	line-height: 0.4rem;
+	text-align: center;
+	width: 0.4rem;
+	height: 0.4rem;
+	padding: 0;
+	background: #F2F2F2;
+}
+
+.comNumb .vux-number-selector-plus {
+	line-height: 0.4rem;
+	text-align: center;
+	width: 0.4rem;
+	height: 0.4rem;
+	padding: 0;
+	background: #F2F2F2;
+}
+
+.comNumb .vux-number-input {
+	height: 0.28rem;
+	width: 0.8rem !important;
+	font-size: 0.24rem;
+}
+
+.comNumb .vux-number-selector svg {
+	width: 0.2rem;
+	fill: #777777;
+}
+
+
+/*提示框确定按钮颜色*/
+
+#app .weui-dialog__btn_primary {
+	color: #FF5155
+}
+
+.weui-dialog__btn {
+	color: #FF5155
+}
+
+
+/*toast弹框左右居中*/
+
+.weui-toast__content {
+	text-align: center;
+}
+
+
+/*alert弹框样式*/
+
+.exForm .weui-dialog__btn_primary {
+	color: #FF5155;
+}
+
+.exForm .weui-dialog__bd {
+	font-size: 0.22rem;
+	color: #000;
+}
+
+
+/*频道页list*/
+
+.second .price,.contentItem .price{
+	line-height: 0.45rem;
+	font-size: 0.28rem;
+	color: rgb(255, 79, 84);
+}
+
+.second .contentItem {
+	width: 3.26rem;
+	float: left;
+	padding: 0.2rem;
+	background: #fff;
+}
+
+.second .contentItem:nth-child(1) {
+	margin: 0 0.15rem 0.15rem 0;
+}
+
+.second .contentItem:nth-child(2) {
+	margin: 0 0 0.15rem 0;
+}
+
+.second .contentItem:nth-child(2n+1) {
+	margin: 0 0.15rem 0.15rem 0;
+}
+
+.second .contentItem:nth-child(4n) {
+	margin: 0 0 0.15rem 0;
+}
+
+
+/*第一种显示方式*/
+
+.contentItem {
+	padding: 0.2rem;
+	background-color: #fff;
+	border-bottom: 1px solid rgb(230, 230, 230);
+}
+
+.contentItem:last-child {
+	border-bottom: 0
+}
+
+.contentItem .image {
+	line-height: 1.35rem;
+	
+}
+
+.contentItem img {
+	width: 1.8rem;
+	height: 1.36rem;
+	margin-right: 0.2rem;
+	line-height: 1.35rem;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.contentItem .textBox {
+	width: 5rem;
+}
+
+.contentItem .intro {
+	color: rgb(127, 127, 127);
+	margin: 0.06rem 0;
+}
+
+.contentItem .bottom {
+	color: rgb(127, 127, 127)
+}
+
+.meetingList .price {
+	color: rgb(255, 81, 82);
+	font-size: 0.28rem;
+}
+
+
+/*第二种显示方式*/
+
+.secondNews .contentItem {
+	margin: 0 0.15rem 0.15rem 0;
+	padding: 0.2rem;
+	background-color: #fff;
+	border-radius: 0.05rem;
+}
+
+.secondNews .contentItem:nth-child(2n) {
+	margin: 0
+}
+
+.secondNews .contentItem .image img {
+	width: 3.27rem;
+	height: 1.86rem;
+	margin-right: 0;
+}
+
+.secondNews .contentItem .textt {
+	width: 3.27rem;
+}
+
+.secondNews .contentItem .title{
+	margin: 0.05rem 0;
+}
+
+.secondNews .contentItem .intro,
+.color_h {
+	color: #878787
+}
+
+.icon-yanjing {
+	font-size: 0.2rem;
+	margin-right: 0.06rem;
+}
+
+
+.bottom {
+	margin-top: 0.13rem;
+}
+
+.secondNews .date {
+	text-align: right;
+}
+
+.droploadDowm {
+	text-align: center;
+}
+
+
+input:checked{
+	-webkit-appearance:none;
+	background: url(../../../static/img/ico8.png);
+	background-size: 100% 100%;
+}
+
+.endSave {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+}
+	
+.endSave .btn {
+		background-color: #FF5155;
+		color: #fff;
+		text-align: center;
+		font-size: 0.28rem;
+		height: 1rem;
+		line-height: 1rem;
+		width: 100%;
+}
+
+/*详情页的footer*/
+.detailsFooter{
+		display:flex;
+		font-size: 0.2rem;
+		border-top: 0.01rem solid rgb(230, 230, 230);
+		background-color: #fff;
+		align-items:center;
+		width: 100%;
+	    position: fixed;
+	    left: 0;
+	    bottom: 0;
+	}
+	.detailsFooter .colM{
+		flex: 1;
+		text-align: center;
+		border-right: 0.01rem solid rgb(230, 230, 230);
+		margin: 0.1rem 0;
+	}
+	.detailsFooter span{
+		display: block;
+	}
+	.detailsFooter i{
+		font-size: 0.32rem;
+	}
+	.detailsFooter .speakBox .icon-xinxi{
+		color:rgb(6, 167, 247)
+	}
+	.detailsFooter .btnBox{
+		flex:2;
+		text-align: center;
+		font-size: 0.32rem;
+		background-color: #FF9D57;
+		padding: 0.2rem 0;
+		color: #fff;
+	}
+	.detailsFooter .btnBuyBox{
+		background-color: rgb(255, 79, 84);
+	}
+	.detailsFooter .btnInvestBtn{
+		background: #F6822E;
+	}
+
+
+
+	/*商品详情页*/
+	.malldetails .carousel{
+		height: 6rem;
+	}
+	.channelTab .bottomA {
+		margin-top: 0.2rem;
+	}
+	
+	.channelTab .bottomA label {
+		font-size: 0.24rem;
+		color: rgb(117, 117, 117);
+		line-height: 0.45rem;
+	}
+	
+	.malldetails .bottomA .spanText {
+		font-size: 0.24rem;
+		color: rgb(51, 51, 51);
+		line-height: 0.45rem;
+		margin-left: 0.45rem;
+	}
+.malldetails .carousel {
+		position: relative;
+	}
+	
+	.malldetails .carousel img {
+		width: 100%;
+		height: 6rem;
+	}
+	
+	.malldetails .swiper-pagination {
+		text-align: center;
+		margin-right: 0.2rem;
+		width: 0.8rem;
+		height: 0.4rem;
+		background-color: rgb(119, 119, 119);
+		border-radius: 1rem;
+		color: #fff;
+		line-height: 0.4rem;
+		left: 6.5rem;
+		font-size: 0.2rem;
+	}
+	
+	.swiper-container-horizontal>.swiper-pagination-bullets,
+	.swiper-pagination-custom,
+	.swiper-pagination-fraction {
+		bottom: 0.2rem !important
+	}
+	
+	.malldetails .revert,
+	.malldetails .info {
+		width: 0.6rem;
+		height: 0.6rem;
+		border-radius: 0.6rem;
+		background-color: rgba(119, 110, 93, .6);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		top: 0.2rem;
+		z-index: 999
+	}
+	
+	.revert {
+		left: 0.2rem;
+	}
+	
+	.info {
+		right: 0.2rem;
+	}
+	
+	.revert .icon-jiantou-copy,
+	.icon-tubiao212 {
+		font-size: 0.3rem;
+	}
+	
+	.malldetails .common {
+		padding: 0.2rem;
+	}
+	
+	.malldetails .details .title {
+		margin-bottom: 0.12rem;
+	}
+	
+	.malldetails .details .contentrow {
+		margin-bottom: 0.4rem;
+	}
+	
+	.malldetails .details .priceType {
+		background-color: rgb(255, 79, 84);
+		color: #fff;
+		font-size: 0.28rem;
+		border-radius: 0.05rem;
+		padding: 0 0.05rem;
+		margin-right: 0.3rem;
+	}
+	
+	.malldetails .details .namee {
+		font-size: 0.28rem;
+	}
+	
+	.malldetails .details .content p {
+		font-size: 0.24rem;
+		line-height: 0.35rem;
+	}
+	
+	.malldetails .details .priceBox {
+		line-height: 0.6rem;
+	}
+	
+	.malldetails .details .priceBox .money {
+		font-size: 0.45rem;
+		color: rgb(254, 81, 65);
+		font-weight: bold;
+	}
+	
+	.malldetails .details .priceBox label,
+	s {
+		color: rgb(161, 161, 161);
+		font-size: 0.24rem;
+		margin-left: 0.1rem;
+	}
+	
+	.malldetails .details .yangjiao {
+		color: rgb(254, 81, 65);
+		font-size: 0.24rem;
+	}
+	
+	.malldetails .vux-no-group-title {
+		margin: 0;
+		font-size: 0.22rem
+	}
+	
+	.malldetails .weui-cell_access {
+		height: 0.6rem
+	}
+	
+	.malldetails .vux-cell-primary p {
+		padding-top: 0.2rem
+	}
+	
+	.malldetails .malldetails_nav {
+		margin: 0.15rem 0
+	}
+	.malldetails .shop{
+		margin-bottom: 1rem;
+	}
+
+	
+.optionCount .mallInfo {
+		padding: 0.2rem;
+	}
+	
+	.optionCount .mallInfo img {
+		width: 1.2rem;
+		height: 1.2rem;
+		margin-right: 0.2rem;
+	}
+	
+	.optionCount .mallInfo .name {
+		font-size: 0.26rem;
+		margin-bottom: 0.2rem;
+		width: 4.88rem;
+		
+	}
+	
+	.optionCount .price {
+		font-size: 0.24rem;
+		color: red;
+		margin-right: 0.1rem;
+	}
+	
+	.optionCount .label {
+		font-size: 0.24rem;
+		color: rgb(117, 117, 117)
+	}
+	
+	.optionCount .mallInfo .close {
+		font-size: 0.24rem;
+		line-height: 1.2rem;
+	}
+	
+	.optionCount .mallInfo .close .icon-cuohao {
+		font-size: 0.28rem;
+		color: rgb(170, 170, 170);
+	}
+	
+	.optionCount .vux-inline-x-number {
+		float: right;
+	}
+	
+	.optionCount .stock {
+		font-size: 0.2rem;
+		color: #7B7B7B;
+		margin-top: 0.1rem;
+	}
+	
+	.optionCount .countInfo {
+		padding: 0.2rem 0.2rem 0.1rem;
+		border: 1px solid #E5E5E5;
+	}
+	
+	.optionCount .allPrice {
+		text-align: right;
+		line-height: 0.65rem;
+	}
+	
+	.optionCount .btn {
+		background-color: #FF5155;
+		color: #fff;
+		text-align: center;
+		font-size: 0.28rem;
+		height: 1rem;
+		line-height: 1rem;
+		width: 100%;
+	}
+	.optionCount span{
+		display: inline
+	}
+	/*选择数量弹出框*/
+	.dialogCount {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		transform: translate3d(0, -79%, 0);
+		background: #fff;
+	}
+	
+	.dialogMack {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		opacity: .8;
+		background: #000000;
+		backdrop-filter: blur(2px);
+		z-index: 30;
+	}
+	
+	.mack-enter-active,
+	.mack-leave-active {
+		transition: all .3s;
+		opacity: .8;
+	}
+	
+	.mack-enter,
+	.mack-leave-to
+	/* .fade-leave-active below version 2.1.8 */
+	
+	{
+		opacity: 0;
+	}
+	
+	.fold-enter-active,
+	.fold-leave-active {
+		transition: all .5s;
+		transform: translate3d(0, -79%, 0)
+	}
+	
+	.fold-enter,
+	.fold-leave-to
+	/* .fade-leave-active below version 2.1.8 */
+	
+	{
+		transform: translate3d(0, 0, 0)
+	}
+	.malldetails .vux-x-dialog .weui-dialog {
+		max-width: 6rem;
+	}
+	
+/*搜索头部*/
+.searchHeader {
+		padding: 0 0.2rem;
+		display: flex;
+		color:#333333;
+		align-items:center;
+		height: 1rem;
+	}
+	.searchHeader .icon-jiantou-copy{
+		font-size: 0.5rem;
+	}
+	.searchHeader .searchBox {
+		width: 5.19rem;
+		height: 0.58rem;
+		border-radius: 0.29rem;
+		margin: 0.2rem;
+		line-height: 0.58rem;
+		/*background-color: #ccc;*/
+	}
+	
+	.searchHeader .searchBox .searchIco {
+		font-size: 0.3rem;
+		padding-left: 0.28rem;
+	}
+	.searchHeader .searchBox input {
+		border: none;
+		height: 0.48rem;
+		line-height: 0.48rem;
+		padding-top: 0.04rem;
+		box-sizing: border-box;
+		width: 74%;
+	}
+	.searchBox .clear .icon-cuohao{
+		font-size: 0.3rem;
+	}
+	.myInput::-webkit-input-placeholder {
+		color: black;
+		font-size:0.24rem ;
+	}
+	.searchHeader .rightBox{
+		font-size: 0.28rem;
+	}
+	.searchHeader .moreBox  .icon-morevert{
+		font-size: 0.5rem;
+	}	
+	
+	
+		

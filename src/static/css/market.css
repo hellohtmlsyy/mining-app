@@ -1,0 +1,15 @@
+.market table {
+		font-size: 0.24rem;
+	}
+.market table tr{
+		height: 0.6rem;
+	}
+.market table tr td {
+		/*text-align: left;*/
+	}
+	.market .table th{
+		color: #757575;
+	}
+	.market .table .dissFont{
+		font-size: 0.2rem;
+	}
