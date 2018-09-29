@@ -34,12 +34,14 @@ export default {
         MCT:'http://memberapi.miningcircle.com',// 2.0地址,
         MCM:'http://m.miningcircle.com',
         MCL:'http://member.miningcircle.com/login?where=mcVue',  //登录地址
+        UPLOAD: 'http://www.miningcircle.com',//本地上传
       },
       test: {
         MC: 'http://www.miningcircle.com',
-        MCT:'http://memberapi.miningcircle.com',// 2.0地址,
-        MCM:'http://192.168.1.240:8082',
-        MCL:'http://member.miningcircle.com/login?where=mcVue',  //登录地址
+        MCT:'http://memberapi.miningcircle.com:8090',// 2.0地址,
+        MCM:'http://m.miningcircle.com:8082',
+        MCL:'http://member.miningcircle.com:8080/login?where=mcVue',  //登录地址
+        UPLOAD: 'http://www.miningcircle.com',//本地上传
         WEB_URL: {
           WEB_MIAO: ''
         }

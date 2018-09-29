@@ -40,14 +40,14 @@
 					</div>
 					<div class="row">
 						<label class="spanBox">售价</label>
-						<span class="price_span colorr" style="color:red" >{{ticketlist[checkTicket-1].ticket_money | converAmount(2)}}</span>
+						<span class="price_span colorr" style="color:red">{{ticketlist[checkTicket-1] && ticketlist[checkTicket-1].ticket_money | converAmount(2)}}</span>
 						<!--<span v-show="item.ticket_name == '免费'">免费</span>-->
 					</div>
 					<div class="row clearfix">
 						<label class="spanBox fl">票种</label>
 						<!--<span class="ticket" :class="item.ticket_name == '免费' ? 'ticketM' : 'ticketS'" v-for="item in ticketlist">{{item.ticket_name}}{{item.ticket_money}}</span>-->
 						<div class="fl">
-							<checker v-model="checkTicket" default-item-class="demo5-item" selected-item-class="demo5-item-selected">
+							<checker v-model="checkTicket" default-item-class="demo5-item" selected-item-class="demo5-item-selected" >
 								<checker-item v-for="i in indexTicketType" :key="i" :value="i">{{ticketType[i-1]}}<span class="priceColor">{{ticketlist[checkTicket-1].ticket_money | converAmount(2)}}</span></checker-item>
 							</checker>
 						</div>
@@ -290,7 +290,7 @@
 			goShop(){
 				window.location.href = this.$root.urlPath.MCM + "/flagship?newpage=newpage&shopId=" + this.companyInfo.companyId;
 			}
-		}
+	},
 	}
 </script>
 
@@ -310,7 +310,7 @@
 		height: auto;
 	}
 	
-	.ExhibitionDetails .top img {
+	.ExhibitionDetails .top .image_box img {
 		width: 7.5rem;
 		height: 4.2rem;
 		position: relative;

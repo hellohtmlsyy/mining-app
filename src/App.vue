@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import '@/assets/commonjs/util.js';
 export default {
   name: 'App'
 }

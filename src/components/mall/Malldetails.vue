@@ -155,7 +155,7 @@
 						<div class="countInfo clearfix">
 							<div class="comNumb clearfix">
 								<span class="purity">{{mallDetailsList.specification}}</span>
-								<inline-x-number width="50px" :min="mallDetailsList.min_quantity" v-model="count"></inline-x-number>
+								<inline-x-number width="50px" :min="mallDetailsList.min_quantity" v-model="count" :max="mallDetailsList.total_quantity"></inline-x-number>
 
 							</div>
 							<div class="stock fr">
@@ -272,7 +272,6 @@
 			}
 		},
 		mounted: function() {
-
 			this.getMallDetailsList()
 
 		},
@@ -346,7 +345,7 @@
 					if(this.follow == '关注') {
 						axios.get(this.$root.urlPath.MC + '/wap/mall.do?attention', {
 								params: {
-									id: this.$route.query.id
+									id: this.mallDetailsList.id
 								}
 							})
 							.then(res => {
@@ -363,7 +362,7 @@
 					} else {
 						axios.get(this.$root.urlPath.MC + '/wap/mall.do?cancelAttention', {
 								params: {
-									id: this.$route.query.id
+									id: this.mallDetailsList.id
 								}
 							})
 							.then(res => {
@@ -446,7 +445,7 @@
 			speakSubmit() {
 				axios.get(this.$root.urlPath.MC + '/wap/mall.do?interview', {
 						params: {
-							id: this.$route.query.id,
+							id: this.mallDetailsList.id,
 							msg: this.speakText
 						}
 					})

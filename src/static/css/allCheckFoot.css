@@ -1,0 +1,29 @@
+.allCheckFoot {
+	background: #fff;
+	display: flex;
+	align-items: center;
+	border-top: 1px solid #e5e5e5;
+}
+.allCheckFoot .checkBM{
+	margin-left: 0.2rem;
+}
+.allCheckFoot .checkBM .checkbox+label{
+	margin-top: -0.02rem;
+}
+
+.allCheckFoot .checkBox{
+	width: 5.3rem;
+}
+ .allCheckFoot .allCheck{
+	font-size:0.24rem;
+	margin-left: 0.68rem;
+}
+ .allCheckFoot .btn{
+	width:2.2rem;
+	height:0.94rem;
+	font-size:0.32rem;
+	color:rgba(255,255,255,1);
+	background:rgba(255,117,34,1);
+	outline: none;
+	border: 0; 
+}

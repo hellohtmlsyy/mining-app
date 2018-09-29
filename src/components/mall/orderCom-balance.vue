@@ -87,7 +87,7 @@
 		</div>
 		<div class="bottomM clearfix">
 			<div class="fr">
-				<div class="fl">
+				<div class="priceBox fl">
 					<span class="total">合计：</span>
 					<!--{{item.res[index].price * item.res[index].quantity | converAmount(2)}}-->
 					<span class="totalPrice">{{totalPrice | converAmount(2)}}</span>
@@ -109,7 +109,7 @@
 <script>
 	import axios from 'axios'
 	import { Cell } from 'vux'
-	import { isDevice } from '@/assets/commonjs/util.js'
+	import { isDevice,lastPage} from '@/assets/commonjs/util.js'
 	export default {
 		components: {
 			Cell
@@ -125,7 +125,8 @@
 				ggid: '', //全场优惠id
 				cgid: '',
 				ogid: '',
-				totalPrice: 0
+				totalPrice: 0,
+				isClickBal:false
 			}
 		},
 		mounted() {
@@ -227,7 +228,9 @@
 				}
 				para += ']';
 				para += '}';
-
+				if(this.isClickBal){
+					return
+				}
 				axios.get(this.$root.urlPath.MC + '/wap/trade.do?paySettlement', {
 						params: {
 							para: para, //最后提交订单数据组合
@@ -239,6 +242,7 @@
 						}
 					})
 					.then(res => {
+						this.isClickBal = true
 						if(res.data.success) {
 							this.showaddCart = true
 							if(isDevice() == 'ios' || isDevice() == 'adr') {
@@ -276,15 +280,12 @@
 										alert(error)
 									});
 
-							} else if(isDevice == '微信浏览器') {
-								if(this.$route.query.where == 'meeting') {
-									window.location.href = this.$root.urlPath.MCM + "/mall/pay?newpage=newpage&payType=normal&where=meeting&id=" + this.$route.query.id;
-								} else {
+							} else if(isDevice() == '微信浏览器') {
 									window.location.href = this.$root.urlPath.MCM + "/mall/pay?newpage=newpage&payType=normal&id=" + this.$route.query.id;
-								}
+//								}
 							}
 						} else {
-							console.log(res.data.errMsg)
+							alert('出现' + res.data.errMsg+'或此订单已经结算请到我的订单中查看')
 						}
 					})
 					.catch(function(error) {
@@ -333,18 +334,7 @@
 
 			},
 			back() {
-				if(isDevice() == 'adr') {
-					adwebkit.callApp("BACK", '');
-				} else if(isDevice() == 'ios') {
-					oswebkit.callApp("BACK", '');
-				} else {
-//					if(this.$route.query.where == 'meeting') {
-//						window.location.href = this.$root.urlPath.MCM + "/mall/orderCom_list?newpage=newpage&where=meeting&id=" + this.$route.query.id;
-//					} else {
-//						window.location.href = this.$root.urlPath.MCM + "/mall/orderCom_list?newpage=newpage&id=" + this.$route.query.id;
-//					}
-					this.$router.go(-1)
-				}
+				lastPage()
 			},
 
 		},
@@ -493,12 +483,14 @@
 		font-size: 0.3rem;
 		color: red;
 	}
-	
+	.orderConfirm .bottomM .priceBox{
+		height: 0.8rem;	
+	}
 	.orderConfirm .bottomM .submitBtn {
 		font-size: 0.32rem;
 		color: #fff;
 		background: #FF5155;
-		padding: 0 0.4rem;
+		padding: 0 0.8rem;
 		margin-left: 0.2rem;
 	}
 </style>

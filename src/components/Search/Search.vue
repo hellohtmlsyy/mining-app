@@ -5,9 +5,9 @@
         <div class="sea_box">
           <i class="iconfont icon-jiantou-copy color_f" @click="revert()"></i>
           <form action="" style="display: inline;">
-          	<input type="search" placeholder="搜索" v-model="text" ref="sea_inp" id="search" autofocus="autofocus">          	 
+          	<input type="text" placeholder="搜索" v-model.trim="key" ref="sea_inp" id="search" autofocus="autofocus">    
 					</form>
-          <!--<i class="iconfont icon-cuowu" @click="empty()"></i>-->
+          <i class="iconfont icon-cuowu" @click="empty()"></i>
         <a href="javascript:;" class="sea_text color_f" @click="search()">搜索</a>
        </div>
       </div>
@@ -15,7 +15,7 @@
     <div class="bar">
       <ul class="clearfix">
           <li v-for="(item,index) in navlist" :key="item.id" @click="tab(index)" :class="{active:index == num}">
-              <a href="javascript:;" @click="bar_list(item.name,item.id)">{{item.name}}</a>
+              <a href="javascript:;">{{item.name}}</a>
           </li>
       </ul>
     </div>
@@ -46,9 +46,15 @@
         components: {
             AlertModule,
         },
+        watch: {
+        	['key']() {
+        		var rules = /^[a-zA-Z0-9\u4e00-\u9fa5]{1,100}$/;
+						this.keyError = this.key.length >0 && rules.test(this.key) ? false : true;
+					},
+        },
         methods: {			
             empty(){
-              this.text=[];
+              this.key = '';
             },
             his_empty(){
               this.his_show=false;
@@ -68,7 +74,8 @@
 							}			
             },
             his_list(item){
-              location.href = '/search/list/1?newpage=newpage&key=' + encodeURIComponent(item);
+            	var num = this.num+1;
+              location.href = '/search/list/'+num+'?newpage=newpage&key=' + encodeURIComponent(item);
             },
             bar_list(item,id){
               location.href = '/search/list/'+id+'?newpage=newpage&key=' + encodeURIComponent(item);
@@ -76,9 +83,8 @@
             search(){
               this.jsonString = localStorage.getItem(this.storageKey) || '[]';
               this.historyList = JSON.parse(this.jsonString);             
-              this.key=$.trim(this.$refs.sea_inp.value);             
-              if(!this.key){
-                this.$vux.toast.text('请输入搜索关键字', 'center');
+              if(this.keyError){
+                this.$vux.toast.text('请输入正确搜索关键字', 'center');
                 return;
               }else{
                 var key=this.key;
@@ -94,7 +100,8 @@
                   this.historyList.splice(0, this.historyList.length - 10);
                 }
                 localStorage.setItem(this.storageKey, JSON.stringify(this.historyList));
-                location.href = '/search/list/1?newpage=newpage&key=' + encodeURIComponent(this.key);
+                var num = this.num+1;
+                location.href = '/search/list/'+num+'?newpage=newpage&key=' + encodeURIComponent(this.key);
               }
             },
             tab(index) {
@@ -102,7 +109,7 @@
             },  
             isShow:function(){
               if(this.history_sear.length!=0){
-                  this.history_sear.push({name:this.text,id:this.id});
+                  this.history_sear.push({name:this.key,id:this.id});
                   return 'true';
               }else{
               }
@@ -111,6 +118,7 @@
         data() {
             return {
               key:'',
+              keyError: false,
               historyList:[],
               jsonString:[],
               storageKey:'SearchHistoryList',
@@ -152,6 +160,11 @@
           }else{
             this.his_show=false;
           }   
+          
+          //搜索框val回显
+          var inpVal = this.$route.query.key
+          if( inpVal && inpVal != '' )
+          	this.key = inpVal;
         }
     }
 </script>
@@ -191,6 +204,7 @@
       color: #333;
       font-size: 0.24rem;
       margin-bottom: 0.1rem;
+      word-break: break-all;
     }
     .icon-web-icon-{
       font-size:0.5rem;

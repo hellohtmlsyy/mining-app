@@ -81,7 +81,7 @@
 				lastPage()
 			},
 			goShopCart(){
-				window.location.href = this.$root.urlPath.MCM + "/shopCart?shopId="+this.$route.query.shopId+"&newpage=newpage"
+				window.location.href = this.$root.urlPath.MCM + "/shopCart?shopId="+this.$route.query.shopId+"&shopName="+ this.componyIntro.name +"&newpage=newpage"
 		
 			},
 			getComponyIntro(){

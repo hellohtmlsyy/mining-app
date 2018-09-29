@@ -68,7 +68,7 @@
 .entaccount_top .user_con .vip_leval img {
 	width: 0.3rem;
 	margin-right: 0.1rem;
-	vertical-align: top;
+	vertical-align: middle;
 }
 .user_con .total_assets,
 .usable_balance {

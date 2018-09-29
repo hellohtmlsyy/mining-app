@@ -1,5 +1,5 @@
 <template>
-	<div class="comHeader">
+	<div class="comHeader" :style="{backgroundColor:bgcolor ? bgcolor : '#333333',color:colorM ? colorM : '#fff'}">
 		<div class="leftA" @click="goBack">
 			<i class="icon iconfont icon-jiantou-copy"></i>
 			<span>{{title}}</span>
@@ -17,7 +17,7 @@
 	import {lastPage} from '@/assets/commonjs/util.js';
 	
 	export default{
-		props:["title"],
+		props:["title",'bgcolor','colorM'],
 		methods:{
 			goBack(){
 				lastPage()
@@ -28,7 +28,6 @@
 
 <style>
 	.comHeader{
-		background: #333333;
 		color: #fff;
 		padding: 0.2rem;
 		font-size: 0.36rem;
@@ -44,13 +43,15 @@
 		z-index: 99;
 		
 	}
-	
+	.leftA, .centerA, .rightA{
+		flex: 1;
+	}
 	.comHeader .icon-jiantou-copy{
 		font-size: 0.36rem;
 	}
 	.comHeader .rightA{
 		display: flex;
-    	flex-grow: 1;
+    	/*flex-grow: 1;*/
     	justify-content: flex-end;
 	}
 </style>

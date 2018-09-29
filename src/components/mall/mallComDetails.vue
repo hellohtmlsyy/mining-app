@@ -140,7 +140,7 @@
 					</div>
 					<div class="countInfo clearfix">
 						<div class="comNumb clearfix">
-							<inline-x-number width="50px" :min="1" v-model="count"></inline-x-number>
+							<inline-x-number width="50px" :min="1" v-model="count" :max="mallDetailsList.total_quantity"></inline-x-number>
 
 						</div>
 						<div class="stock fr">
@@ -353,7 +353,7 @@
 					if(this.follow == '关注') {
 						axios.get(this.$root.urlPath.MC + '/wap/mall.do?attention', {
 								params: {
-									id: this.$route.query.id
+									id: this.mallDetailsList.id
 								}
 							})
 							.then(res => {
@@ -370,7 +370,7 @@
 					} else {
 						axios.get(this.$root.urlPath.MC + '/wap/mall.do?cancelAttention', {
 								params: {
-									id: this.$route.query.id
+									id: this.mallDetailsList.id
 								}
 							})
 							.then(res => {

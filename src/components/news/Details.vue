@@ -29,35 +29,28 @@
 
 			</div>
 		</div>
-		<div class="bottom">
-			<div class="likeBox clearfix">
-				<div class="fl" :class="landOrNo ? 'color_r' :'color_h'" @click="likeClick(310)">
-					<i class="icon iconfont icon-dianzan" ></i>
-					<span class="laud">{{landCount}}</span>
-				</div>
-				<div class="fl" :class="likeOrNo ? 'color_r' :'color_h'" @click="likeClick(320)">
-					<i class="icon iconfont icon-xin" :class="likeOrNo ? 'color_r' :'color_h'" ></i><span>{{likeCount}}</span>
-				</div>
-			</div>
+		
 
-			<div class="shareBox clearfix">
-				<label class="fl">分享到：</label>
-
-				<div class="fl">
-					<span @click="shareWX">
-						<i class="iconfont icon-wechat" ></i><span>微信</span>
-					</span>
-					<span @click="sharePYQ">
-						<i class="iconfont icon-pengyouquan1"></i><span>朋友圈</span>
-					</span>
-					<span @click="shareWB">
-						<i class="iconfont icon-weibo1"></i><span>微博</span>
-					</span>
-				</div>
-				<div class="shareMC" :style="{display:shareMC}" @click="shareMCClick"></div>
-				<actionsheet v-model="show1" :menus="shareType" :close-on-clicking-mask="false" show-cancel @on-click-mask="console('on click mask')" @on-click-menu-type1="shareWX" @on-click-menu-type2="sharePYQ" @on-click-menu-type3="shareWB" @on-click-menu-type4="shareQQKJ"></actionsheet>
+		<footer>
+			<div class="block" @click="likeClick(310)">
+				<i class="icon iconfont icon-dianzan" :style="{color:colorZan}"></i>
 			</div>
-		</div>
+			<div class="block" @click="likeClick(320)">
+				<i class="icon iconfont icon-xin" :style="{color:colorXin}"></i>
+			</div>
+			<div class="block" @click="shareWX">
+				<i class="iconfont icon-wechat" ></i>
+			</div>
+			<div class="block" @click="sharePYQ">
+				<i class="iconfont icon-pengyouquan1"></i>
+			</div>
+			<div class="block" @click="shareWB">
+				<i class="iconfont icon-weibo1"></i>
+			</div>
+			
+			<div class="shareMC" :style="{display:shareMC}" @click="shareMCClick"></div>
+			<actionsheet v-model="show1" :menus="shareType" :close-on-clicking-mask="false" show-cancel @on-click-mask="console('on click mask')" @on-click-menu-type1="shareWX" @on-click-menu-type2="sharePYQ" @on-click-menu-type3="shareWB" @on-click-menu-type4="shareQQKJ"></actionsheet>
+		</footer>
 	</div>
 </template>
 
@@ -109,6 +102,14 @@
 			}
 			
 			this.getNewsDetailsList()
+		},
+		computed:{
+			colorZan(){
+				return this.landOrNo ? 'red' : 'black'
+			},
+			colorXin(){
+				return this.likeOrNo ? 'red' : 'black'
+			}
 		},
 		methods: {
 			openAppShoHid(showHide){
@@ -270,6 +271,8 @@
 </script>
 
 <style>
+	
+	
 	.newsDetails .oHeader{
 		width: 7.5rem;
 	}
@@ -313,18 +316,19 @@
 	}
 	
 	.newsDetails .content {
-		padding: 0.38rem 0.2rem;
+		padding: 0.2rem 0.2rem;
 	}
 	
 	.newsDetails .content h1 {
-		font-size: 0.36rem;
-		margin-bottom: 0.3rem;
+		font-size: 0.4rem;
+		margin-bottom: 0.14rem;
+		font-weight: normal;
 	}
 	
 	.newsDetails .content .smh1 {
 		font-size: 0.24rem;
 		color: rgb(117, 117, 117);
-		margin-bottom: 0.2rem;
+		margin-bottom: 0.22rem;
 	}
 	
 	.newsDetails .content .smh1 i {
@@ -340,64 +344,36 @@
 	.newsDetails .content .smh1 span:last-child {
 		margin-right: 0;
 	}
-	
-	.newsDetails .bottom {
-		position: relative;
+	.newsDetails .content .vtext{
+		padding: 0 0.2rem 2.14rem 0.2rem;
 	}
-	
-	.newsDetails .bottom .likeBox {
-		text-align: center;
-		/*color: #EF4871;*/
-		font-size: 0.28rem;
-		color: #Ccc;
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
+	/*底部*/
+	.newsDetails footer{
+		display: flex;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		height: 0.94rem;
+		align-items: center;
+		background: #fff; 
+		border-top: solid 1px #e5e5e5;
 	}
-	
-	.newsDetails .bottom .likeBox i {
-		font-size: 0.32rem;
-		margin-right: 0.1rem;
+	.newsDetails footer .block{
+		flex: 1;
+		text-align:center ;
 	}
-	
-	.newsDetails .bottom .likeBox span {
-		margin-right: 0.2rem;
+	.newsDetails footer .block i{
+		font-size: 0.45rem;
 	}
-	
-	.newsDetails .bottom .likeBox .laud {
-		margin-right: 0.95rem;
-	}
-	
-	.newsDetails .bottom .shareBox {
-		font-size: 0.28rem;
-		padding: 0.65rem;
-		padding-left: 0.9rem;
-	}
-	
-	.newsDetails .bottom .shareBox i {
-		vertical-align: middle;
-		font-size: 0.4rem;
-	}
-	
-	.newsDetails .bottom .shareBox label {
-		margin-right: 0.35rem;
-	}
-	
-	.newsDetails .bottom .shareBox span {
-		margin-right: 0.1rem;
-	}
-	
-	.newsDetails .icon-wechat {
+	.newsDetails footer .icon-wechat {
 		color: #39B42E;
 	}
 	
-	.newsDetails .icon-pengyouquan1 {
+	.newsDetails footer .icon-pengyouquan1 {
 		color: #EE8817;
 	}
 	
-	.newsDetails .icon-weibo1 {
+	.newsDetails footer .icon-weibo1 {
 		color: #F95465;
 	}
-	
-	
 </style>

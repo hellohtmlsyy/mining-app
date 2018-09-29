@@ -115,7 +115,7 @@
  								text: '提交成功',
  								type:'success',
 							})
-							
+							lastPage()
 						} else {
 							this.$vux.toast.show({
  								text: '提交失败，请稍后重试',

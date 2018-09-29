@@ -2,7 +2,7 @@
 	<div>
 		<!--企业top-->
 		<div class="entaccount_top entTopShow">
-			<i class="iconfont icon-jiantou-copy" v-show="homeShow" @click="appBack"></i>
+			<i class="iconfont icon-jiantou-copy" @click="appBack"></i>
 			<img src="../../../static/img/user/already_login_bg.png" class="bg_img">
 			<img class="icon-wode-F" src="../../../static/img/user/default_headImg.png">
 			<div class="user_name">{{userName|subStr(4)}}</div>
@@ -149,7 +149,7 @@
 				equi:navigator.userAgent,
 				vipLevel:this.$route.query.vip,
 				isInapp:navigator.userAgent.indexOf('/mcapp')>=0,//判断是否在app打开
-				homeShow:false,
+//				homeShow: true,
 			}
 		},
 		methods: {			
@@ -226,15 +226,15 @@
 			}else{
 				this.vipLevelImgs='../../../static/img/user/copper.png';
 			}
-			if(!this.isInapp){
-				this.homeShow=true;
-			}else if(this.isInapp){
-				if(this.$route.query.back==0){
-					this.homeShow=true;
-				}
-			}else{
-				this.homeShow=false;
-			}
+//			if(!this.isInapp){
+//				this.homeShow=true;
+//			}else if(this.isInapp){
+//				if(this.$route.query.back==0){
+//					this.homeShow=true;
+//				}
+//			}else{
+//				this.homeShow=false;
+//			}
 		},		
 	}
 </script>

@@ -1,0 +1,42 @@
+.searchBox {
+	height: 0.58rem;
+	border-radius: 0.29rem;
+	line-height: 0.58rem;
+	background-color: #fff;
+	margin: 0 0.18rem;
+}
+
+.searchBox .searchIco {
+	font-size: 0.3rem;
+	padding-left: 0.28rem;
+}
+
+.searchBox input {
+	border: none;
+	height: 0.4rem;
+	line-height: 0.4rem;
+	box-sizing: border-box;
+	width: 72%;
+	vertical-align: middle;
+	font-size: 0.24rem;
+}
+
+.searchBox .clear {
+	width: 0.35rem;
+	height: 0.35rem;
+	background-color: rgb(170, 170, 170, 0.35);
+	border-radius: 0.175rem;
+	display: inline-block;
+	line-height: 0.3rem;
+	
+}
+
+.searchBox .clear .icon-cuohao {
+	font-size: 0.3rem;
+	color: #333333;
+}
+
+.searchBox .myInput::-webkit-input-placeholder {
+	color: rgba(170, 170, 170, 1);
+	font-size: 0.24rem;
+}

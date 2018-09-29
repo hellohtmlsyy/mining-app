@@ -5,21 +5,12 @@
 				<div class="sea_box">
 					<i class="iconfont icon-jiantou-copy color_f" @click="revert()"></i>
 					<form action="" style="display: inline;">
-						<input type="search" v-model="val" ref="sea_inp" id="search">          	
+						<input type="text" v-model="val" id="search" @click="toJump()" readonly="readonly">          	
 					</form>
-					<!--<i class="iconfont icon-cuowu" @click="empty()"></i>-->
-					<a href="javascript:;" class="sea_text color_f" @click="search()">搜索</a>
 				</div>
 			</div>
 		</flexbox>
 		<div style="position: relative;left: 0;top: 0.92rem;" id="scrop">
-			<div class="bar">
-				<ul class="clearfix" v-model="navlist.index">
-					<li v-for="(item,index) in navlist" :key="item.id" @click="tab(index)" :class="{active:index == num}">
-						<a href="javascript:;">{{item.name}}</a>
-					</li>
-				</ul>
-			</div>
 			<div class="num clearfix">
 				<span>矿业圈已为您搜索相关结果约{{pages?pages:0}}个</span>
 				<div class="icoliebiao" v-show="styShow">
@@ -27,8 +18,8 @@
 					<i class="icon iconfont icon-liebiao1" @click="switchSecond" :style="{'color':shohid ? '#aaa' : '#333'}"></i>
 				</div>
 			</div>
-			<Malllist :shohid="shohid" :list="list" v-show="Malllist" :imgShow="imgShow"></Malllist>
-			<Flagshiplist :list="list" v-show="Flagshiplist"></Flagshiplist>
+			<Malllist :shohid="shohid" :list="list" v-show="Malllist" :imgShow="imgShow" ></Malllist>
+			<Flagshiplist :list="list" v-show="Flagshiplist" ></Flagshiplist>
 			<Minerallist :shohid="!shohid" :list="list" v-show="Minerallist"></Minerallist>
 			<Exhibitionlist :shohid="shohid" :list="list" v-show="Exhibitionlist"></Exhibitionlist>
 			<Newslist :shohid="shohid" :list="list" v-show="Newslist"></Newslist>
@@ -38,6 +29,7 @@
 	</div>
 </template>
 <script>
+	var count = 0;
 	import SearchHead from '@/components/common/SearchHead';
 	import Mlist from '@/components/common/Mlist';
 	import Minerallist from '@/components/common/Mineral-list';
@@ -51,23 +43,6 @@
 		data() {
 			return {
 				styShow:true,
-				num: this.$route.params.category - 1,
-				navlist: [{
-					name: '商城',
-					id: 1
-				}, {
-					name: '旗舰店',
-					id: 2
-				}, {
-					name: '矿权交易',
-					id: 3
-				}, {
-					name: '会展中心',
-					id: 4
-				}, {
-					name: '新闻',
-					id: 5
-				}],
 				text: [],
 				list: [],
 				imgShow:false,
@@ -89,7 +64,7 @@
 				timers:null,
 				isInapp:navigator.userAgent.indexOf('/mcapp')>=0,//判断是否在app打开
 				equi:navigator.userAgent,
-				loading:false,
+				loading:true,
 				loadingCon:'正在加载'
 			}
 		},
@@ -107,8 +82,8 @@
 			AlertModule,
 		},
 		methods: {
-			empty() {
-				this.val = '';
+			toJump() {
+				location.href = this.$root.urlPath.MCM + "/search?key=" + encodeURIComponent(this.val);
 			},
 			revert() {
 				if(this.isInapp){				
@@ -121,104 +96,6 @@
 					this.$router.go(-1);
 					return;
 				}		
-			},
-			search() {
-				let vals=$.trim(this.$refs.sea_inp.value);  
-				let index = this.cateId;
-				if(!vals) {
-					this.$vux.toast.text('请输入搜索关键字', 'center');
-					return;
-				} else {
-					this.list=[];
-					
-					location.href = this.$root.urlPath.MCM + '/search/list/'+this.cateId+'?&key=' + encodeURIComponent(this.$refs.sea_inp.value);
-//					this.$router.push({
-//						name:search.list,
-//						params:this.cateId
-//					}
-				}				
-			},
-			tab(index) {
-				this.list=[];
-				this.droploadDowm=false;
-				this.pageNum = 1;
-				if(index==1){
-					this.styShow=false;
-				}else{
-					this.styShow=true;
-				}
-				switch(index) {
-					case 0:
-						this.cateId = 1;
-						this.Malllist = true;
-						this.Flagshiplist=false;
-						this.Exhibitionlist = false;
-						this.Minerallist = false;
-						this.Newlist = false;						
-						break;
-					case 1:
-						this.cateId = 2;
-						this.Malllist = false;
-						this.Flagshiplist=true;
-						this.Minerallist = false;
-						this.Exhibitionlist = false;
-						this.Newlist = false;
-						break;
-					case 2:
-						this.cateId = 3;
-						this.Malllist = false;
-						this.Flagshiplist=false;
-						this.Minerallist = true;
-						this.Exhibitionlist = false;
-						this.Newlist = false;
-						break;
-					case 3:
-						this.cateId = 4;
-						this.Malllist = false;
-						this.Flagshiplist=false;
-						this.Exhibitionlist = true;
-						this.Minerallist = false;
-						this.Newlist = false;
-						break;
-					case 4:
-						this.cateId = 5;
-						this.Malllist = false;
-						this.Flagshiplist=false;
-						this.Exhibitionlist = false;
-						this.Minerallist = false;
-						this.Newslist = true;
-						break;
-					default:
-						break;
-				}
-				this.num = index;
-				this.$axios.get(this.$root.urlPath.MC + '/wap/search.do?search', {
-						params: {
-							pageNum: this.pageNum,
-							numPerPage: this.numPerPage,
-							category: this.cateId,
-							key: this.val
-						}
-					})
-					.then(res => {
-						if(res.data.success) {
-							let data = res.data.data.list;
-							this.list = [];
-							this.list = data;
-							this.pages = res.data.data.totalCount;
-							this.off_on=true;
-							for(var i in data){
-								data[i].insert_time = parseInt(data[i].insert_time);
-								data[i].begin_time=parseInt(data[i].begin_time);
-								data[i].end_time=parseInt(data[i].end_time);
-							}
-						} else {
-							this.pages = res.data.data.totalCount || 0;
-							this.isscroll = false;
-							this.off_on=true;
-						}
-					})
-					.catch(err => console.log('获取数据失败', err))
 			},
 			scrollValue(){
 				var that = this;
@@ -256,7 +133,6 @@
 				if(that.pageNum == page && that.list.length == that.pages && that.loading == false) {
 					that.off_on = false;
 					that.droploadDowm = true;
-//					$(window).unbind('scroll');
 				}				
 			});},
 			switchFirst() {
@@ -276,10 +152,21 @@
 						}
 					})
 					.then(res => {
+						this.loading = false
 						if(res.data.success) {
-							this.loading = false
 							var data = res.data.data;
-							this.pages = data.totalCount;
+							if( category == 1 ){
+								if( data.pageno == 1 ){
+									if( data.count && data.count != '' && data.count != 'undefined' ){
+										count = data.count + data.totalCount;
+										this.pages = count;
+									}else{
+										this.pages = data.totalCount;
+									}
+								}
+							}else{
+								this.pages = data.totalCount;
+							}
 							for(var i in data.list) {
 								this.list.push(data.list[i]);
 								data.list[i].insert_time=parseInt(data.list[i].insert_time);
@@ -307,14 +194,6 @@
 			this.scrollValue();
 		},
 		mounted(){            
-            var that = this;
-			$("#search").on('keypress', function(e) {
-				var keycode = e.keyCode;
-				if (keycode == '13') {
-					e.preventDefault();
-					that.search();
-				}
-			});
 			let index = this.$route.params.category;
 			if(index==1){
 				this.Malllist = true;
@@ -325,6 +204,7 @@
 			}else if(index==2){
 				this.Malllist = false;
 				this.Flagshiplist=true;
+				this.styShow=false;
 				this.Minerallist = false;
 				this.Exhibitionlist = false;
 				this.Newlist = false;

@@ -75,6 +75,7 @@
 		width: 100%;
 		box-sizing: border-box;
 		z-index: 999;
+		height: 1rem;
 	}
 	.OHeader .titleBox .icon-jiantou-copy,.OHeader .rightBox i{
 		font-size: 0.36rem;

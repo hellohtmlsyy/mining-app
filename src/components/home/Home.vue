@@ -5,16 +5,16 @@
 			<Mheader v-if="showHeader"></Mheader>
 		</div>
 		<section>
-
 			<!--banner-->
 			<div :class="bannerPadding">
 				<div class="fixed-swiper dis-fl text-center">
-					<swiper :list="bannerImg" :duration="1000" :show-dots="true" dots-class="custom-bottom" dots-position="center" height="3.2rem">
+					<swiper :list="bannerImg" :duration="1000" :show-dots="true" dots-class="custom-bottom" dots-position="center" height="3.2rem" auto>
 					</swiper>
 				</div>
 			</div>
+			
 			<!--nav-->
-			<div class="nav clearfix">
+			<nav class="nav clearfix">
 				<ul>
 					<li>
 						<a href="http://trade.miningcircle.com/purchase?newpage=newpage">
@@ -45,7 +45,7 @@
 						<p>更多</p>
 					</li>
 				</ul>
-			</div>
+			</nav>
 			<!--最新报价-->
 			<div class="fixed-swiper dis-fl text-center info bgcolor newsPrice">
 				<div class="info_box1">
@@ -58,7 +58,10 @@
 					</swiper-item>
 				</swiper>
 			</div>
-
+			<!--全球数据库-->
+			<div class="data-base" @click="goDataBaseList">
+				<img src="../../../static/img/data-base.png" />
+			</div>
 			<!--行情-->
 			<!--<div class="market">
 				<div class="common_top clearfix">
@@ -77,7 +80,7 @@
 						</tr>
 					</tbody>
 				</x-table>
-			</div>-->
+			</div>--!>
 			<!--精品好货-->
 			<div class="good_stuff bgcolor_f">
 				<div class="topA">
@@ -92,7 +95,8 @@
 								<img :src="item.img ? item.img : item.image" style="display:block" />
 								<div class="textBox">
 									<p class="title clamp">{{item.title}}</p>
-									<p class="title2">{{item.title2}}</p>
+									<p class="title2" v-if="item.price && item.price !==0">{{item.price  | converAmount(2)}}</p>
+									<p class="title2" v-else>面议</p>
 								</div>
 							</div>
 						</div>
@@ -263,11 +267,14 @@
 				<divider v-show="droploadDowm">已加载所有数据</divider>
 			</div>
 		</section>
+		<section>
+			<span class="btn-backtop" v-show="showBackTop" @click="goBackTop"></span>
+		</section>
 	</div>
 </template>
 
 <script>
-	import { Swiper, SwiperItem, cookie, XTable } from 'vux';
+	import { Swiper, SwiperItem, cookie, XTable} from 'vux';
 	import Mheader from '@/components/common/header/Mheader';
 	import { getTime, isDevice, appLogin } from '@/assets/commonjs/util.js';
 	import swiper2 from '@/static/js/swiper.min.js';
@@ -299,6 +306,13 @@
 		img: '../../../static/img/03_近期会展.png',
 		name: '近期会展'
 	}]
+	
+	
+	const imgList = [
+"http://www.miningcircle.com:8082/img/new2.0/home/banner/banner1.jpg",
+  'http://placeholder.qiniudn.com/800x300/FFEF7D/ffffff',
+  'http://placeholder.qiniudn.com/800x300/8AEEB1/ffffff'
+]
 	export default {
 		components: {
 			Mheader,
@@ -349,13 +363,18 @@
 					bannerPadding1: true,
 					bannerPadding2: false
 				},
-				marketList:[]
+				marketList: [],
+				demo04_list: imgList,
+				scrollTop:0.,
+				showBackTop:false
 			}
 		},
 		computed: {
 
 		},
 		mounted() {
+			window.addEventListener('scroll', this.handleScroll);
+			
 			if(isDevice() == 'ios') {
 				if(!this.$route.query.newpage) {
 					this.showHeader = false
@@ -389,17 +408,38 @@
 			this.getMallList()
 
 			this.getMeetList()
-			
-//			this.getMarketList()
+
+			//			this.getMarketList()
 		},
 		computed: {
 
 		},
 		methods: {
+			handleScroll(){
+				this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+				
+				if(this.scrollTop > 700){
+					this.showBackTop = true
+				}else{
+					this.showBackTop = false
+				}
+			},
+			goBackTop(){
+				window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0
+			},
+			goTest1(){
+				window.location.href = 'http://t.miningcircle.com:8085';
+			},
+			goTest(){
+				window.location.href = this.$root.urlPath.MCM + "/test?newpage=newpage";
+			},
+			goDataBaseList() {
+				window.location.href = this.$root.urlPath.MCM + "/database/list?newpage=newpage";
+			},
 			getMarketList() {
 				this.$axios.get('http://192.168.1.243:8082/wap/home.do?marketList', {
 					params: {
-						pageNum:1,
+						pageNum: 1,
 						numPerPage: 3,
 					}
 				}).then(res => {
@@ -452,30 +492,30 @@
 				window.location.href = this.$root.urlPath.MCM + '/exhibition/details?id=' + id + '&newpage=newpage';
 			},
 			toMallType1List() {
-				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=矿用设备";
+				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=7";
 
 			},
 			toMallType2List() {
-				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=金属矿产";
+				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=1";
 			},
 			toMallType3List() {
-				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=耗材药剂";
+				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=8";
 
 			},
 			toMallType4List() {
-				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=黑色金属";
+				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=3";
 			},
 			toMallType5List() {
-				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=稀土分散";
+				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=5";
 			},
 			toMallType6List() {
-				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=能源矿产";
+				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=4";
 			},
 			toMallType7List() {
-				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=非金属";
+				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=6";
 			},
 			toMallType8List() {
-				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=有色金属";
+				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage&type=2";
 			},
 			toNewsDetails(id) {
 				window.location.href = this.$root.urlPath.MCM + "/news/details?newpage=newpage&id=" + id;
@@ -557,6 +597,8 @@
 
 								var mySwiper = new swiper2('#swiper1', {
 									slidesPerView: 3,
+//									loop : true,
+
 									//									slidesPerGroup: 1,
 									//									loop: true
 								})
@@ -742,12 +784,35 @@
 	@import url("../../../static/css/swiper.min.css");
 	@import url("../../static/css/certify.css");
 	@import url("../../static/css/market.css");
+	/*返回顶部*/
+	.home .btn-backtop{
+		background: url(../../../static/img/btn/btn-backtop.png) no-repeat;
+		width: 0.8rem;
+		height: 0.8rem;
+		display: inline-block;
+		background-size: 0.8rem 0.8rem;
+		position: fixed;
+		bottom: 4.5rem;
+    	right: 0.09rem;
+	}
+	/*全球数据库*/
+	
+	.home .data-base {
+		margin-top: 0.15rem;
+	}
+	
+	.home .data-base img {
+		width: 100%;
+		height: 1.36rem;
+	}
+	/*行情*/
+	
 	.home .market {
 		background: #fff;
 		padding: 0.26rem 0.2rem;
 		margin-top: 0.15rem;
 	}
-
+	
 	.home .fixedHeader {
 		position: fixed;
 		top: 0;
@@ -869,7 +934,7 @@
 	
 	.good_stuff .swiper-container {
 		/*min-height: 3.13rem !important;*/
-		padding: 0.3rem 0;
+		padding: 0.4rem 0;
 		margin-bottom: 0.2rem;
 	}
 	
@@ -900,19 +965,24 @@
 		/*box-shadow: 1px 0 2px 1px #aaa;*/
 		border: 0.02rem solid #E6E6E6;
 	}
-	
+	.good_stuff .swiper-slide-next .textBox .title{
+		font-size: 0.21rem;
+	}
+	.good_stuff .swiper-slide-next .textBox .title2{
+		font-size: 0.17rem;
+	}
 	.good_stuff .textBox .title {
-		font-size: 0.18rem;
+		font-size: 0.22rem;
 	}
 	
 	.good_stuff .textBox .title2 {
-		font-size: 0.16rem;
-		color: rgb(125, 125, 125);
+		font-size: 0.18rem;
+		color:red;
 		margin-top: 0.03rem;
 	}
 	
 	.good_stuff .swiper-slide-next {
-		transform: scale(1.2) !important;
+		transform: scale(1.3) !important;
 		z-index: 999;
 	}
 	
@@ -1007,7 +1077,9 @@
 		border-bottom: 0
 	}
 	/*<!--商品贸易-->.ware .ware_bottom ul {}*/
-	
+	.ware .ware_bottom{
+		line-height: 0;
+	}
 	.ware .ware_bottom ul .same_css {
 		float: left;
 	}
@@ -1057,7 +1129,7 @@
 	
 	.exclusive .fixed-swiper .close {
 		position: absolute;
-		z-index: 99999;
+		z-index: 998;
 		right: 0px;
 		top: 0px;
 		width: 30px;

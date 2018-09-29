@@ -46,10 +46,10 @@
 				<p>我的工具</p>
 				<grid :show-lr-borders="false" :show-vertical-dividers="false">					
 					<grid-item :label="grid_label.goods" style="width:25%">
-						<img slot="icon" src="../../../static/img/user/goods.png">
+						<img slot="icon" src="../../../static/img/user/goods.png" @click="Nlogin()">
 					</grid-item>
 					<grid-item :label="grid_label.exhibition" style="width:25%">
-						<img slot="icon" src="../../../static/img/user/exhibition.png">
+						<img slot="icon" src="../../../static/img/user/exhibition.png" @click="Nlogin()">
 					</grid-item>
 				</grid>				
 			</div>
@@ -149,7 +149,7 @@
 						let mstatus = res.data.status;
 						if(mstatus==1){
 							this.showAuth=false;
-							this.$vux.toast.text('您的企业正在申请中', 'center');
+							this.$vux.toast.text('您的企业正在申请中<br/>客服：400-819-6985', 'center');
 							return;
 						}else if(mstatus==0||mstatus==3){
 							this.showAuth=true;					
@@ -160,7 +160,7 @@
 							window.location.href=this.$root.urlPath.MCM+"/entcenter?newpage=newpage&un="+un+"&vip="+vip;							
 						}else if(mstatus==4){
 							this.showAuth=false;
-							this.$vux.toast.text('您的企业已冻结', 'center');
+							this.$vux.toast.text('您的企业已冻结<br/>客服：400-819-6985', 'center');
 							return;
 						}
 					}).catch(err => console.log('个人账户异常', err));		
@@ -190,6 +190,10 @@
 			},
 			exhcli(){
 				this.$vux.toast.text('您尚未发布会展信息','center');
+				return;
+			},
+			Nlogin(){
+				this.$vux.toast.text('未登录，请先登录', 'center');
 				return;
 			},
 		},		

@@ -1,5 +1,6 @@
 <template>
 	<div class="mallList" ref="listSection">
+		<div>
 		<div class="firstNews" v-show="shohid">
 				<div class="contentItem clearfix" v-for="(item,index) in list" :key="index" @click="toDetails(item.id,item.cat_id)">
 					<div class="image fl">
@@ -32,6 +33,7 @@
 
 		<div class="secondNews clearfix" ref="listSection" v-show="!shohid">
 			<div class="newsItem contentItem fl" v-for="(item,index) in list" :key="index" @click="toDetails(item.id,item.cat_id)">
+				
 				<flexbox>
 					<div class="flex-demo image">
 						<img :src="item.imgM" v-show="imgShow"/>
@@ -64,13 +66,18 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		
+		</div>
 	</div>
 </template>
 
 <script>
+	import showNodata from '@/components/base/showNodata';
 	export default {
-		props: ['shohid', 'list','imgShow'],
+		components: {
+			showNodata
+		},
+		props: ['shohid', 'list','imgShow','loading'],
 		data() {
 			return {
 			}

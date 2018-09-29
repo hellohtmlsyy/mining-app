@@ -52,7 +52,8 @@
 <script>
 	import { } from 'vux'
 	import axios from 'axios'
-	import {isDevice} from '@/assets/commonjs/util.js'
+	import {isDevice,lastPage} from '@/assets/commonjs/util.js'
+	
 	
 	export default {
 		components: {
@@ -68,8 +69,6 @@
 				success:true,
 				curPay:false,
 				success:false,
-				isInapp:navigator.userAgent.indexOf('/mcapp')>=0,//判断是否在app打开
-				equi:navigator.userAgent,
 			}
 		},
 		mounted(){
@@ -122,21 +121,8 @@
 
 				}
 			},
-			back() {
-				if(this.isInapp){				
-					if(this.equi.indexOf('Android') > -1 || this.equi.indexOf('Adr') > -1) {
-						adwebkit.callApp("BACK", '');
-					} else if(!!this.equi.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
-						oswebkit.callApp("BACK", '');
-					}					
-				}else{
-//					if(this.$route.query.where){
-//						window.location.href=this.$root.urlPath.MCM + "/mall/orderCom_list?newpage=newpage&where=meeting&id=" + this.$route.query.id;
-//					}
-//					window.location.href=this.$root.urlPath.MCM + "/mall/orderCom_list?newpage=newpage&id=" + this.$route.query.id;
-					this.$router.go(-1)
-					return;
-				}		
+			back() {	
+				this.$router.go(-2)
 			},
 			onCancel(){
 				this.show1 = false

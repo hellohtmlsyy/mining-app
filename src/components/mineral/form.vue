@@ -10,17 +10,17 @@
 		<div class="form">
 			<group>
 				<div class="xinghao fl">*</div>
-				<x-input title="姓名" placeholder="请填写" placeholder-align="right" required v-model="form.realname" :is-type="nameVail" ref="refVal">
+				<x-input title="姓名" placeholder="请填写" placeholder-align="right" required v-model="form.realname" :is-type="nameVail" ref="myname" @on-change="change">
 				</x-input>
 			</group>
 			<group>
 				<div class="xinghao fl">*</div>
-				<x-input title="总投资额" placeholder="请填写" type="number" placeholder-align="right" required v-model="form.money" ref="refVal">
+				<x-input title="总投资额" placeholder="请填写" type="number" placeholder-align="right" required v-model="form.money" ref="price" @on-change="change">
 				</x-input>
 			</group>
 			<group>
 				<div class="xinghao fl">*</div>
-				<selector ref="defaultValueRef" title="币种" :options="currencylist" v-model="form.cncurrency" required></selector>
+				<selector ref="defaultValueRef" title="币种" :options="currencylist" v-model="form.cncurrency" required placeholder="请填写" ></selector>
 			</group>
 			<!--<group>
 				<x-input title="联系方式" placeholder="请填写"  placeholder-align="right"  style="padding-left:0.2rem" v-model="form.tel">
@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		<alert v-model="show1" @on-hide="hideAlert1">预约投资成功！</alert>
-		<toast v-model="show2" type="warn" :time="1000" is-show-mask>输入有误</toast>
+		<toast v-model="show2" type="warn" :time="1000" is-show-mask>{{totalText}}</toast>
 	</div>
 </template>
 
@@ -59,7 +59,7 @@
 				form: {
 					realname: '',
 					money: '',
-					cncurrency: '',
+					cncurrency: 'CNY人民币',
 					
 				},
 
@@ -85,13 +85,21 @@
 					key: 'KRW韩元',
 					value: 'KRW韩元'
 				}],
-
+				totalText:'',
+				isError:false
 			}
 		},
 		mounted() {
 
 		},
 		methods: {
+			change(){
+				if(!this.$refs.myname.valid || !this.$refs.price.valid ){
+					this.isError = true
+				}else{
+					this.isError = false
+				}
+			},
 			back() {
 				if(isDevice() == 'adr') {
 					adwebkit.callApp("BACK", '');
@@ -103,13 +111,25 @@
 				
 			},
 			save() {
-				
-				if(this.$refs.refVal.valid == true && this.form.cncurrency !== '' && this.form.realname != '') {
-
-				} else {
+//				全部都不能为空
+				if(this.form.cncurrency == '' || this.form.realname == '') {
+					this.totalText = "输入有误"
 					this.show2 = true
 					return
 				}
+//				必须验证正确
+				if(this.isError){
+					this.totalText = "输入有误"
+					this.show2 = true
+					return
+				}
+//				总投资额不得大于等于1千亿
+				if(this.form.money.length > 11){
+					this.totalText = "总投资额不得大于等于1千亿"
+					this.show2 = true
+					return
+				}
+		
 				this.form.pid = this.$route.query.id
 				var params = this.form
 				axios.get(this.$root.urlPath.MC + '/wap/yitrade.do?tradeInvestMent', {
@@ -130,7 +150,8 @@
 			hideAlert1(){
 				window.location.href=this.$root.urlPath.MCM + "/mineral/projectDetails?newpage=newpage&id=" + this.$route.query.id;
 			}
-		}
+		},
+		
 	}
 </script>
 

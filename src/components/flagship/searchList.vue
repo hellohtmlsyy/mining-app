@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="result">
-			<Malllist :shohid="hideSecond" :list="mallList" :imgShow="false"></Malllist>
+			<Malllist :shohid="hideSecond" :list="mallList" :imgShow="false" :loading="showLoading"></Malllist>
 			<load-more :tip="loadText" v-show="showLoading"></load-more>
 			<divider v-show="showEnd">{{endText}}</divider>
 		</div>
@@ -24,7 +24,7 @@
 
 <script>
 	import axios from 'axios'
-	import { lastPage, isDevice,appLogin,goHomeApp} from '@/assets/commonjs/util.js'
+	import { lastPage, isDevice,appLogin,goHomeApp,getAppShare} from '@/assets/commonjs/util.js'
 	import Shortcut from '@/components/common/shortcut'
 	import Malllist from '@/components/common/Mall-list'
 	import {cookie } from 'vux'
@@ -71,16 +71,18 @@
 		},
 		methods: {
 			clickLi(index) {
+				
 				if(index == 0) {
 					window.location.href = this.$root.urlPath.MCM + "/shopCart?shopId=" + this.shopId + "&shopName=" + this.componyName + "&newpage=newpage"
 				} else if(index == 1) {
 					if(isDevice() == '其他浏览器') {
 						//						this.show1 = true
 					} else if(isDevice() == 'adr' || isDevice() == 'ios') {
-						if(this.homeIntro == 'undefined') {
-							this.homeIntro = ''
+						var shareIntro = this.$route.query.shareIntro
+						if(this.$route.query.shareIntro == undefined) {
+							shareIntro = ''
 						}
-						getAppShare(window.location.href, this.componyInfo.name, this.componyInfo.logo, this.homeIntro, "")
+						getAppShare(window.location.href, decodeURIComponent(this.$route.query.shareName), this.$route.query.shareImg, shareIntro, "")
 					}
 				} else if(index == 2) {
 					if(!cookie.get('MC_UID')) {
@@ -111,7 +113,10 @@
 						if(res.data.success) {
 							var data = res.data.data
 							this.mallList = data
-							this.showEnd = true
+							if(this.mallList.length !== 0){
+								this.showEnd = true
+							}
+							
 						} else {
 							alert(res.data.errMsg)
 						}

@@ -11,16 +11,16 @@
 		<div class="form">
 			<group>
 				<!--<div class="xinghao fl">*</div>-->
-				<x-input title="姓名" placeholder="请填写" placeholder-align="right" required v-model="form.name" :is-type="nameVail" ref="refVal">
+				<x-input title="姓名" placeholder="请填写" placeholder-align="right" required v-model="form.name" :is-type="nameVail" ref="myname" @on-change="change">
 				</x-input>
 			</group>
 			<group>
 				<!--<div class="xinghao fl">*</div>-->
-				<x-input title="手机" placeholder="请填写" placeholder-align="right" required v-model="form.tel" is-type="china-mobile" ref="refVal">
+				<x-input title="手机" placeholder="请填写" placeholder-align="right" required v-model="form.tel" is-type="china-mobile" ref="tel" @on-change="change">
 				</x-input>
 			</group>
 			<group>
-				<x-input title="邮箱" placeholder="请填写" placeholder-align="right" required v-model="form.postCode" is-type="email" ref="refVal">
+				<x-input title="邮编" placeholder="请填写" placeholder-align="right" required v-model="form.postCode" :is-type="zipcode" ref="email" @on-change="change">
 				</x-input>
 			</group>
 			<group class="address">
@@ -54,7 +54,7 @@
 			return {
 				show1: false,
 				addressData: ChinaAddressData,
-				addressValue: ['广东省', '深圳市', '南山区'],
+				addressValue: ['北京市', '市直辖', '东城区'],
 				form: {
 					name: '',
 					tel: '',
@@ -68,7 +68,15 @@
 						msg: '输入姓名格式有误'
 					}
 				},
-				toastText: ""
+				zipcode:function(val){
+					var patt1 = new RegExp("(^[0-9]{6}$)")
+					return {
+						valid: patt1.test(val),
+						msg: '输入邮编格式有误'
+					}
+				},
+				toastText: "",
+				isError:false
 			}
 		},
 		mounted() {
@@ -77,6 +85,14 @@
 			}
 		},
 		methods: {
+			change(){
+				if(!this.$refs.myname.valid || !this.$refs.tel.valid 
+				|| !this.$refs.email.valid){
+					this.isError = true
+				}else{
+					this.isError = false
+				}
+			},
 			getAddress() {
 				axios.get(this.$root.urlPath.MC + '/wap/trade.do?addressList')
 					.then(res => {
@@ -107,27 +123,29 @@
 				} else if(isDevice() == 'ios') {
 					oswebkit.callApp("BACK", '');
 				} else {
-					//					window.location.href=this.$root.urlPath.MCM + "/mall/order_addressList?newpage=newpage&id=" + this.$route.query.id;
 					this.$router.go(-1)
 				}
 			},
 			save() {
-
-				//				全部不为空且验证正确且详细地址长度不超过50
-				if(this.$refs.refVal.valid == true && this.form.name != '' && this.form.tel !== '' && this.form.postCode !== "" && this.addressValue.length !== 0 && this.form.addr.length <= 50) {
-
-				} else {
-					if(this.form.name != '' && this.form.tel !== '' && this.form.postCode !== "" && this.addressValue.length !== 0 && this.form.addr.length > 50) {
-						this.show1 = true
-						this.toastText = '详细地址不能超过50个字'
-						return
-					} else {
-
-						this.show1 = true
-						this.toastText = '输入有误'
-						return
-					}
+//				除了详细地址之外其他的不能为空,提示输入有误
+				if(this.form.name == '' || this.form.tel == '' || this.form.postCode == "" || this.addressValue.length == 0){
+					this.show1 = true
+					this.toastText = '输入有误'
+					return
 				}
+//				姓名\手机/邮箱/验证必须正确,提示输入有误
+				if(this.isError){
+					this.show1 = true
+					this.toastText = '输入有误'
+					return
+				}
+//				详细地址不能超过50个字,提示详细地址不能超过50个字
+				if(this.form.addr.length > 50){
+					this.show1 = true
+					this.toastText = '详细地址不能超过50个字'
+					return
+				}
+				
 
 				var params = this.form
 				axios.get(this.$root.urlPath.MC + '/wap/trade.do?operateAddress', {

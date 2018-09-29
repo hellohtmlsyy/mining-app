@@ -7,7 +7,7 @@
 				</div>
 				<div class="searchBox" @click="search" :class="isFixed ? 'searchHeaderBgColorFixed' : 'searchHeaderBgColor'">
 					<icon type="search" class="searchIco" :class="isFixed ? 'headerColor' :'searchIcoColor'"></icon>
-					<input type="text" placeholder="请输入关键字" class="myInput" :class="isFixed ? 'searchHeaderBgColorFixed' : 'searchHeaderBgColor'" />
+					<input type="text" placeholder="请输入关键字" class="myInput" :class="isFixed ? 'searchHeaderBgColorFixed' : 'searchHeaderBgColor'" readonly/>
 				</div>
 				<div class="moreBox" @click="showShortcut = !showShortcut" ref="shortcut">
 					<i class="icon iconfont icon-morevert"></i>
@@ -15,7 +15,8 @@
 
 				</div>
 			</div>
-			<div class="compony">
+			<transition name="fade">
+			<div class="compony" v-show="showCompony">
 				<div class="logoBox">
 					<img :src="componyInfo.logo" />
 				</div>
@@ -32,10 +33,12 @@
 					</div>
 				</div>
 			</div>
+			</transition>
 		</div>
-
+		
+			
 		<div class="nav" :class="{navFixed:isFixed}">
-			<sticky scroll-box="vux_view_box_body" :check-sticky-support="false" :offset="46">
+			<sticky  scroll-box="vux_view_box_body" :check-sticky-support="false" :offset="46">
 				<tab :line-width=3 active-color="#ff4f54">
 					<tab-item :selected="curNav === item" v-for="(item, index) in navList" @click="curNav = item" :key="index" @on-item-click="tabClick(item, index)">{{item}}</tab-item>
 				</tab>
@@ -148,7 +151,8 @@
 				}, {
 					text: '首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页',
 					ico: '../../../static/img/flagship/home.png'
-				}]
+				}],
+				showCompony:true
 			}
 		},
 		mounted() {
@@ -158,6 +162,7 @@
 			})
 
 			window.addEventListener("scroll", this.handleScroll)
+			
 			let params = {
 				numPerPage: 0,
 				pageNum: 0,
@@ -212,11 +217,14 @@
 			handleScroll() {
 				var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
 				var offsetTop = this.$refs.searchHeader.offsetHeight
+				
 				//滚动距离如果大于元素到顶部的距离时,就固定定位
 				if(scrollTop > offsetTop) {
 					this.isFixed = true
+					this.showCompony = false
 				} else {
 					this.isFixed = false
+					this.showCompony = true
 				}
 				if(!this.curHome) {
 					var height = this.$refs.list.offsetHeight
@@ -563,13 +571,31 @@
 					appLogin()
 					return
 				}
-				window.location.href = this.$root.urlPath.MCM + "/leaveSpeak?&shopId=" + this.shopId + "newpage=newpage"
+				window.location.href = this.$root.urlPath.MCM + "/leaveSpeak?&shopId=" + this.shopId + "&newpage=newpage"
 			},
 		}
 	}
 </script>
 
 <style scoped>
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: all .3s;
+		opacity: .8;
+		/*transform: translate3d(0, 0, 0)*/
+	}
+	
+	.fade-enter,
+	.fade-leave-to
+	/* .fade-leave-active below version 2.1.8 */
+	
+	{
+		opacity: 0;
+		/*transform: translate3d(0, 26%, 0)*/
+	}
+	
+
+	
 	.flagshop .headerBg {
 		background: url(../../../static/img/flagship/bg.png) no-repeat;
 		background-size: 100% 100%;

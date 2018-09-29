@@ -1,7 +1,16 @@
 <template>
-	<div class="openApp" v-show="showOpenApp">
-		<span class="close" @click="close"></span>
-		<img src="../../static/img/download.jpg" @click="toOpen" />
+	<div>
+		<div class="openApp" v-show="showOpenApp">
+			<span class="close" @click="close"></span>
+			<img src="../../static/img/download.jpg" @click="toOpen" />
+		</div>
+		<div class="tip" :style="{display:shareMC}" @click="clickMC">
+			<img src="../../../static/img/mc-guide.png" />
+			<div class="box-text">
+				<p class="text">点击右上角</p>
+				<p class="text">用其他浏览器打开</p>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -16,15 +25,16 @@
 					downloadUrl: 'http://www.miningcircle.com/app',
 					adrScheme: 'miningcircle://main',
 					iosScheme: 'miningcircle://'
-				}
-
+				},
+				shareMC: 'none'
+				
 			}
 		},
 		mounted() {
 			window.addEventListener("scroll", this.handleScroll)
 			if(isDevice() == 'adr' || isDevice() == 'ios') {
 				this.showOpenApp = false
-			} else{
+			} else {
 				this.showOpenApp = true
 			}
 		},
@@ -35,7 +45,7 @@
 					return
 				}
 				if(isBrowser() == 'iosBS' || isBrowser() == "adrBS") {
-					if(scrollTop > 5) {
+					if(scrollTop > 4) {
 						this.showOpenApp = false
 					} else {
 						this.showOpenApp = true
@@ -44,26 +54,37 @@
 
 			},
 			toOpen() {
-				if(isBrowser() == "iosBS") {
-					window.location.href = this.config.iosScheme
-					setTimeout(() => {
-						window.location.href = this.config.downloadUrl
-					}, 2000)
-				} else if(isBrowser() == "adrBS") {
-					window.location.href = this.config.adrScheme
-					setTimeout(() => {
-						window.location.href = this.config.downloadUrl
-					}, 2000)
+				//微信浏览器：直接用浏览器打开
+				//不是微信浏览器，是安卓还是苹果
+				if(isDevice() == '微信浏览器') {
+					this.shareMC = 'block'
+					return
+				}else if(isDevice() !== '微信浏览器'){
+					
+					if(isBrowser() == "iosBS") {
+						window.location.href = this.config.iosScheme
+						setTimeout(() => {
+							window.location.href = this.config.downloadUrl
+						}, 2000)
+					} else if(isBrowser() == "adrBS") {
+						window.location.href = this.config.adrScheme
+						setTimeout(() => {
+							window.location.href = this.config.downloadUrl
+						}, 2000)
+					} 
 				}
 			},
-			close(){
+			close() {
 				this.showOpenApp = false
-				
+
+			},
+			clickMC(){
+				this.shareMC = 'none'
 			}
 		},
-		watch:{
-			showOpenApp(showHide){
-				this.$emit("closeOpenApp",showHide)
+		watch: {
+			showOpenApp(showHide) {
+				this.$emit("closeOpenApp", showHide)
 			}
 		}
 	}
@@ -72,7 +93,7 @@
 <style scoped>
 	.openApp .close {
 		position: absolute;
-		z-index: 99999;
+		z-index: 999;
 		right: 0px;
 		top: 0px;
 		width: 30px;
@@ -84,5 +105,29 @@
 		display: block;
 		width: 7.5rem;
 		height: 0.95rem;
+	}
+	
+	.tip{
+		z-index: 10001;
+		position: fixed;
+		left: 0px;
+		top: 0px;
+		background-color:#E0E0E0 ;
+		width: 100%;
+		height: 100%;
+		display: flex;		
+	}
+	.tip img{
+		width: 4.08rem;
+		height: 5.01rem;
+		padding: 0.4rem 0 0 3rem;
+	}
+	.tip .box-text{
+		margin-top: 0.4rem;
+	}
+	.tip .text{
+		text-align: center;
+		font-size: 0.24rem;
+		line-height: 0.4rem;
 	}
 </style>

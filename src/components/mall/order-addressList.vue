@@ -34,7 +34,7 @@
 					<div>
 						<tr class="address">
 							<td style="
-    padding-left: 0.6rem;
+    padding-left: 0.75rem;
 ">
 								<p>{{item.province}} {{item.city}} {{item.county}} {{item.addr}}</p>
 							</td>
@@ -179,10 +179,9 @@
 	.addressList table .checkbox{
 		
 	    margin-left: 0.2rem;
-	    width: 0.25rem;
-	    height: 0.25rem;
-	    /* color: #FF4E56; */
-	    margin-top: 0.1rem;
+	    width: 0.38rem;
+	    height: 0.38rem;
+	    vertical-align: middle;
 	    background-color: #FF4E56;
 
 	}

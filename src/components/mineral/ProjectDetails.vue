@@ -95,46 +95,25 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="project_details">
 			<div class="nav1">
-				<sticky scrollBox="vux_view_box_body" :check-sticky-support="false" :offset="46">
+				<sticky scroll-box="vux_view_box_body" :check-sticky-support="false" :offset="46">
 					<tab :line-width=4 active-color="#FBA879" custom-bar-width="1.1rem" v-model="index">
 						<tab-item :selected="selected === item" v-for="(item, index) in column" @click="selected = item" :key="index" @on-item-click="toClick(index)">
 							{{item}}
 						</tab-item>
 					</tab>
-					<div class="swiperr" v-show="projectDetailsList.isCharge == 'noPay'">
-						<swiper v-model="index" :show-dots="false" height="500px">
-							<swiper-item>
-								<div class="tab-swiper vux-center commonfonts2" @click="toBalance">
-									<div>
-										<img src="../../../static/img/img.jpg" class="butt" />
-									</div>
-								</div>
-							</swiper-item>
-						</swiper>
-					</div>
-					<div class="swiperr swiper1" v-show="projectDetailsList.isCharge == 'isPay'">
-						<swiper v-model="index" :show-dots="false">
-							<swiper-item>
-								<div class="tab-swiper vux-center commonfonts2">
-									<div v-html="projectInfoList.vtext" ref="swiperContent">
-										<!--v-html="projectDetailsList.vtext"-->
-									</div>
-								</div>
-							</swiper-item>
-							<swiper-item>
-								<div class="tab-swiper vux-center" v-html="ykym
-.introduction" ref="swiperContent1">
-
-								</div>
-							</swiper-item>
-							<swiper-item>
-								<div class="tab-swiper vux-center" v-html="mapAttrib.Tfdemands" ref="swiperContent2">
-
-								</div>
-							</swiper-item>
-						</swiper>
+					<div class="tab-content">
+						<div v-show="index == 0" v-html="projectInfoList.vtext">
+							
+						</div>
+						<div v-show="index == 1" v-html="ykym.introduction">
+							
+						</div>
+						<div v-show="index == 2" v-html="mapAttrib.Tfdemands">
+							
+						</div>
 					</div>
 				</sticky>
 			</div>
@@ -152,19 +131,6 @@
 				预约投资
 			</div>
 		</footer>
-		<!--<div class="channelFooter">
-			<div class="followBox colm fl" @click="followClick(follow)">
-				<i class="icon iconfont" :class="follow == '关注' ? 'icon-guanzhu' : 'icon-xin'"></i><br />
-				<span :class="follow == '关注' ? '' : 'color_r'">{{follow}}</span>
-			</div>
-			<div class="colm fl" @click="speakClick">
-				<i class="iconfont icon-xiaoxi"></i><br />
-				<span>约谈</span>
-			</div>
-			<div class="colm btn1 btn fl" @click="invest">
-				预约投资
-			</div>
-		</div>-->
 		<!--弹框-->
 		<div class="comSpeakDial">
 			<x-dialog v-model="showDiaLog" class="dialog-demo">
@@ -183,9 +149,6 @@
 					</div>
 					<button @click="speakSubmit">提交</button>
 				</div>
-				<!--<div style="padding:15px;">
-					<x-button @click.native="doShowToast" type="primary">show toast</x-button>
-				</div>-->
 
 			</x-dialog>
 
@@ -257,13 +220,18 @@
 				showAuth: false,
 				showAuthInvest: false,
 				payUrl: "http://www.miningcircle.com/yi/project/order.do?orderDetail&yiId=" + this.$route.query.id,
+				minMovingDistance:100,
+				test:2000,
+				
 			}
 		},
 		mounted() {
+			
+				
 			this.getProjectDetailsList()
-			setTimeout(() => {
-				this.swiperHeight()
-			}, 1000)
+		},
+		computed:{
+			
 		},
 		methods: {
 			share() {
@@ -331,25 +299,8 @@
 					this.$router.go(-1)
 				}
 			},
-			swiperHeight() {
-				document.querySelector('.projectDetails .nav1 .swiper1 .vux-swiper').style.height = this.$refs.swiperContent.offsetHeight + 'px'
-
-			},
-			swiperHeight1() {
-				document.querySelector('.projectDetails .nav1 .swiper1 .vux-swiper').style.height = this.$refs.swiperContent1.offsetHeight + 40 + 'px'
-
-			},
-			swiperHeight2() {
-				document.querySelector('.projectDetails .nav1 .swiper1 .vux-swiper').style.height = this.$refs.swiperContent2.offsetHeight + 40 + 'px'
-			},
 			toClick(index) {
-				if(index == 0) {
-					this.swiperHeight()
-				} else if(index == 1) {
-					this.swiperHeight1()
-				} else if(index == 2) {
-					this.swiperHeight2()
-				}
+
 			},
 			moreClick() {
 
@@ -388,7 +339,9 @@
 
 							this.projectDetailsList.prd.insert_time = getTime1(this.projectDetailsList.prd.insert_time)
 
-						} else {}
+						} else {
+							
+						}
 					})
 					.catch(function(error) {
 
@@ -485,6 +438,13 @@
 </script>
 
 <style>
+	.projectDetails .tab-content{
+		padding: 0.1rem;
+		background-color: #fff;
+	}
+	.projectDetails .tab-content img{
+		width: 100%;
+	}
 	.projectDetails .butt {
 		width: 100%;
 		height: 5rem;

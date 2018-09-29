@@ -106,7 +106,7 @@
 				this.orderList.forEach(ele => {
 					if(!ele.checked) {
 						this.show1 = true;
-						return false;
+						return;
 					} else {
 						if(ele.checked) {
 							this.show1 = false;
@@ -123,11 +123,11 @@
 							} else {
 								alert("抱歉! 您的浏览器不支持 web 存储。")
 							}
-							if(this.$route.query.where == 'meeting') {
-								window.location.href = this.$root.urlPath.MCM + "/mall/orderCom_balance?newpage=newpage&where=meeting&id=" + this.$route.query.id;
-							} else {
+//							if(this.$route.query.where == 'meeting') {
+//								window.location.href = this.$root.urlPath.MCM + "/mall/orderCom_balance?newpage=newpage&where=meeting&id=" + this.$route.query.id;
+//							} else {
 								window.location.href = this.$root.urlPath.MCM + "/mall/orderCom_balance?newpage=newpage&id=" + this.$route.query.id;
-							}
+//							}
 						}
 					}
 				})
@@ -215,6 +215,7 @@
 <style>
 	.orderList .listBox{
 		margin: 1rem 0 0.8rem 0;
+		border:none
 	}
 	.orderList .list {
 		padding: 0.1rem 0;
@@ -266,7 +267,7 @@
 	}
 	
 	.orderList .list .vux-number-input {
-		height: 0.3rem;
+		height: 0.27rem;
 		width: 0.8rem !important;
 		font-size: 0.24rem;
 	}
