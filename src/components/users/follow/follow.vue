@@ -57,6 +57,7 @@
 <script>
 	import { cookie } from 'vux';
 	import myScroll from '@/components/base/myScroll'
+	import {appLogin} from '@/assets/commonjs/util.js';
 	export default{
 		components: {
 			myScroll
@@ -199,7 +200,11 @@
 			}
 		},
 		mounted(){
-			this.getlist()
+			if(cookie.get('MC_UID')) {
+				this.getlist()
+			}else{
+				appLogin()
+			}
 		}
 	}
 </script>

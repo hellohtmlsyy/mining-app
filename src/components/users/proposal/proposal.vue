@@ -16,6 +16,8 @@
 </template>
 
 <script>
+	import { cookie } from 'vux';
+	import {appLogin} from '@/assets/commonjs/util.js';
 	export default {
 		data(){
 			return{
@@ -80,6 +82,12 @@
 				}
 			},
 		},
+		mounted(){
+			if(cookie.get('MC_UID')) {
+			}else{
+				appLogin()
+			}
+		}
 	}
 </script>
 

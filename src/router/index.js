@@ -53,8 +53,8 @@ import databaseDetails from '@/components/database/details'
 import switchPage from '@/components/common/switchPage';
 import pergoodslist from '@/components/user/pergoodslist';
 //user
-import userCenter from '@/components/user/userCenter';
-import entCenter from '@/components/user/entCenter';
+//import userCenter from '@/components/user/userCenter';
+//import entCenter from '@/components/user/entCenter';
 import ordlistdetail from '@/components/user/ordlistdetail';
 import purOrdlist from '@/components/user/purOrdlist';
 import supOrdlist from '@/components/user/supOrdlist';
@@ -279,8 +279,8 @@ const router = new Router({
 //          name: 'courtesy',
 //          component: courtesy
 //      },
-        { path: '/user/center', name: 'usercenter', component: userCenter },  
-        { path: '/entcenter', name: 'entCenter', component: entCenter, meta: {requireAuth :true} },  
+//      { path: '/user/center', name: 'usercenter', component: userCenter },  
+//      { path: '/entcenter', name: 'entCenter', component: entCenter, meta: {requireAuth :true} },  
         { path: '/user/ordlistdetail', name: 'ordlistdetail', component: ordlistdetail, meta: {requireAuth :true} },
         { path: '/user/purordlist', name: 'purOrdlist', component: purOrdlist, meta: {requireAuth :true} },
         { path: '/user/purcommOrdlist', name: 'purcommOrdlist', component: purcommOrdlist, meta: {requireAuth :true} },

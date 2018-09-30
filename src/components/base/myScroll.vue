@@ -66,7 +66,7 @@
 			scrollEvent() {
 				if(this.total == 0) return
 				
-				if(this.isComplete || this.isTab) return
+				if(this.isComplete) return
 //				滚动距离
 //				可见高度
 //				文档高度

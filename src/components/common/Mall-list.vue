@@ -243,7 +243,7 @@
 		height: 1.65rem;
 	}
 	.mallList .secondNews .newsItem .image img{
-		width: 3.26rem;
-		height: 3.26rem;
+		width: 3.27rem;
+		height: 1.95rem;
 	}
 </style>

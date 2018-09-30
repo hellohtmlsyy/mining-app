@@ -2,15 +2,19 @@
 	<div class="userCenter">
 		<!--login top-->
 		<div class="login_top" v-show="loginShow">			
-			<img class="icon-shezhi1" src="../../../static/img/user/setup.png" @click="appPopWindow" v-show="shezhiShow">
+			<!--<img class="icon-shezhi1" src="../../../static/img/user/setup.png" @click="appPopWindow" v-show="shezhiShow">-->
 			<i class="iconfont icon-jiantou-copy" v-show="homeShow" @click="goHome()"></i>
-			<img src="../../../static/img/user/not_login_bg.png" class="bg_img">
-			<img class="iconfont headImg" src="../../../static/img/user/portrait.png">
-			<div class="login_btn" @click="appLogin()">
-				<a href="javascript:;">登录</a>
-				<a href="javascript:;">/</a>
-				<a href="javascript:;">注册</a>
-			</div>			
+			<!--<img src="../../../static/img/user/not_login_bg.png" class="bg_img">-->
+			<div align="center">
+				<img class="iconfont headImg" src="../../../static/img/user/portrait.png">
+			</div>
+			<div align="center">
+				<div class="login_btn" @click="appLogin()">
+					<a href="javascript:;">登录</a>
+					<a href="javascript:;">/</a>
+					<a href="javascript:;">注册</a>
+				</div>			
+			</div>
 		</div>
 		<!--login con-->
 		<div class="content log" v-show="loginShow">
@@ -31,7 +35,7 @@
 			<div class="head clearfix">
 				<i class="iconfont icon-jiantou-copy fl" @click="back" v-show="homeShow"></i>
 				<div class="fr">
-					<img class="sett" src="../../../static/img/user2.0/personal/setting.png" alt="" v-show="shezhiShow" />
+					<img class="sett" src="../../../static/img/user2.0/personal/setting.png" alt="" v-show="shezhiShow" @click="appPopWindow()"/>
 					<span class="toggle" @click="ent_ser">切换为企业</span>
 				</div>
 			</div>
@@ -125,7 +129,7 @@
 </template>
 <script>
 	import { cookie } from 'vux'
-	import {lastPage} from '@/assets/commonjs/util.js';
+	import {lastPage,appLogin} from '@/assets/commonjs/util.js';
 	export default {		
 		data() {
 			return {
@@ -178,15 +182,7 @@
 				}
 			},
 			appLogin() {
-				if(this.isInapp){
-					if(this.equi.indexOf('Android') > -1 || this.equi.indexOf('Adr') > -1) {//						
-						adwebkit.callApp("LOGIN", "登录的参数");
-					} else if(!!this.equi.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {		
-						oswebkit.callApp("LOGIN", "登录的参数");
-					}	
-				}else{
-					window.location.href = this.$root.urlPath.MCL;
-				}								
+				appLogin()						
 			},
 			goHome(){
 				if(this.isInapp){					
@@ -283,14 +279,8 @@
 				this.homeShow =true;
 				this.shezhiShow =false;
 			}else if(this.isInapp){				
-				if(this.$route.query.back==0){
-					this.homeShow=true;	
-				}
 				if(this.equi.indexOf('Android') > -1 || this.equi.indexOf('Adr') > -1) {//						
 					this.shezhiShow=true;
-					if(this.$route.query.back==0){
-						this.shezhiShow=true;
-					}
 				} else if(!!this.equi.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {		
 					this.shezhiShow=false;
 				}	
@@ -321,72 +311,62 @@
 		border: none!important;
 	}
 	/*login top*/
-	.login_top {
-		position: relative;
-	}	
+	.userCenter .login_top{
+		height: 4rem;
+		background: url(../../../static/img/user/not_login_bg.png);
+	    background-size: 100% 100%;
+	    padding: 0.1rem 0.2rem;
+	}
+	.userCenter .login_top .icon-jiantou-copy{
+		color: #fff;
+		font-size: 0.5rem;
+		display: block;
+	}
+	.userCenter .login_top .headImg{
+		width: 1.7rem;
+		color: #fff;
+		margin-top: 0.2rem;
+	}
+/*	/*
 	.login_top .icon-shezhi1 {
 		color: #fff;
 		width: 0.6rem;
 		position: absolute;
 		right: 0.2rem;
 		top: 0.2rem;
-	}
-	.login_top .bg_img,
-	.login_top .headImg,
-	.login_top .login_btn {
-		position: absolute;
-	}
-	.login_top .bg_img {
-		width: 100%;
-		left: 0;
-		top: 0;
-		z-index: -1;
-		height: 4.2rem;
-	}
-	.login_top .headImg {
-		width: 1.7rem;
-		color: #fff;
-		left: 50%;
-		top: 50%;
-		margin-top: 0.55rem;
-		margin-left: -0.85rem;
-	}
-	.login_top .login_btn {
-		left: 50%;
-		bottom: 0;
-		margin-bottom: -3rem;
-		margin-left: -1rem;
+	}*/
+	.userCenter .login_top .login_btn {
 		padding: 0.15rem 0.25rem;
 		border: 0.02rem solid #fff;
 		border-radius: 0.06rem;
+		width: 1.5rem;
+		margin-top: 0.3rem;
 	}
-	.login_btn a {
+	.userCenter .login_btn a {
 		color: #fff;
 		font-size: 0.3rem;
 	}
-	.login_top .icon-jiantou-copy{
+	.userCenter .login_top .icon-jiantou-copy{
 		color: #fff;
 		font-size: 0.5rem;
-		margin: 0.1rem 0 0 0.2rem;
 	}
 	/*login con*/
-	.log .mtool {
+	.userCenter .log .mtool {
 		padding: 0.25rem 0.2rem;
 	}
-	.log .mtool p {
+	.userCenter .log .mtool p {
 		color: #757575;
 		font-size: 0.28rem;
 	}
-	.log .mtool .weui-grid__icon{
+	.userCenter .log .mtool .weui-grid__icon{
 		width: 0.8rem;
 		height: 0.8rem
 	}
-	.log .mtool .weui-grid {
+	.userCenter .log .mtool .weui-grid {
 		padding: 18px 10px;
 		width: 25%;
 	}
 	.userCenter .log{
-		margin-top: 3.5rem;
 		background-color: #fff;
 	}
 </style>

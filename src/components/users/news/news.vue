@@ -48,6 +48,7 @@
 
 <script>
 	import { TransferDom, Actionsheet, Group, XSwitch, Toast, cookie } from 'vux';
+	import {appLogin} from '@/assets/commonjs/util.js';
 	import myScroll from '@/components/base/myScroll';
 	export default{
 		components: {
@@ -371,7 +372,11 @@
 			}
 		},
 		mounted(){
-			this.getlist()
+			if(cookie.get('MC_UID')) {
+				this.getlist()
+			}else{
+				appLogin()
+			}
 		}
 	}
 </script>

@@ -31,7 +31,7 @@
 
 <script>
 	import cropper from '@/components/common/upload-img.vue';
-	import { lastPage } from '@/assets/commonjs/util.js'
+	import { lastPage,appLogin } from '@/assets/commonjs/util.js'
 	import { cookie } from 'vux'
 	export default{
 		components: {
@@ -114,6 +114,10 @@
 			},
 		},
 		mounted(){
+			if(cookie.get('MC_UID')) {
+			}else{
+				appLogin()
+			}
 		},
 	}
 </script>

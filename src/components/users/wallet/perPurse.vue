@@ -40,7 +40,7 @@
 
 <script>
 	import { cookie } from 'vux';
-	import {lastPage} from '@/assets/commonjs/util.js';
+	import {lastPage,appLogin} from '@/assets/commonjs/util.js';
 	import myScroll from '@/components/base/myScroll';
 	export default{
 		components: {
@@ -129,8 +129,12 @@
 		    },
 		},
 		mounted(){
-			this.getAccount()
-			this.getAssets()
+			if(cookie.get('MC_UID')) {
+				this.getAccount()
+				this.getAssets()
+			}else{
+				appLogin()
+			}
 		}
 	}
 </script>

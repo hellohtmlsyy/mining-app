@@ -5,14 +5,14 @@
 			<div class="head clearfix">
 				<i class="iconfont icon-jiantou-copy fl" @click="appBack"></i>
 				<div class="fr">
-					<img class="sett" src="../../../static/img/user2.0/enterprise/setting.png" alt="" v-show="shezhiShow"/>
+					<img class="sett" src="../../../static/img/user2.0/enterprise/setting.png" alt="" v-show="shezhiShow" @click="appPopWindow()"/>
 					<span class="toggle" @click="goUser()">切换为个人</span>
 				</div>
 			</div>
 			<div class="info clearfix">
 				<img class="icon-wode-F fl" :src="headImg">
 				<div class="user_con fl">
-					<div class="user_name">{{name}}</div>
+					<div class="user_name">{{name |subStr(11)}}</div>
 					<div class="goShop" @click="goshop()">查看店铺 ></div>
 				</div>
 			</div>
@@ -102,7 +102,7 @@
 		data() {
 			return {
 				//企业
-				name: '用户名',
+				name: '',
 				headImg: this.$root.urlPath.MCM + '/static/img/user2.0/enterprise/head.png',
 				equi:navigator.userAgent,
 				isInapp:navigator.userAgent.indexOf('/mcapp')>=0,//判断是否在app打开
@@ -122,6 +122,18 @@
 			appBack() {		
 				lastPage()
 			},	
+			appPopWindow() {	
+				if(this.isInapp){
+					var a = '[{"act": "#set","ico": "http://www.miningcircle.com/img/m/app/set.png","id": 110,"title": "设置"},{"act": "#about","ico": "http://www.miningcircle.com/img/m/app/about.png","id": 130,"title": "关于我们"},{"act": "#out","ico": "http://www.miningcircle.com/img/m/app/out.png","id": 140,"title": "退出"}]';
+					if(this.equi.indexOf('Android') > -1 || this.equi.indexOf('Adr') > -1) {
+						adwebkit.callApp("POP_WINDOW", a);
+					} else if(!!this.equi.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+						oswebkit.callApp("POP_WINDOW", a);
+					}
+				}else{
+					return;
+				}
+			},
 			getInfo(){
 				this.$axios.get(this.$root.urlPath.MCT+'/wap/company/comInfo', {
 					headers:{
@@ -147,9 +159,6 @@
 			if(this.isInapp){				
 				if(this.equi.indexOf('Android') > -1 || this.equi.indexOf('Adr') > -1) {//						
 					this.shezhiShow=true;
-					if(this.$route.query.back==0){
-						this.shezhiShow=true;
-					}
 				} else if(!!this.equi.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {		
 					this.shezhiShow=false;
 				}	
