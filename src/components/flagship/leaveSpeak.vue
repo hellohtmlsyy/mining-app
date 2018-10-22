@@ -11,7 +11,7 @@
 		<div class="titleBox">留言给该供应商</div>
 		<div class="inputBox">
 			<input type="text" placeholder="称呼" v-model="form.name" class="inputCss" maxlength="10" @blur="blurName"/>
-			<div class="error" v-if="errorName">请填写1~10个字的名称</div>
+			<div class="error" v-if="errorName">请填写1~10个字的名称，不能有中英文逗号</div>
 		</div>
 		<div class="inputBox">
 			<input type="tel" placeholder="联系方式" class="inputCss" v-model="form.tel" maxlength="11" @blur="blur"/>
@@ -60,7 +60,8 @@
 				lastPage()
 			},
 			blurName(){
-				if(!this.form.name){
+				var reg = /[,，]/
+				if(!this.form.name || reg.test(this.form.name)){
 					this.errorName = true
 				}else{
 					this.errorName = false
@@ -97,6 +98,7 @@
 //					this.endError = "留言错误，请重新填写"
 					return
 				}
+				
 				
 				this.$vux.loading.show({
  					text: '正在留言请稍后'

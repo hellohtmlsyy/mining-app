@@ -8,17 +8,18 @@
 				{{isMan ? '完成' : '管理' }}
 			</div>
 		</com-header>
-		
-		<!--<my-scroll ref="scroll" @loadmore='getMallList' :isTab="isTab" :total="total" >-->
-		<div class="list">
+
+		<my-scroll ref="scroll" @loadmore='getList' :total="total" >
+		<div class="list" v-if="list.lenght !== 0">
 			<ul>
 				<li v-for="(item,index) in list">
+					<div>
 					<span class="checkBM" v-show="isMan">
-       					<input type="checkbox" class="checkbox" id="check"/>
-       					<label for="check"></label>
+       					<input type="checkbox" class="checkbox" :value="item.id" :id="index" v-model="check"/>
+       					<label :for="index"></label>
 					</span>
 
-					<hgroup class="titleB" @click="goDetails">
+					<hgroup class="titleB">
 						<div class="rowM1">
 							<h1>{{item.title}}</h1>
 							<time>{{item.insert_time  | fomatDate('yyyy-MM-dd hh:mm:ss')}}</time>
@@ -29,30 +30,33 @@
 							<span class="unit">{{item.currency}}</span>
 						</div>
 					</hgroup>
-
+					</div>
 				</li>
 			</ul>
 		</div>
-		<!--</my-scroll>-->
-		<footer class="footer allCheckFoot" v-show="isMan">
+		</my-scroll>
+		<footer class="footer allCheckFoot" v-show="isMan && list.length !== 0">
 			
 			<div class="checkBox">
 				<span class="checkBM">
-       				<input type="checkbox" class="checkbox" id="check1"/>
+       				<input type="checkbox" class="checkbox" id="check1" :checked="checkedAll" @click="selectAll"/>
        				<label for="check1"></label>
        				<span class="allCheck">全选</span>
 				</span>
 			</div>
-			<button class="btn">删除</button>
+			<button class="btn" @click="del">删除</button>
 		</footer>
 	</div>
 </template>
 
 <script>
 	import comHeader from '@/components/base/comHeader'
+	import myScroll from '@/components/base/myScroll'
+	
 	export default {
 		components: {
-			comHeader
+			comHeader,
+			myScroll
 		},
 		data() {
 			return {
@@ -60,6 +64,9 @@
 				pageNum:1,
 				numPerPage:10,
 				list:[],
+				total:0,
+				check:[],
+				checkedAll:false,
 			}
 		},
 		mounted(){
@@ -83,24 +90,92 @@
 						}
 					})
 					.then(res => {
-						var data = res.data
-						this.list = this.list.concat(data.data)
 						
-						console.log(this.list)
-//						if(data.success) {
-//							this.databaseList = this.databaseList.concat(data.data.list)
-//							this.total = data.data.totalCount
-//
-//							if(this.total == this.databaseList.length) {
-//								this.droploadDowm = true
-//							}
-//						}
+						var data = res.data
+						if(data.success) {
+							this.check = []
+							this.$refs.scroll.loaded()
+							if(data.data == '暂无数据'){
+								this.total = 0
+								this.$refs.scroll.complete()
+							}else{
+								this.list = this.list.concat(data.data.investmentList)
+								this.total = data.data.totalCount
+							}
+							
+							
+							
+							if(this.total == this.list.length && this.total !== 0){
+								this.$refs.scroll.complete()
+							}else{
+								this.pageNum++
+							}
+						}
 					})
 					.catch(function(error) {
-						alert('服务异常' + error)
+						alert('异常' + error)
 					});
+			},
+			del(){
+				if(this.check.length == 0 ){
+					this.$vux.toast.text('请选择要删除的内容', 'center')
+					return
+				}
+				
+				this.list = []
+				let ids = this.check.join()
+				
+				this.$axios.get(this.$root.urlPath.MCT + '/wapNote/wapDelMessage', {
+						params: {
+							ids:ids
+						}
+					})
+					.then(res => {
+						var data = res.data
+						if(data.success) {
+							this.$vux.toast.text('删除消息成功', 'center')
+							this.getList()
+						}else{
+							this.$vux.toast.text('删除消息失败', 'center')
+						}
+					})
+					.catch(function(error) {
+						this.$vux.toast.text('删除消息失败', 'center')
+					});
+			},
+			selectAll(event){
+				if(!event.currentTarget.checked) {
+
+					this.check = [];
+
+				} else { //实现全选
+
+					this.check = [];
+					this.list.forEach((item, i) => {
+
+						this.check.push(item.id);
+
+					});
+
+				}
 			}
-		}
+		},
+		watch: {
+
+			check(curVal) {
+				if(curVal.length == this.list.length) {
+	
+					this.checkedAll = true
+	
+				} else {
+	
+					this.checkedAll = false
+	
+				}
+	
+			}
+	
+		},
 	}
 </script>
 
@@ -124,6 +199,9 @@
 		}
 		.invest .list li .rowM1 {
 			margin-bottom: 0.17rem;
+		}
+		.invest .list li .titleB{
+			display:inline-block
 		}
 		.invest .list li h1 {
 			display: inline-block;

@@ -199,3 +199,12 @@ export function appLogin() {
         	return "其他"
         }
 	}
+
+//export function appPay(userId,orderNo,amount) {
+////	alert(userId,orderNo,amount)
+//	if(isDevice() == 'adr') {
+//		var params = {'userId':userId,'orderNo':orderNo,'amount':amount}
+//		params = JSON.stringify(params)
+//		adwebkit.callApp("FYPAY", params);
+//	}
+//}

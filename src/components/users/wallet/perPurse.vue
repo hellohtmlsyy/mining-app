@@ -7,7 +7,7 @@
 			<div class="money">
 				<div class="available">可用余额（元）</div>
 				<span class="m">{{availableBalance}}</span>
-				<div class="total">总金额  <span>{{freezingBalance}}</span> 元</div>
+				<div class="total">总金额  <span>{{availableBalance}}</span> 元</div>
 			</div>
 		</div>	
 		<tab v-model="index01" prevent-default @on-before-index-change="switchTabItem" active-color="#0094E8">
@@ -22,7 +22,7 @@
 		    			<span class="fl">
 		    				{{item.cat == 69?'收入':(item.cat == 75?'支出':(item.cat == 0?'充值':(item.cat ==5?'支出':(item.cat ==11?'提现': '支出'))))}}
 		    			</span>
-		    			<span class="fr"><span>{{item.cat == 69 || item.cat == 0 ? '＋' : '－' }}</span>{{item.optAmount}}</span>
+		    			<span class="fr"><span>{{item.cat == 69?'+':(item.cat == 75?'-':(item.cat == 0?' ':(item.cat ==5?'-':(item.cat ==11?' ': '-'))))}}</span>{{item.optAmount}}</span>
 		    		</div>
 		    		<div class="time clearfix">
 		    			<span class="fl">{{item.createdTime | fomatDate('yyyy-MM-dd hh:mm:ss') }}</span>

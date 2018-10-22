@@ -71,6 +71,21 @@
 			}
 		},
 		methods: {
+			paySucces(res){
+				var reg = RegExp(/成功/);
+				if(res.match(reg)){
+				    this.$vux.alert.show({
+						title: '恭喜',
+						content: '支付成功',
+						onShow() {
+							
+						},
+						onHide() {
+							lastPage()
+						}
+					})  
+				}
+			},
 			back() {
 				lastPage()
 			},
@@ -152,7 +167,14 @@
 							var data = res.data.data
 							let id = item.list[0].id;
 							let rtitle = item.list[0].rtitle;
-							window.location.href = "http://www.miningcircle.com/user/mn.do?rechargeBank&shopno=" + data.serialno + "&resnum=" + num + "&resremark=" + rtitle + "&v_amount=" + totalPrice + "&bank_pay=wxpay"
+							
+							if(isDevice() == 'adr') {
+								var params = {'userId':data.user_id,'orderNo':data.serialno,'amount':totalPrice *100}
+								params = JSON.stringify(params)
+								adwebkit.callApp("FYPAY", params);
+							}else{
+								window.location.href = "http://www.miningcircle.com/user/mn.do?rechargeBank&shopno=" + data.serialno + "&resnum=" + num + "&resremark=" + rtitle + "&v_amount=" + totalPrice + "&bank_pay=wxpay"
+							}
 						} else {
 							//alert(res.data.errMsg)
 						}
@@ -168,6 +190,7 @@
 			}
 		},
 		mounted() {
+			window.paySucces = this.paySucces
 			this.getcommGoodslist();
 		},
 	}

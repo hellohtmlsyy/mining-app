@@ -129,12 +129,31 @@
 				isClickBal:false
 			}
 		},
-		mounted() {
+		created() {
+			window.paySucces = this.paySucces
 			this.getBalance()
 			this.getAddress()
 			this.getBill()
 		},
 		methods: {
+			paySucces(res){
+				var reg = RegExp(/成功/);
+				if(res.match(reg)){
+				    this.$vux.alert.show({
+						title: '恭喜',
+						content: '支付成功',
+						onShow() {
+							
+						},
+						onHide() {
+							lastPage()
+						}
+					})  
+				}else{
+					window.location.href = this.$root.urlPath.MCM + '/user/pergoodslist?newpage=newpage'
+				}
+			},
+		
 			goWriteAddress() {
 
 				window.location.href = this.$root.urlPath.MCM + "/mall/order_addressList?newpage=newpage&id=" + this.$route.query.id;
@@ -270,8 +289,14 @@
 											} else if(this.balanceInfo.length > 1) {
 												mallName = this.balanceInfo[0].res[0].title + '等商品'
 											}
-											window.location.href = "http://www.miningcircle.com/user/mn.do?rechargeBank&shopno=" + data.serialno + "&resnum=" + quantity + "&resremark=" + mallName + "&v_amount=" + this.totalPrice + "&bank_pay=wxpay"
-
+											if(isDevice() == 'adr') {
+//												var price = this.totalPrice * 100
+												var params = {'userId':data.user_id,'orderNo':data.serialno,'amount':this.totalPrice *100}
+												params = JSON.stringify(params)
+												adwebkit.callApp("FYPAY", params);
+											}else{
+												window.location.href = "http://www.miningcircle.com/user/mn.do?rechargeBank&shopno=" + data.serialno + "&resnum=" + quantity + "&resremark=" + mallName + "&v_amount=" + this.totalPrice + "&bank_pay=wxpay"
+											}
 										} else {
 											//alert(res.data.errMsg)
 										}
@@ -280,9 +305,8 @@
 										alert(error)
 									});
 
-							} else if(isDevice() == '微信浏览器') {
+							}else if(isDevice() == '微信浏览器') {
 									window.location.href = this.$root.urlPath.MCM + "/mall/pay?newpage=newpage&payType=normal&id=" + this.$route.query.id;
-//								}
 							}
 						} else {
 							alert('出现' + res.data.errMsg+'或此订单已经结算请到我的订单中查看')
@@ -340,6 +364,7 @@
 		},
 		watch: {}
 	}
+	
 </script>
 
 <style>

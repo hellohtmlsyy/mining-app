@@ -13,7 +13,7 @@
 		</div>
 		<my-scroll ref="scroll" @loadmore='getlist' :isTab="isTab" :total="total" >
 			<div class="followCon" :class="{ pb_94: isMan }">
-				<div class="conItem clearfix" v-for="(item,index) in attlst" :key="index" @click="gofollowDet(item.type,item.id)">
+				<div class="conItem clearfix" v-for="(item,index) in attlst" :key="index" >
 					<span class="checkBM fl" v-show="isMan">
 	   					<input type="checkbox" class="checkbox" :id="item.id" v-model="item.checked" name="sub" @click="radio()"/>
 	   					<label :for="item.id"></label>
@@ -21,13 +21,12 @@
 					<div class="conItemL fl">
 						<div class="type">
 							<span class="text" :class="{invalid:item.status != '2'}">
-								{{item.type==510?'旗舰店':(item.type==410?'商品':(item.type==240?'项目交易':(item.type==610?'会展':'投资方')))}}
+								{{item.type==510?'旗舰店':(item.type==410?'商品':(item.type==240?'项目交易':(item.type==610?'会展':(item.type==320?'新闻':'投资方'))))}}
 							</span>
 						</div>
 						<div class="name">{{item.name?item.name:item.title}}</div>
-						<div class="time">{{item.timesUp | fomatDate('yyyy-MM-dd')}}</div>
 					</div>
-					<div class="conItemR fr"><span class="det" :class="{invalid:item.status != '2'}">{{item.status==2?'详情':'失效'}}</span></div>
+					<div class="conItemR fr"><span class="det" :class="{invalid:item.status != '2'}" @click="gofollowDet(item.status,item.type,item.res_id)">{{item.status==2?'详情':'失效'}}</span></div>
 				</div>
 			</div>
 		</my-scroll>
@@ -74,6 +73,7 @@
 				type: [ 
 					{name:'商品',recordType:'410'},
 					{name:'会展',recordType:'610'},
+					{name:'新闻',recordType:'320'},
 					{name:'旗舰店',recordType:'510'},
 					{name:'投资方',recordType:'250'},
 					{name:'项目交易',recordType:'240'},
@@ -96,9 +96,9 @@
 					this.style = false;
 				}
 			},
-			gofollowDet(type,id){
-				if(this.isMan) return
-				var channel = type==510?'/flagship?shopId=':(type==410?'/mall/details?id=':(type==240?'/mineral/projectDetails?id=':(type==610?'/exhibition/details?id=':'/mineral/investorDetails?id=')))
+			gofollowDet(status,type,id){
+				if(this.isMan || status != 2) return
+				var channel = type==510?'/flagship?shopId=':(type==410?'/mall/details?id=':(type==240?'/mineral/projectDetails?id=':(type==610?'/exhibition/details?id=':(type==320?'/news/details?id=':'/mineral/investorDetails?id='))))
 				location.href = this.$root.urlPath.MCM + channel + id + '&newpage=newpage';
 			},
 			gotypeList(recordType){
@@ -177,6 +177,7 @@
 				    		if(res.data.success){
 				    			_this.isMan = false;
 				    			_this.$vux.toast.text('取消关注成功', 'center')
+				    			_this.$refs.scroll.init()
 				    			_this.attlst = []
 				    			_this.getlist()
 				    		}else{

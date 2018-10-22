@@ -1,18 +1,22 @@
 <template>
 	<div class="home">
-		<div class="fixedHeader">
-			<open-app @closeOpenApp="openAppShoHid"></open-app>
-			<Mheader v-if="showHeader"></Mheader>
-		</div>
 		<section>
 			<!--banner-->
+			<open-app @closeOpenApp="openAppShoHid"></open-app>
 			<div :class="bannerPadding">
+				<Mheader :class="headColoB ? 'headerCss1' : 'headerCss2'" v-if="showHeader" ></Mheader>
 				<div class="fixed-swiper dis-fl text-center">
 					<swiper :list="bannerImg" :duration="1000" :show-dots="true" dots-class="custom-bottom" dots-position="center" height="3.2rem" auto>
 					</swiper>
 				</div>
-			</div>
-			
+		</div>
+			<!--<div @click="goAddGoods">发布商品</div>-->
+			<!--认证-->
+			<section @click="goCert">
+				<img src="../../../static/img/bg/bg-cert.png" width='100%'
+    height='100%'/>
+			</section>
+			<!--{{headColoB}}-->
 			<!--nav-->
 			<nav class="nav clearfix">
 				<ul>
@@ -40,10 +44,6 @@
 						<img src="../../../static/img/nav5.png" />
 						<p>新闻</p>
 					</li>
-					<li @click="toSwitchPage">
-						<img src="../../../static/img/nav6.png" />
-						<p>更多</p>
-					</li>
 				</ul>
 			</nav>
 			<!--最新报价-->
@@ -59,9 +59,9 @@
 				</swiper>
 			</div>
 			<!--全球数据库-->
-			<div class="data-base" @click="goDataBaseList">
+			<!--<div class="data-base" @click="goDataBaseList">
 				<img src="../../../static/img/data-base.png" />
-			</div>
+			</div>-->
 			<!--行情-->
 			<!--<div class="market">
 				<div class="common_top clearfix">
@@ -82,9 +82,9 @@
 				</x-table>
 			</div>--!>
 			<!--精品好货-->
-			<div class="good_stuff bgcolor_f">
+			<div class="good_stuff">
 				<div class="topA">
-					<span class="title" style="font-size: 0.28rem;">精品好货</span>
+					<span class="title" style="font-size: 0.28rem;color:#FF393F;font-weight: bold;">精品好货</span>
 				</div>
 				<div class="swiper-container swiper1" id="swiper1">
 					<div class="swiper-wrapper">
@@ -139,9 +139,9 @@
 				</div>
 			</div>
 			<!--会展中心与矿权交易同一个样式-->
-			<div class="mineTrade bgcolor_f">
+			<div class="mineTrade">
 				<div class="common_top clearfix">
-					<span class="title">行业会展</span>
+					<span class="title huizhanTitle">行业会展</span>
 					<span class="more"> 
                 	<span @click="toExhibition" class="more">更多<span>&gt;</span>
 					</span>
@@ -153,7 +153,7 @@
 							<img :src="item.img ? item.img :item.image" />
 							<div class="textBox">
 								<div class="text1 clearfix">
-									<p class="title comtitlefontsize26 clamp">{{item.title}}</p>
+									<p class="title1 comtitlefontsize26 clamp">{{item.title}}</p>
 									<span class="stage fl comsmalltitlefontsize20 clamp">{{item.address}}</span>
 									<!--<span class="stage fr">{{item.begin_time}}</span>-->
 								</div>
@@ -226,9 +226,9 @@
 				</div>
 			</div>
 			<!--矿权交易-->
-			<div class="mineTrade bgcolor_f">
+			<div class="mineTrade">
 				<div class="common_top clearfix">
-					<span class="title">矿权交易</span>
+					<span class="title kuangquanTitle">矿权交易</span>
 					<span class="more"> 
                 	<span @click="toMineral" class="more">更多<span>&gt;</span>
 					</span>
@@ -240,7 +240,7 @@
 							<img :src="item.img ? item.img :item.image" />
 							<div class="textBox">
 								<div class="text1">
-									<p class="title comtitlefontsize26 clamp">{{item.title}}</p>
+									<p class="title1 comtitlefontsize26 clamp">{{item.title}}</p>
 									<p class="stage comsmalltitlefontsize20">阶段：{{item.jd}}</p>
 								</div>
 							</div>
@@ -250,14 +250,14 @@
 				</div>
 			</div>
 			<!--为您推荐-->
-			<div class="groom" style="padding-top:0;position:relative">
+			<div class="groom" style="padding-top:0;position:relative;">
 				<div class="top common_top titlemp  bgcolor_f clearfix">
 					<div class="fl">
 						<span class="title">新品推荐</span>
 					</div>
 					<div class="icoliebiao fr">
-						<i class='icon iconfont icon-liebiao' @click="switchFirst" :style="{'color':shohid ? '#343434' : '#A8A8A8'}"></i>
-						<i class='icon iconfont icon-liebiao1' @click="switchSecond" :style="{'color':shohid ? '#A8A8A8' : '#343434'}"></i>
+						<label @click="toMall" class="more groomMore">更多<span>&gt;</span></label>
+						<i class='icon iconfont' :class="shohid ? 'icon-liebiao' : 'icon-liebiao1'" @click="switchS"></i>
 					</div>
 				</div>
 				<div ref="listSection" id="scrop">
@@ -270,6 +270,10 @@
 		<section>
 			<span class="btn-backtop" v-show="showBackTop" @click="goBackTop"></span>
 		</section>
+		
+		<footer-m>
+			
+		</footer-m>
 	</div>
 </template>
 
@@ -282,6 +286,7 @@
 	import axios from 'axios'
 	import Malllist from '@/components/common/Mall-list'
 	import openApp from '@/components/base/openApp'
+	import footerM from '@/components/base/footerM'
 
 	const loginUrl = 'http://member.miningcircle.com/login?where=mcVue';
 	const baseList = [{
@@ -321,7 +326,7 @@
 			Malllist,
 			XTable,
 			openApp,
-
+			footerM
 		},
 		data() {
 			return {
@@ -366,11 +371,9 @@
 				marketList: [],
 				demo04_list: imgList,
 				scrollTop:0.,
-				showBackTop:false
+				showBackTop:false,
+				headColoB:false
 			}
-		},
-		computed: {
-
 		},
 		mounted() {
 			window.addEventListener('scroll', this.handleScroll);
@@ -383,13 +386,13 @@
 				}
 			}
 
-			if(isDevice() == 'ios') {
-				this.bannerPadding.bannerPadding2 = false
-				this.bannerPadding.bannerPadding1 = false
-			} else if(isDevice() == 'adr') {
-				this.bannerPadding.bannerPadding2 = true
-				this.bannerPadding.bannerPadding1 = false
-			}
+//			if(isDevice() == 'ios') {
+//				this.bannerPadding.bannerPadding2 = false
+//				this.bannerPadding.bannerPadding1 = false
+//			} else if(isDevice() == 'adr') {
+//				this.bannerPadding.bannerPadding2 = true
+//				this.bannerPadding.bannerPadding1 = false
+//			}
 
 			this.scrollValue();
 
@@ -412,17 +415,58 @@
 			//			this.getMarketList()
 		},
 		computed: {
-
+			headeColo(){
+				if(this.headColoB){
+					return '#000'
+				}else{
+					return '#0094e800'
+				}
+			}
 		},
 		methods: {
+			switchS(){
+				this.shohid = !this.shohid
+			},
+			goCert(){
+				if(cookie.get('MC_UID')) {
+					this.$axios.get(this.$root.urlPath.MCT + '/wap/company/comInfo')
+					.then(res => {
+						var data = res.data
+						if(data.status == 2){//已经认证了
+							window.location.href=this.$root.urlPath.MCM+"/users/entcenter?newpage=newpage"
+						}else if(data.status == 0 || data.status == 3){//没认证
+							window.location.href = this.$root.urlPath.MCMHALL + '/cert?newpage=newpage';
+						}else if(data.status == 1){
+							this.$vux.toast.text('您的企业正在申请中<br/>客服：400-819-6985', 'center');
+						}else if(data.status == 4){
+							this.$vux.toast.text('您的企业已冻结<br/>客服：400-819-6985', 'center');
+						}
+					})
+					.catch(function(error) {
+						alert('账户异常' + error)
+					});
+				} else {
+					appLogin()
+				}
+			},
+			getCert(){
+				
+			},
 			handleScroll(){
 				this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+				
+				if(this.scrollTop > 5) {
+					this.headColoB = true
+				} else {
+					this.headColoB = false
+				}
 				
 				if(this.scrollTop > 700){
 					this.showBackTop = true
 				}else{
 					this.showBackTop = false
 				}
+				
 			},
 			goBackTop(){
 				window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0
@@ -437,7 +481,7 @@
 				window.location.href = this.$root.urlPath.MCM + "/database/list?newpage=newpage";
 			},
 			getMarketList() {
-				this.$axios.get('http://192.168.1.243:8082/wap/home.do?marketList', {
+				this.$axios.get(this.$root.urlPath.MC + '/wap/home.do?marketList', {
 					params: {
 						pageNum: 1,
 						numPerPage: 3,
@@ -461,15 +505,15 @@
 			openAppShoHid(showHide) {
 				if(isDevice() == 'ios' || isDevice() == 'ios') return
 
-				if(showHide) {
-					this.bannerPadding.bannerPadding1 = true
-					this.bannerPadding.bannerPadding2 = false
-				} else {
-					this.bannerPadding.bannerPadding2 = true
-
-					this.bannerPadding.bannerPadding1 = false
-
-				}
+//				if(showHide) {
+//					this.bannerPadding.bannerPadding1 = true
+//					this.bannerPadding.bannerPadding2 = false
+//				} else {
+//					this.bannerPadding.bannerPadding2 = true
+//
+//					this.bannerPadding.bannerPadding1 = false
+//
+//				}
 
 			},
 			toPurchaseDetails(id) {
@@ -484,9 +528,6 @@
 					slidesPerView: 'auto',
 					//					spaceBetween: 15,
 				})
-			},
-			toSwitchPage() {
-				window.location.href = this.$root.urlPath.MCM + "/switchPage?newpage=newpage";
 			},
 			toMeetDetails(id) {
 				window.location.href = this.$root.urlPath.MCM + '/exhibition/details?id=' + id + '&newpage=newpage';
@@ -552,12 +593,6 @@
 			toMall() {
 				window.location.href = this.$root.urlPath.MCM + "/mall?newpage=newpage";
 			},
-			switchFirst() {
-				this.shohid = true
-			},
-			switchSecond() {
-				this.shohid = false
-			},
 			closeSwiper() {
 				this.showSwiper = false
 			},
@@ -597,7 +632,7 @@
 
 								var mySwiper = new swiper2('#swiper1', {
 									slidesPerView: 3,
-//									loop : true,
+									loop : true,
 
 									//									slidesPerGroup: 1,
 									//									loop: true
@@ -784,6 +819,18 @@
 	@import url("../../../static/css/swiper.min.css");
 	@import url("../../static/css/certify.css");
 	@import url("../../static/css/market.css");
+	
+	.home .headerCss2{
+		position: absolute;
+		z-index: 999;
+		background: #0094e800;
+	}
+	.home .headerCss1{
+		position: fixed;
+		top: 0;
+		z-index: 999;
+		background: #0094E8;
+	}
 	/*返回顶部*/
 	.home .btn-backtop{
 		background: url(../../../static/img/btn/btn-backtop.png) no-repeat;
@@ -794,6 +841,7 @@
 		position: fixed;
 		bottom: 4.5rem;
     	right: 0.09rem;
+    	z-index: 999;
 	}
 	/*全球数据库*/
 	
@@ -812,13 +860,7 @@
 		padding: 0.26rem 0.2rem;
 		margin-top: 0.15rem;
 	}
-	
-	.home .fixedHeader {
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 999;
-	}
+
 	
 	section .fixed-swiper,
 	.nav,
@@ -828,11 +870,11 @@
 	/*banner*/
 	
 	.home .bannerPadding1 {
-		padding-top: 1.95rem;
+		/*padding-top: 1.95rem;*/
 	}
 	
 	.home .bannerPadding2 {
-		padding-top: 1rem;
+		/*padding-top: 1rem;*/
 	}
 	
 	section .nav {
@@ -841,7 +883,7 @@
 	}
 	
 	section .nav ul li {
-		width: 16.66%;
+		width: 20%;
 		float: left;
 		text-align: center;
 		padding: 0.25rem 0;
@@ -849,8 +891,8 @@
 	}
 	
 	section .nav ul li img {
-		width: 0.65rem;
-		height: 0.65rem;
+		width: 0.8rem;
+		height: 0.8rem;
 	}
 	
 	section .nav .new {
@@ -876,7 +918,7 @@
 	section .info {
 		width: 100%;
 		height: 0.75rem;
-		border-top: 1px solid #ccc;
+		border-top: 1px solid rgba(229,229,229,1);
 		line-height: 0.75rem;
 		font-size: 0.3rem;
 	}
@@ -894,7 +936,7 @@
 	}
 	
 	section .info b {
-		color: #ccc;
+		color: rgba(210,210,210,1);
 		font-weight: normal;
 	}
 	
@@ -928,7 +970,8 @@
 		height: 0.72rem !important;
 	}
 	
-	<!--精品好货-->.good_stuff .topA .title {
+	<!--精品好货-->
+	.good_stuff .topA .title {
 		color: #fff
 	}
 	
@@ -962,7 +1005,7 @@
 	.good_stuff .good_stuff_conBox {
 		/*border: 0.02rem solid #ccc;*/
 		border-radius: 0.03rem;
-		/*box-shadow: 1px 0 2px 1px #aaa;*/
+		box-shadow:8px 0px 12px rgba(178,178,178,0.6);
 		border: 0.02rem solid #E6E6E6;
 	}
 	.good_stuff .swiper-slide-next .textBox .title{
@@ -1025,7 +1068,9 @@
 	}
 	
 	.newws .topA .titleText {
-		font-size: 0.28rem
+		font-size: 0.28rem;
+		color: #EF8700;
+		font-weight:500;
 	}
 	
 	.newws .topA .more {
@@ -1077,6 +1122,10 @@
 		border-bottom: 0
 	}
 	/*<!--商品贸易-->.ware .ware_bottom ul {}*/
+	.ware .title{
+		color: #FF393F;
+		font-weight:bold;
+	}
 	.ware .ware_bottom{
 		line-height: 0;
 	}
@@ -1181,7 +1230,13 @@
 	}
 	/*矿权交易*/
 	/*热门*/
-	
+	.mineTrade .kuangquanTitle{
+		color: #008C73;
+	}
+	.mineTrade{
+		padding: 0.2rem;
+    	margin-top: 0.15rem;
+	}
 	.mineTrade .swiperBox2 {
 		margin-right: 0.15rem;
 	}
@@ -1233,16 +1288,29 @@
 	.mineTrade .text1 {
 		padding: 0.1rem 0.2rem;
 	}
-	
+	.mineTrade .huizhanTitle{
+		color:#6540FF;
+	}
 	.mineTrade .title {
 		line-height: 0.34rem !important;
+		font-weight:bold;
 	}
 	
 	.mineTrade .stage {
 		line-height: 0.38rem;
 	}
 	
-	<!--为您推荐-->.groom .top {
+	/*为您推荐*/
+	.groom{
+		padding-bottom:1rem
+	}
+	.groom .groomMore{
+		float:none;
+		display: inline-block;
+    	vertical-align: top;
+    	margin:0.03rem 0.3rem 0 0;
+	}
+	.groom .top {
 		margin-bottom: 0;
 		position: relative;
 	}
@@ -1263,7 +1331,6 @@
 	
 	.groom .icon-liebiao {
 		font-size: 0.35rem;
-		margin-right: 0.15rem;
 	}
 	
 	.groom .icon-liebiao1 {

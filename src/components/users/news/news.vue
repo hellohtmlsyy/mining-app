@@ -1,19 +1,19 @@
 <template>
 	<div class="mynews">
 		<com-header bgcolor="#0094E8">
-			<div slot="centerA">我的消息(<span>{{total}}</span>)</div>
+			<div slot="centerA">我的消息</div>
 			<div slot="rightA">
 				<a slot="right" @click="adm()" v-show="!isMan">管理</a>
-				<a slot="right" @click="checkAll()" v-show="isMan" >全选<input type="checkbox" class="checkbox" id="all"/></a>
+				<a slot="right" @click="checkAll()" v-show="isMan">{{all}}<input type="checkbox" class="checkbox" id="all"/></a>
 			</div>
 		</com-header>
 		<div class="category clearfix">
 			<div class="state item"><span @click="system()">系统通知</span></div>
 			<div class="item "><span>类型</span><i class="iconfont icon-jiantou-copy-copy" v-show="!arrow" @click="toggleArrow(1)"></i><i class="iconfont icon-jiantou-copy-copy-copy" v-show="arrow" @click="toggleArrow(2)"></i></div>
 		</div>
-		<my-scroll ref="scroll" @loadmore='getlist' :isTab="isTab" :total="total" >
-			<div class="mynewsCon" :class="{ pb_94: isMan }">
-				<div class="conItem clearfix" v-for="(item,index) in noteVOS" :key="index" @click="goDet(item.content,item.title,item.createdTime,item.id,(item.userName != '' && item.userName != null ? item.userName : '矿业圈'))">
+		<my-scroll ref="scroll" @loadmore='getlist' :isTab="isTab" :total="total" :class="{ pb_94: isMan }">
+			<div class="mynewsCon" >
+				<div class="conItem clearfix" v-for="(item,index) in noteVOS" :key="index" @click="goDet(item.id,item.type)">
 					<span class="checkBM fl" v-show="isMan">
 	   					<input type="checkbox" class="checkbox" :id="item.id" v-model="item.checked" name="sub" @click="radio()"/>
 	   					<label :for="item.id"></label>
@@ -80,22 +80,33 @@
 				cat: 0,
 				total: 0,
 				function: 'noteClick',
+				all: '全选',
 			}
 		},
 		methods: {
 			adm(){
 				this.isMan = !this.isMan
 			},
-			goDet(content,title,time,id,name){
+			goDet(id,type){
 				if(this.isMan) return
-				content = encodeURI(content)
-				location.href = 
-					this.$root.urlPath.MCM +
-					'/users/newsDetail?content=' + encodeURIComponent(content) +
-					'&name=' + encodeURIComponent(name)+ 
-					'&title=' + encodeURIComponent(title)+ 
-					'&time=' + encodeURIComponent(time) +
-					'&id=' + encodeURIComponent(id) + '&newpage=newpage';
+				this.$axios.get(this.$root.urlPath.MCT+'/wapNote/wapNoteOperate', {
+					headers:{
+						'MC_UID': cookie.get('MC_UID')
+					},
+					params: {
+						function: 'noteClick',
+						status: 0,
+						ids: id,
+					}
+				})
+				.then(res => {
+					this.noteVOS.forEach(ele=>{
+						if(ele.id == id){
+							ele.status = 1;
+						}
+					})
+					location.href = this.$root.urlPath.MCM + '/users/newsDetail?id=' + id + '&type=' + type +'&newpage=newpage';
+				}).catch(err => console.log('个人账户异常', err));	
 			},
 			toggleArrow(num){
 				if(num==1){
@@ -362,9 +373,16 @@
 			},
 			checkAll(){
 				var allVal = $("#all")[0].checked
+				console.log(allVal)
 				this.noteVOS.forEach(ele => {
 					ele.checked = allVal;
 				})
+				if(allVal){
+					this.all = '取消';
+				}else{
+					this.all = '全选';
+					this.isMan = !this.isMan;
+				}
 			},
 			radio(){
 				var $subs = $("input[name='sub']");
@@ -373,6 +391,7 @@
 		},
 		mounted(){
 			if(cookie.get('MC_UID')) {
+				this.noteVOS = []
 				this.getlist()
 			}else{
 				appLogin()

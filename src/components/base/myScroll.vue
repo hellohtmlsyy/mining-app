@@ -4,7 +4,7 @@
 			<slot></slot>
 		</div>
 		<load-more :tip="loadingText" :show-loading="isLoading" v-show="isLoading"></load-more>
-		<divider v-show="isComplete">{{completeText}}</divider>
+		<divider v-show="isComplete && total !== 0">{{completeText}}</divider>
 		<show-nodata v-if="total == 0 && !isLoading"></show-nodata>
 	</div>
 </template>
@@ -52,7 +52,6 @@
 			this.$nextTick(()=>{
 //				window.addEventListener('scroll', this.scrollEvent)
 			})
-			
 		},
 		methods: {
 			touchStart(e){

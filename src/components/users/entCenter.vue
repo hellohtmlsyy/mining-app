@@ -116,6 +116,7 @@
 				},
 				shezhiShow: false,
 				companyId: '',
+				shopId: '',
 			}
 		},
 		methods: {			
@@ -146,22 +147,31 @@
 					if(res.data.logo !='' && res.data.logo != null){
 						this.headImg = res.data.logo
 					}
+					this.$axios.get(this.$root.urlPath.MC+'/wap/store.do?flagshipId', {
+						params: {
+							id: this.companyId
+						},
+						headers: {
+							'MC_UID': cookie.get('MC_UID')
+						},
+					})
+					.then(res => {
+						if(res.data.success) {
+							this.shopId = res.data.data;
+						}
+					}).catch(err => console.log('个人账户异常', err));
 				}).catch(err => console.log('个人账户异常', err));	
 			},
 			goUser(){
 				location.href = this.$root.urlPath.MCM + "/users/center?newpage=newpage"
 			},
 			goshop(){
-				location.href = this.$root.urlPath.MCM + "/flagship?shopId=" + this.companyId + '&newpage=newpage'
+				location.href = this.$root.urlPath.MCM + "/flagship?shopId=" + this.shopId + '&newpage=newpage'
 			}
 		},	
 		mounted() {	
 			if(this.isInapp){				
-				if(this.equi.indexOf('Android') > -1 || this.equi.indexOf('Adr') > -1) {//						
-					this.shezhiShow=true;
-				} else if(!!this.equi.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {		
-					this.shezhiShow=false;
-				}	
+				this.shezhiShow=true;
 			}else{
 				this.shezhiShow=false;
 			}	

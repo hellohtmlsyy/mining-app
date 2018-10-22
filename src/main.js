@@ -12,7 +12,7 @@ import api from './assets/config/api.js'
 //import store from './store/store.js';
 import rootPath from './assets/config/api.js' // 接口路径
 import VueClipboard from 'vue-clipboard2'
-import { appLogin } from '@/assets/commonjs/util.js';
+import { appLogin} from '@/assets/commonjs/util.js';
 Vue.use(VueClipboard)
 Vue.prototype.$http = axios
 const FastClick = require('fastclick')

@@ -133,6 +133,7 @@
 	export default {		
 		data() {
 			return {
+				equi:navigator.userAgent,
 				loginShow: true,
 				shezhiShow:false,
 				homeShow: false,
@@ -145,7 +146,7 @@
 					put_forward: "提现",
 					recharge: "充值",
 				},
-				newsNum: 10,
+				newsNum: '',
 				linkTo: {
 					problem: this.$root.urlPath.MCM + '/problem?newpage=newpage',
 					perPurse: this.$root.urlPath.MCM + '/perPurse?newpage=newpage',
@@ -160,6 +161,7 @@
 				status: '',	
 				vipLevel: 0,
 				showAuth:false,
+				userId: '',
 			}
 		},
 		methods: {
@@ -246,26 +248,36 @@
 					data.headImg && data.headImg != null && data.headImg != '' ? this.headImg = data.headImg : this.headImg = this.headImg;
 					data.userName && data.userName != null && data.userName != '' ? this.userName = data.userName : this.userName = this.userName;
 					this.vipLevel = data.vipLevel;
+					this.userId = data.userId;
 					if(data.userCompanyStatus==4||data.userCompanyStatus==2){
 						this.status=1;
 					}else if(data.userCompanyStatus==3||data.userCompanyStatus==1){
 						this.status=0;
 					}
+					this.$axios.get(this.$root.urlPath.MC+'/api.do?noteNoReadNum', {
+						headers:{
+							'MC_UID': cookie.get('MC_UID')
+						},
+						params: {
+							userId: this.userId,
+						}
+					})
+					.then(res => {
+						this.newsNum = res.data.data;
+					}).catch(err => console.log('个人账户异常', err));	
 				}).catch(err => console.log('个人账户异常', err));
 			},
 			getNews(){
-				this.$axios.get(this.$root.urlPath.MCT+'/wapNote/wapNoteList', {
+				this.$axios.get(this.$root.urlPath.MC+'/api.do?noteNoReadNum', {
 					headers:{
 						'MC_UID': cookie.get('MC_UID')
 					},
 					params: {
-						pageNum: 1,
-						numPerPage: 10,
-						cat: 0,
+						userId: this.userId,
 					}
 				})
 				.then(res => {
-					this.newsNum = res.data.data.totalCount;
+//					console.log(res.data)
 				}).catch(err => console.log('个人账户异常', err));	
 			}
 		},	
@@ -273,20 +285,18 @@
 			if(cookie.get('MC_UID')) {
 				this.loginShow = false;
 				this.getUserinfo();
-				this.getNews();
+//				this.getNews();
 			}
 			if(!this.isInapp){
 				this.homeShow =true;
 				this.shezhiShow =false;
-			}else if(this.isInapp){				
+			}else{
 				if(this.equi.indexOf('Android') > -1 || this.equi.indexOf('Adr') > -1) {//						
 					this.shezhiShow=true;
 				} else if(!!this.equi.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {		
 					this.shezhiShow=false;
 				}	
-			}else{
 				this.homeShow=false;
-				this.shezhiShow=true;
 			}			
 		},	
 		

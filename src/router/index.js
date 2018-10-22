@@ -46,6 +46,9 @@ import databaseList from '@/components/database/databaseList'
 import databaseSearchList from '@/components/database/searchList'
 import databaseDetails from '@/components/database/details'
 
+//分类
+import classify from '@/components/classify/classify'
+
 //好礼
 //import courtesy from '@/components/courtesy/courtesy'
 
@@ -274,6 +277,11 @@ const router = new Router({
             component: databaseDetails,
             meta: {requireAuth :true}
         },
+        {
+        	path: '/classify',
+            name: 'classify',
+            component: classify,
+        },
 //      {
 //      	path: '/courtesy',
 //          name: 'courtesy',
@@ -289,18 +297,18 @@ const router = new Router({
         { path: '/user/pergoodslist', name: 'pergoodslist', component: pergoodslist, meta: {requireAuth :true} },
         //user2.0
         { path: '/users/center', name: 'usersCenter', component: usersCenter },  
-        { path: '/users/entcenter', name: 'usersEntcenter', component: usersEntcenter },  
-        { path: '/problem', name: 'problem', component: problem },  
-        { path: '/problem/detail', name: 'problemDetail', component: problemDetail }, 
-        { path: '/perPurse', name: 'perPurse', component: perPurse }, 
-        { path: '/entPurse', name: 'entPurse', component: entPurse }, 
-        { path: '/proposal', name: 'proposal', component: proposal },
-        { path: '/modifyInfo', name: 'modifyinfo', component: modifyInfo },
-        { path: '/follow', name: 'follow', component: follow },
-        { path: '/users/news', name: 'usersnews', component: usersNews },
-        { path: '/users/newsDetail', name: 'usersnewsdetail', component: usersNewsdetail },
-        { path: '/invest', name: 'invest', component: invest },
-		{ path: '/invest/details', name: 'investDet', component: investDet },
+        { path: '/users/entcenter', name: 'usersEntcenter', component: usersEntcenter,meta: {requireAuth :true} },  
+        { path: '/problem', name: 'problem', component: problem,meta: {requireAuth :true} },  
+        { path: '/problem/detail', name: 'problemDetail', component: problemDetail,meta: {requireAuth :true} }, 
+        { path: '/perPurse', name: 'perPurse', component: perPurse,meta: {requireAuth :true} }, 
+        { path: '/entPurse', name: 'entPurse', component: entPurse,meta: {requireAuth :true} }, 
+        { path: '/proposal', name: 'proposal', component: proposal,meta: {requireAuth :true} },
+        { path: '/modifyInfo', name: 'modifyinfo', component: modifyInfo,meta: {requireAuth :true} },
+        { path: '/follow', name: 'follow', component: follow,meta: {requireAuth :true} },
+        { path: '/users/news', name: 'usersnews', component: usersNews,meta: {requireAuth :true} },
+        { path: '/users/newsDetail', name: 'usersnewsdetail', component: usersNewsdetail,meta: {requireAuth :true} },
+        { path: '/invest', name: 'invest', component: invest,meta: {requireAuth :true} },
+		{ path: '/invest/details', name: 'investDet', component: investDet,meta: {requireAuth :true} },
 		{
 			path: '/test1',
 			name: 'test1',

@@ -1,5 +1,5 @@
 <template>
-	<div class="OHeader">
+	<div class="OHeader" :style="{backgroundColor:bgColor ? bgColor : 'rgb(0, 148, 232)'}">
 		<div class="titleBox" @click="back">
 			<i class="icon iconfont icon-jiantou-copy" v-show="!$route.query.back"></i>
 			<span>{{title}}</span>
@@ -24,7 +24,7 @@
 		components: {
 			Icon
 		},
-		props: ["title"],
+		props: ["title","bgColor"],
 		data() {
 			return {
 
@@ -64,9 +64,9 @@
 <style>
 	.OHeader{
 		display: flex;
-		background-color: #333333;
+		/*background-color: rgb(0, 148, 232);*/
 		color: #fff;
-		font-size:0.36rem ;
+		font-size:0.3rem ;
 		padding: 0.2rem;
 		line-height: 0.6rem;
 		position: fixed;

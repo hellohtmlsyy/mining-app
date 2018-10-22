@@ -299,15 +299,11 @@
 	color: #333;
 	margin-bottom: 0.1rem;
 }
-.follow .followCon .conItemL .time{
-	font-size: 0.2rem;
-	color: #757575;
-}
 .follow .followCon .conItemR{
 	width: 20%;
 	text-align: right;
-	height: 1.28rem;
-	line-height: 1.28rem;
+	height: 0.96rem;
+	line-height: 0.96rem;
 }
 .follow .followCon .conItemR .det{
 	font-size: 0.24rem;
@@ -461,7 +457,6 @@
 /*消息详情*/
 .myNewsdetail .tips{
 	background-color: #0094E8;
-	padding: 0.1rem 0.2rem 0.26rem 0.2rem;
 	font-size: 0.3rem;
 	color: #fff;
 	margin-top: 1rem;

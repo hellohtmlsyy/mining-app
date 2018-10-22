@@ -193,11 +193,20 @@
 		height: 0.7rem;
 		width: 0.7rem;
 	}
+	.example-avatar .avatarLabel #imageFile{
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 0.7rem;
+	    height: 0.7rem;
+	    opacity: 0;
+	}
 	.example-avatar .avatar-upload .rounded-circle {
 		width: 0.7rem;
 		height: 0.7rem;
 		vertical-align: top;
 		border-radius: 50%;
+		/*display: none;*/
 	}
 	
 	.example-avatar .text-center .btn {

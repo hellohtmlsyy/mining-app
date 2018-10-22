@@ -55,7 +55,7 @@
 						<!--<div class="signUpBtn fr" v-show="false">报名截止</div>-->
 					</div>
 					<div class="row clearfix">
-						<div class="signUpBtn fr" :style="{'background-color':type=='现在报名' ? '#ff4f54' : '#D2D2D2'}" @click="singUp()">{{type}}</div>
+						<div class="signUpBtn fr" :style="{'background-color':type=='现在报名' ? '#ff4f54' : '#D2D2D2'}" @click="singUp">{{type}}</div>
 					</div>
 				</div>
 			</div>
@@ -137,7 +137,7 @@
 				ticketType: [],
 				indexTicketType: [],
 				checkTicket: 1,
-
+				ticketNum:''
 			}
 		},
 		mounted() {
@@ -199,18 +199,45 @@
 				}
 				
 				if(cookie.get('MC_UID')) {
-					if(typeof(Storage) !== "undefined") {
-						var singUp = {
-							meetTitle: this.meetingDetailsList.title,
-							pid: this.ticketlist[this.checkTicket - 1].id,
-							status: status,
+					this.$axios.get(this.$root.urlPath.MC + '/meeting.do?isticket', {
+						params: {
+							tid: this.ticketlist[this.checkTicket - 1].id
 						}
-						singUp = JSON.stringify(singUp)
-						localStorage.setItem('singUp', singUp);
-					} else {
-						alert("抱歉! 您的浏览器不支持 web 存储。")
-					}
-					window.location.href = this.$root.urlPath.MCM + "/exhibition/exlist?newpage=newpage&id=" + this.$route.query.id;
+					})
+					.then(res => {
+						var data = res.data
+						if(data.success) {
+							this.ticketNum = data.obj
+							if(this.ticketNum == 0){
+								this.$vux.alert.show({
+								  title: '提示',
+								  content: '没有剩余票数了',
+								  onShow () {
+								   
+								  },
+								  onHide () {
+								    
+								  }
+								})
+							}else{
+								if(typeof(Storage) !== "undefined") {
+									var singUp = {
+										meetTitle: this.meetingDetailsList.title,
+										pid: this.ticketlist[this.checkTicket - 1].id,
+										status: status,
+									}
+									singUp = JSON.stringify(singUp)
+									localStorage.setItem('singUp', singUp);
+								} else {
+									alert("抱歉! 您的浏览器不支持 web 存储。")
+								}
+								window.location.href = this.$root.urlPath.MCM + "/exhibition/exlist?newpage=newpage&id=" + this.$route.query.id;
+							}
+						}
+					})
+					.catch(function(error) {
+						console.log('异常' + error)
+					});
 
 				} else {
 					appLogin()

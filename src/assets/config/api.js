@@ -34,17 +34,19 @@ export default {
         MCT:'http://memberapi.miningcircle.com',// 2.0地址,
         MCM:'http://m.miningcircle.com',
         MCL:'http://member.miningcircle.com/login?where=mcVue',  //登录地址
+        MCMHALL:'http://trade.miningcircle.com',  //前端求购地址
         UPLOAD: 'http://www.miningcircle.com',//本地上传
       },
       test: {
-        MC: 'http://www.miningcircle.com',
-        MCT:'http://memberapi.miningcircle.com',// 2.0地址,
-        MCM:'http://m.miningcircle.com:8082',
-        MCL:'http://member.miningcircle.com:8080/login?where=mcVue',  //登录地址
+        MC: 'http://www.miningcircle.com:8080',//后台1.0地址
+        MCT:'http://memberapi.miningcircle.com:8090',// 后台2.0地址,
+        MCM:'http://z.miningcircle.com:8082',//前台地址
+        MCL:'http://member.miningcircle.com:8080/login?where=mcVue',  //前台登录地址
         UPLOAD: 'http://www.miningcircle.com',//本地上传
         WEB_URL: {
           WEB_MIAO: ''
-        }
+        },
+        MCMHALL:'http://trade.miningcircle.com:3000',//前端求购地址
       }
     }
     return URLS[ENV]
