@@ -14,10 +14,6 @@
 				<i class="icon iconfont icon-xiaoxi2"></i>
 				<span class="newsNum" v-if="newsNum > 0">{{newsNum}}</span>
 			</a>
-			<!--<div class="login-box" v-show="!login"   @click="goMe">
-				<i class="icon iconfont icon-xiaoxi2"></i>
-				<span class="newsNum">16</span>
-			</div>-->
 		</div>
 	</div>
 </template>
@@ -26,7 +22,7 @@
 	const loginUrl = 'http://member.miningcircle.com/login'
 	import { Icon, cookie, Alert } from 'vux'
 	import {appLogin} from '@/assets/commonjs/util.js';
-	
+
 	export default {
 		components: {
 			Icon,
@@ -51,34 +47,36 @@
 			}
 			if(cookie.get('MC_UID')) {
 				this.login = false;
-				this.getUserinfo(this.getNewsNum())
+				this.getUserinfo(()=>{
+					this.getNewsNum()
+				})
 			} else {
 				this.login = true;
 			}
-			
+
 		},
 		methods: {
 			toJump() {
 				location.href = this.$root.urlPath.MCM + "/search?newpage=newpage";
 			},
-//			goMe() {					
-//				if(this.notInapp) {					
-//					if(this.equi.indexOf('Android') > -1 || this.equi.indexOf('Adr') > -1) { //						
+//			goMe() {
+//				if(this.notInapp) {
+//					if(this.equi.indexOf('Android') > -1 || this.equi.indexOf('Adr') > -1) { //
 //						location.href = this.$root.urlPath.MCM + "/user/center?newpage=newpage&back=0";
-//					} else if(!!this.equi.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {						
+//					} else if(!!this.equi.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
 //						location.href = this.$root.urlPath.MCM + "/user/center?newpage=newpage&back=0";
 //					}
 //				} else {
 //					location.href = this.$root.urlPath.MCM + "/user/center?newpage=newpage&back=0";
 //				}
 //
-//				
+//
 //			},
-			tologin() {					
+			tologin() {
 //				if(this.notInapp) {
 //					window.location.href = this.$root.urlPath.MCL
-//				} else {					
-//					if(this.equi.indexOf('Android') > -1 || this.equi.indexOf('Adr') > -1) { //						
+//				} else {
+//					if(this.equi.indexOf('Android') > -1 || this.equi.indexOf('Adr') > -1) { //
 //						adwebkit.callApp("LOGIN", "登录的参数");
 //					} else if(!!this.equi.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
 //						oswebkit.callApp("LOGIN", "登录的参数");
@@ -89,7 +87,7 @@
 				}else{
 					appLogin()
 				}
-				
+
 		},
 		getUserinfo(callback){
 				this.$axios.get(this.$root.urlPath.MCT+'/wap/user/userInfo', )
@@ -107,14 +105,14 @@
 					})
 					.then(res => {
 						this.newsNum = res.data.data;
-					}).catch(err => console.log('账户异常', err));	
+					}).catch(err => console.log('账户异常', err));
 			}
 		}
 	}
 </script>
 
 <style>
-	
+
 	.mheader {
 		display: flex;
 		padding: 0.2rem;
@@ -146,7 +144,7 @@
 		float: left;
 		height: 0.6rem;
 	}
-	
+
 	.mheader .logo img {
 		width: 1.53rem;
 		height: 0.6rem;
@@ -155,7 +153,7 @@
 		color:#fff;
 		font-size: 0.48rem;
 		vertical-align: middle;
-		
+
 	}
 	.mheader .login-box{
 		position: relative;
@@ -188,13 +186,13 @@
 		text-decoration: none;
 		color: rgb(115, 115, 115)
 	}
-	
+
 	.mheader .login img {
 		width: 0.49rem;
 		height: 0.49rem;
 		margin-top: 0.15rem;
 	}
-	
+
 	.mheader .login p {
 		text-align: center;
 		color: #fff;

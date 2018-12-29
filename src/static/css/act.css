@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+.dis-fl {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.fles-1 {
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.mb-20 {
+	margin-bottom: 0.2rem;
+}
+
+.mb-24 {
+	margin-bottom: 0.24rem;
+}
+
+.mb-28 {
+	margin-bottom: 0.28rem;
+}
+
+.mb-30 {
+	margin-bottom: 0.3rem;
+}
+
+.mb-40 {
+	margin-bottom: 0.4rem;
+}
+
+.mb-50 {
+	margin-bottom: 0.5rem;
+}

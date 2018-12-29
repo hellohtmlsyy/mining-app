@@ -6,17 +6,15 @@
 			<div :class="bannerPadding">
 				<Mheader :class="headColoB ? 'headerCss1' : 'headerCss2'" v-if="showHeader" ></Mheader>
 				<div class="fixed-swiper dis-fl text-center">
-					<swiper :list="bannerImg" :duration="1000" :show-dots="true" dots-class="custom-bottom" dots-position="center" height="3.2rem" auto>
+					<swiper :list="bannerImg" :duration="1000" :show-dots="true" dots-class="custom-bottom" dots-position="center" height="3.6rem" auto>
 					</swiper>
 				</div>
 		</div>
-			<!--<div @click="goAddGoods">发布商品</div>-->
 			<!--认证-->
 			<section @click="goCert">
 				<img src="../../../static/img/bg/bg-cert.png" width='100%'
     height='100%'/>
 			</section>
-			<!--{{headColoB}}-->
 			<!--nav-->
 			<nav class="nav clearfix">
 				<ul>
@@ -53,11 +51,28 @@
 					<b>|</b>
 				</div>
 				<swiper auto height="72px" direction="vertical" :interval=2000 class="text-scroll newsPrice" :show-dots="false">
-					<swiper-item v-for="(item,index) in newPriceList" :key="index" @click.native="toPurchaseDetails(item.purchaseId)">
+					<swiper-item v-for="(item,index) in newPriceList" :key="index" @click.native="toPurDetail(item.purchaseId)">
 						<p>{{item.title}}的求购单刚刚收到了一个报价</p>
 					</swiper-item>
 				</swiper>
 			</div>
+      <!-- 紧急求购 -->
+      <section class="urgPurchase bgcolor_f">
+        <div class="common_top clearfix">
+					<span class="title">紧急求购</span>
+          <span class="lab">快人一步，抢占先机</span>
+					<span class="more">
+            <span @click="toPur" class="more">更多<span>&gt;</span>
+					</span>
+					</span>
+				</div>
+        <ul>
+          <li v-for="(item,i) in urgPurchase" :key="i" :style="{background:item.bgColor}" @click="toPurDetail(item.id)">
+            <h1>{{item.title}}</h1>
+            <img :src="item.img" />
+          </li>
+        </ul>
+      </section>
 			<!--全球数据库-->
 			<!--<div class="data-base" @click="goDataBaseList">
 				<img src="../../../static/img/data-base.png" />
@@ -66,7 +81,7 @@
 			<!--<div class="market">
 				<div class="common_top clearfix">
 					<span class="title">矿业行情</span>
-					<span class="more"> 
+					<span class="more">
                 	<span @click="toMarketList" class="more">更多<span>&gt;</span>
 					</span>
 					</span>
@@ -80,7 +95,7 @@
 						</tr>
 					</tbody>
 				</x-table>
-			</div>--!>
+			</div>-->
 			<!--精品好货-->
 			<div class="good_stuff">
 				<div class="topA">
@@ -102,20 +117,13 @@
 						</div>
 					</div>
 				</div>
-				<!--<div class="page clearfix">
-					<ul>
-						<li class="fl"></li>
-						<li class="fl cur"></li>
-						<li class="fl"></li>
-					</ul>
-				</div>-->
 
 			</div>
 			<!--新闻快讯-->
 			<div class="newws">
 				<div class="topA">
 					<span class="titleText">新闻快讯</span>
-					<span class="more fr"> 
+					<span class="more fr">
                 	<label @click="toNews" class="more">更多<span>&gt;</span>
 					</label>
 					</span>
@@ -142,7 +150,7 @@
 			<div class="mineTrade">
 				<div class="common_top clearfix">
 					<span class="title huizhanTitle">行业会展</span>
-					<span class="more"> 
+					<span class="more">
                 	<span @click="toExhibition" class="more">更多<span>&gt;</span>
 					</span>
 					</span>
@@ -155,18 +163,18 @@
 								<div class="text1 clearfix">
 									<p class="title1 comtitlefontsize26 clamp">{{item.title}}</p>
 									<span class="stage fl comsmalltitlefontsize20 clamp">{{item.address}}</span>
-									<!--<span class="stage fr">{{item.begin_time}}</span>-->
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
 			<!--商品贸易-->
 			<div class="ware bgcolor_f">
 				<div class="common_top clearfix">
 					<span class="title">商品贸易</span>
-					<span class="more"> 
+					<span class="more">
                 	<span @click="toMall" class="more">更多<span>&gt;</span>
 					</span>
 					</span>
@@ -229,7 +237,7 @@
 			<div class="mineTrade">
 				<div class="common_top clearfix">
 					<span class="title kuangquanTitle">矿权交易</span>
-					<span class="more"> 
+					<span class="more">
                 	<span @click="toMineral" class="more">更多<span>&gt;</span>
 					</span>
 					</span>
@@ -270,9 +278,9 @@
 		<section>
 			<span class="btn-backtop" v-show="showBackTop" @click="goBackTop"></span>
 		</section>
-		
+
 		<footer-m>
-			
+
 		</footer-m>
 	</div>
 </template>
@@ -282,7 +290,6 @@
 	import Mheader from '@/components/common/header/Mheader';
 	import { getTime, isDevice, appLogin } from '@/assets/commonjs/util.js';
 	import swiper2 from '@/static/js/swiper.min.js';
-	//	import carousel from 'swiper';
 	import axios from 'axios'
 	import Malllist from '@/components/common/Mall-list'
 	import openApp from '@/components/base/openApp'
@@ -311,8 +318,8 @@
 		img: '../../../static/img/03_近期会展.png',
 		name: '近期会展'
 	}]
-	
-	
+
+
 	const imgList = [
 "http://www.miningcircle.com:8082/img/new2.0/home/banner/banner1.jpg",
   'http://placeholder.qiniudn.com/800x300/FFEF7D/ffffff',
@@ -372,12 +379,58 @@
 				demo04_list: imgList,
 				scrollTop:0.,
 				showBackTop:false,
-				headColoB:false
+        headColoB:false,
+        urgPurchase:[{
+          title:'金精矿',
+          img:'../../../static/img/data/1.jpg',
+          bgColor:'#a84200',
+          id:'1004788324885336064'
+        },{
+          title:'金矿石',
+          img:'../../../static/img/data/2.jpg',
+          bgColor:"#d56c29",
+          id:'1000088482963525632'
+        },{
+          title:'银精矿',
+          img:'../../../static/img/data/3.jpg',
+          bgColor:"#898989",
+          id:'1004788324885336064'
+        },{
+          title:'铅锌矿石',
+          img:'../../../static/img/data/4.jpg',
+          bgColor:"#5f52a0",
+          id:'1000088033413828608'
+        },{
+          title:'铜 铅 锡 锌混物料',
+          img:'../../../static/img/data/5.jpg',
+          bgColor:"#565076",
+          id:'1002310319357300736'
+        },{
+          title:'金粉 铅锌混合粉',
+          img:'../../../static/img/data/6.jpg',
+          bgColor:"#6d624a",
+          id:'1001282279940558848'
+        },{
+          title:'钯 催化剂',
+          img:'../../../static/img/data/7.jpg',
+          bgColor:"#535a57",
+          id:'1000286584047669248'
+        },{
+          title:'钌 催化剂',
+          img:'../../../static/img/data/8.jpg',
+          bgColor:"#72787c",
+          id:'1000286584047669248'
+        },{
+          title:'铂 催化剂',
+          img:'../../../static/img/data/9.jpg',
+          bgColor:"#72787c",
+          id:'1000286584047669248'
+        },]
 			}
 		},
 		mounted() {
 			window.addEventListener('scroll', this.handleScroll);
-			
+
 			if(isDevice() == 'ios') {
 				if(!this.$route.query.newpage) {
 					this.showHeader = false
@@ -440,6 +493,8 @@
 							this.$vux.toast.text('您的企业正在申请中<br/>客服：400-819-6985', 'center');
 						}else if(data.status == 4){
 							this.$vux.toast.text('您的企业已冻结<br/>客服：400-819-6985', 'center');
+						}else if(res.data.errCode = '001002140'){
+							window.location.href = this.$root.urlPath.MCMHALL + '/cert?newpage=newpage';
 						}
 					})
 					.catch(function(error) {
@@ -450,23 +505,23 @@
 				}
 			},
 			getCert(){
-				
+
 			},
 			handleScroll(){
 				this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-				
+
 				if(this.scrollTop > 5) {
 					this.headColoB = true
 				} else {
 					this.headColoB = false
 				}
-				
+
 				if(this.scrollTop > 700){
 					this.showBackTop = true
 				}else{
 					this.showBackTop = false
 				}
-				
+
 			},
 			goBackTop(){
 				window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0
@@ -516,13 +571,16 @@
 //				}
 
 			},
-			toPurchaseDetails(id) {
+			toPurDetail(id) {
 				if(cookie.get('MC_UID')) {
-					window.location.href = 'http://trade.miningcircle.com/detail?id=' + id + '&where=mcVue';
+					window.location.href = this.$root.urlPath.MCMHALL + '/detail?id=' + id + '&newpage=newpage';
 				} else {
 					appLogin()
 				}
-			},
+      },
+      toPur(){
+        window.location.href = this.$root.urlPath.MCMHALL + '/purchase?newpage=newpage'
+      },
 			initSwiper() {
 				var mySwiper1 = new swiper2('.swiper2', {
 					slidesPerView: 'auto',
@@ -757,7 +815,7 @@
 					} else if(document.body) {
 						scrollTop1 = document.body.scrollTop;
 					}
-					//获取当前可视范围的高度 
+					//获取当前可视范围的高度
 					let clientHeight1 = 0;
 					document.documentElement.scrollTop || document.body.scrollTop
 					if(document.body.clientHeight && document.documentElement.clientHeight) {
@@ -765,7 +823,7 @@
 					} else {
 						clientHeight1 = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
 					}
-					//获取文档完整的高度 
+					//获取文档完整的高度
 					let goodsConHeight = document.getElementById('scrop');
 					let scrollHeight1 = goodsConHeight.scrollHeight;
 					//滚动事件触发
@@ -818,8 +876,8 @@
 <style>
 	@import url("../../../static/css/swiper.min.css");
 	@import url("../../static/css/certify.css");
-	@import url("../../static/css/market.css");
-	
+  @import url("../../static/css/market.css");
+
 	.home .headerCss2{
 		position: absolute;
 		z-index: 999;
@@ -844,44 +902,44 @@
     	z-index: 999;
 	}
 	/*全球数据库*/
-	
+
 	.home .data-base {
 		margin-top: 0.15rem;
 	}
-	
+
 	.home .data-base img {
 		width: 100%;
 		height: 1.36rem;
 	}
 	/*行情*/
-	
+
 	.home .market {
 		background: #fff;
 		padding: 0.26rem 0.2rem;
 		margin-top: 0.15rem;
 	}
 
-	
+
 	section .fixed-swiper,
 	.nav,
 	.exclusive {
 		background-color: #fff;
 	}
 	/*banner*/
-	
+
 	.home .bannerPadding1 {
 		/*padding-top: 1.95rem;*/
 	}
-	
+
 	.home .bannerPadding2 {
 		/*padding-top: 1rem;*/
 	}
-	
+
 	section .nav {
 		width: 100%;
 		font-size: 0.24rem;
 	}
-	
+
 	section .nav ul li {
 		width: 20%;
 		float: left;
@@ -889,12 +947,12 @@
 		padding: 0.25rem 0;
 		position: relative;
 	}
-	
+
 	section .nav ul li img {
 		width: 0.8rem;
 		height: 0.8rem;
 	}
-	
+
 	section .nav .new {
 		position: absolute;
 		z-index: 998;
@@ -905,16 +963,16 @@
 		height: 0.3rem;
 		background-size: 0.3rem 0.3rem
 	}
-	
+
 	section .nav ul li p {
 		text-align: center;
 		margin-top: 0.05rem;
 	}
-	
+
 	section .newsPrice .info_box1 span {
 		display: inline-block;
 	}
-	
+
 	section .info {
 		width: 100%;
 		height: 0.75rem;
@@ -922,11 +980,11 @@
 		line-height: 0.75rem;
 		font-size: 0.3rem;
 	}
-	
+
 	section .info .info_box1 {
 		float: left;
 	}
-	
+
 	section .info .info_title {
 		margin: 0 0.05rem 0 0.2rem;
 		background: url(../../../static/img/img.png) no-repeat center center;
@@ -934,12 +992,12 @@
 		width: 1.02rem;
 		height: 0.25rem;
 	}
-	
+
 	section .info b {
 		color: rgba(210,210,210,1);
 		font-weight: normal;
 	}
-	
+
 	section .info .text-scroll p {
 		color: rgb(80, 80, 80);
 		margin-left: 0.1rem;
@@ -947,63 +1005,58 @@
 		text-align: left;
 		line-height: 0.72rem;
 	}
-	
+
 	.common_top {
 		margin-bottom: 0.24rem;
 	}
-	
+
 	.common_top .title {
 		font-size: 0.28rem;
 		color: #2E2E2E;
 		float: left;
 		font-weight: 500;
 	}
-	
+
 	.common_top .more {
 		font-size: 0.2rem;
 		color: rgb(114, 114, 114);
 		float: right;
 		line-height: 0.34rem;
 	}
-	
+
 	.newsPrice .vux-swiper {
 		height: 0.72rem !important;
 	}
-	
+
 	<!--精品好货-->
 	.good_stuff .topA .title {
 		color: #fff
 	}
-	
+
 	.good_stuff .swiper-container {
-		/*min-height: 3.13rem !important;*/
 		padding: 0.4rem 0;
 		margin-bottom: 0.2rem;
 	}
-	
-	.good_stuff .swiper-wrapper {
-		/*min-height: 3.13rem;*/
-	}
-	
+
+
 	.good_stuff .swiper-slide {
 		border-radius: 0.05rem;
 	}
-	
+
 	.good_stuff img {
 		width: 2.34rem;
 		height: 1.23rem;
 		border-radius: 0.03rem 0.03rem 0 0;
 	}
-	
+
 	.good_stuff .textBox {
 		width: 2.04rem;
 		padding: 0.15rem;
 		background-color: #fff;
 		border-radius: 0 0 0.1rem 0.1rem;
 	}
-	
+
 	.good_stuff .good_stuff_conBox {
-		/*border: 0.02rem solid #ccc;*/
 		border-radius: 0.03rem;
 		box-shadow:8px 0px 12px rgba(178,178,178,0.6);
 		border: 0.02rem solid #E6E6E6;
@@ -1017,111 +1070,153 @@
 	.good_stuff .textBox .title {
 		font-size: 0.22rem;
 	}
-	
+
 	.good_stuff .textBox .title2 {
 		font-size: 0.18rem;
 		color:red;
 		margin-top: 0.03rem;
 	}
-	
+
 	.good_stuff .swiper-slide-next {
 		transform: scale(1.3) !important;
 		z-index: 999;
 	}
-	
+
 	.good_stuff .page {
 		position: relative;
 	}
-	
+
 	.good_stuff .page ul {
 		position: absolute;
 		left: 50%;
 		top: 50%;
 		transform: translate(-50%, -50%);
 	}
-	
+
 	.good_stuff .page li {
 		width: 1rem;
 		height: 0.04rem;
 		background-color: rgba(51, 53, 53, .7);
 	}
-	
+
 	.good_stuff .page .cur {
 		background-color: #fff;
 	}
-	
+
 	.good_stuff {
 		padding: 0.2rem 0.2rem 0.01rem 0.2rem;
 		margin: 0.15rem 0;
 	}
-	
+
 	.common_top .more a {
 		color: rgb(114, 114, 114);
 	}
-	
+
 	.newws {
 		background-color: #fff
 	}
-	
+
 	.newws .topA {
 		padding: 0.2rem 0.2rem 0 0.2rem;
 	}
-	
+
 	.newws .topA .titleText {
 		font-size: 0.28rem;
 		color: #EF8700;
 		font-weight:500;
 	}
-	
+
 	.newws .topA .more {
 		font-size: 0.2rem;
 		color: rgb(146, 146, 146);
 		line-height: 0.37rem;
 	}
-	
+
 	.newws .bottomA {
 		padding: 0.2rem;
 		border-bottom: 0.01rem solid rgb(230, 230, 230)
 	}
-	
+
 	.newws .bottomA img {
 		width: 2rem;
 		height: 1.3rem;
 	}
-	
+
 	.newws .bottomA .content {
 		margin-left: 0.2rem
 	}
-	
+
 	.newws .bottomA .content .title {
 		margin-bottom: 0.3rem;
 	}
-	
+
 	.newws .bottomA .content .title p {
 		font-size: 0.26rem;
 		width: 4.68rem;
 		height: 0.7rem;
 	}
-	
+
 	.newws .bottomA .content .label {
 		font-size: 0.2rem;
 		line-height: 0.26667rem;
 		height: 0.26667rem;
 	}
-	
+
 	.newws .bottomA .content .label span {
 		margin-right: 0.2rem;
 		color: rgb(125, 125, 125)
 	}
-	
+
 	.newws .bottomA .content .label .type {
 		color: rgb(0, 165, 247)
 	}
-	
+
 	.newws .bottomA:nth-child(3) {
 		border-bottom: 0
-	}
+  }
+  /* 紧急求购 */
+  .home .urgPurchase .common_top .title{
+    color: #ff393f;
+  }
+  .home .urgPurchase .lab{
+    color:#fff;
+    font-size:0.22rem;
+    background-color: #ff393f;
+    padding:0.06rem 0.12rem;
+    border-radius: 0.17rem;
+    margin-left:0.3rem;
+    line-height: 0.39rem;
+  }
+.home .urgPurchase  ul{
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: space-between;
+}
+.home .urgPurchase  ul h1{
+  color:#fff;
+  font-size: 0.26rem;
+}
+.home .urgPurchase  ul li{
+  border-radius: 0.05rem;
+  width: 2.26rem;
+  height: 2.27rem;
+  text-align: center;
+  margin-bottom:0.15rem;
+  line-height: 0.52rem;
+}
+.home .urgPurchase  ul li:nth-last-child(2), .urgPurchase  ul li:last-child, .urgPurchase  ul li:nth-last-child(3){
+  margin-bottom:0;
+}
+.home .urgPurchase img{
+  width: 2rem;
+  height: 1.6rem;
+  border-radius: 0.1rem;
+}
 	/*<!--商品贸易-->.ware .ware_bottom ul {}*/
+	.ware li img{
+		border-radius: 0.07rem;
+	}
+
 	.ware .title{
 		color: #FF393F;
 		font-weight:bold;
@@ -1132,50 +1227,48 @@
 	.ware .ware_bottom ul .same_css {
 		float: left;
 	}
-	
+
 	.ware .ware_bottom ul img {
 		width: 2.26rem;
 		height: 2.26rem;
 	}
-	
+
 	.ware .ware_bottom ul li:nth-child(1) {
-		width: 4.66rem;
-		height: 2.26rem;
 		margin-right: 0.15rem;
 		float: left;
 	}
-	
+
 	.ware .ware_bottom ul li:nth-child(3) {
 		margin: 0.15rem 0
 	}
-	
+
 	.ware .ware_bottom ul li:nth-child(4) {
 		margin: 0.15rem
 	}
-	
+
 	.ware .ware_bottom ul li:nth-child(5) {
 		margin: 0.15rem 0 0.15rem 0
 	}
-	
+
 	.ware .ware_bottom ul li:nth-child(7) {
 		margin: 0 0.15rem
 	}
-	
+
 	.ware .ware_bottom ul li:nth-child(1) {
 		margin-right: 0.15rem;
 		float: left;
 	}
-	
+
 	.ware .ware_bottom ul li:nth-child(1) img {
 		width: 4.66rem;
 		height: 2.26rem;
 	}
-	
+
 	<!--广告-->.exclusive {
 		margin: 0.2rem 0;
 		position: relative;
 	}
-	
+
 	.exclusive .fixed-swiper .close {
 		position: absolute;
 		z-index: 998;
@@ -1185,46 +1278,46 @@
 		height: 30px;
 		background: url('../../../static/img/close.png') center center no-repeat
 	}
-	
+
 	.exclusive .other {
 		padding-left: 20px;
 		padding-right: 20px
 	}
-	
+
 	.exclusive .nav {
 		width: 100%;
 		height: 1.8rem;
 	}
-	
+
 	.exclusive .nav ul li {
 		width: 33%;
 		height: 1.45rem;
 		float: left;
 		text-align: center;
 	}
-	
+
 	.exclusive .nav ul li:nth-child(2) {
 		border-left: 1px solid rgb(228, 228, 228);
 		border-right: 1px solid rgb(228, 228, 228);
 	}
-	
+
 	.exclusive .nav ul li img {
 		width: 0.6rem;
 		height: 0.6rem;
 	}
-	
+
 	.exclusive .nav ul li p {
 		font-size: 0.26rem;
 	}
-	
+
 	.exclusive .nav ul li .cname1 {
 		color: rgb(253, 162, 71);
 	}
-	
+
 	.exclusive .nav ul li .cname2 {
 		color: rgb(255, 150, 251);
 	}
-	
+
 	.exclusive .nav ul li .cname3 {
 		color: rgb(220, 186, 247);
 	}
@@ -1240,11 +1333,11 @@
 	.mineTrade .swiperBox2 {
 		margin-right: 0.15rem;
 	}
-	
+
 	.mineTrade .swiper2 img {
 		position: relative;
 	}
-	
+
 	.mineTrade .swiper2 .swiperBox2 label {
 		display: block;
 		background-size: 0.6rem 0.6rem;
@@ -1254,37 +1347,37 @@
 		left: 0;
 		top: 0;
 	}
-	
+
 	.smPag {
 		background: url(../../../static/img/img9.png) no-repeat;
 	}
 	/*过期*/
-	
+
 	.smPag1 {
 		background: url(../../../static/img/img10.png) no-repeat;
 	}
 	/*推荐*/
-	
+
 	.smPag2 {
 		background: url(../../../static/img/img11.png) no-repeat;
 	}
 	/*完成*/
-	
+
 	.smPag3 {
 		background: url(../../../static/img/img12.png) no-repeat;
 	}
-	
+
 	.mineTrade .swiperBox2 {
 		width: 3rem !important;
 		border: 1px solid rgb(229, 229, 229);
 		border-radius: 0.05rem;
 	}
-	
+
 	.mineTrade img {
 		width: 3rem;
 		height: 1.6rem;
 	}
-	
+
 	.mineTrade .text1 {
 		padding: 0.1rem 0.2rem;
 	}
@@ -1295,11 +1388,11 @@
 		line-height: 0.34rem !important;
 		font-weight:bold;
 	}
-	
+
 	.mineTrade .stage {
 		line-height: 0.38rem;
 	}
-	
+
 	/*为您推荐*/
 	.groom{
 		padding-bottom:1rem
@@ -1314,29 +1407,29 @@
 		margin-bottom: 0;
 		position: relative;
 	}
-	
+
 	.groom .firstNews img {
 		width: 1.65rem;
 		height: 1.65rem;
 	}
-	
+
 	.groom .firstNews .contentItem:nth-child(1) {
 		border-top: 1px solid rgb(230, 230, 230);
 	}
-	
+
 	.groom .titlemp {
 		margin-bottom: 0;
 		height: 0.4rem;
 	}
-	
+
 	.groom .icon-liebiao {
 		font-size: 0.35rem;
 	}
-	
+
 	.groom .icon-liebiao1 {
 		font-size: 0.35rem;
 	}
-	
+
 	.groom .topM {
 		height: 1.1rem;
 	}

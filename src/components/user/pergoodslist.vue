@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="pergoodslist">
 		<!--头部-->
 		<div class="fix">
 			<div class="oHeader clearfix">
@@ -14,7 +14,7 @@
 				<!--普通商品-->
 				<div class="ordList" v-for="(item,index) in list1" :key="index" v-show="tabcommShow">
 					<div class="ordCode clearfix"><span class="fl">{{item.ordpVO.serialno}}</span>
-						<div class="ordStatus fr">{{item.ordpVO.status==0 ? '待付款' : (item.ordpVO.status==1 ? '卖家已付款' : (item.ordpVO.status==2 ? '待收货' : (item.ordpVO.status==-2 ? '交易关闭' : '交易关闭'))) }}</div>
+						<div class="ordStatus fr">{{item.ordpVO.status==0 ? '待付款' : (item.ordpVO.status==1 ? '卖家待发货' : (item.ordpVO.status==2 ? '待收货' : (item.ordpVO.status==-2 ? '交易关闭' : '交易关闭'))) }}</div>
 					</div>
 					<router-link :to="{path:'/user/ordlistdetail?newpage=newpage',query:{id:item.ordpVO.id,purtit:item.ordpVO.status}}" style="display: block;">
 						<div v-for="(item1,index1) in list1[index].list" :key="index1">
@@ -25,7 +25,7 @@
 								<div class="delNum fr">x<span>{{item1.roquantity}}</span></div>
 							</div>
 						</div>
-						<div class="totalPri">共<span class="num">{{nums[index]}}</span>件商品，合计：<span class="tpri">{{totalPri[index]|converAmount(2)}}</span></div>
+						<div class="totalPri">共<span>{{ nums[index] }}</span>件商品，合计：<span class="tpri">{{totalPri[index]|converAmount(2)}}</span></div>
 					</router-link>
 					<div class="oth" v-show="item.ordpVO.status==0">
 						<button type="button" class="ocancel" @click="cancelOrd(item.ordpVO.serialno)">取消订单</button>

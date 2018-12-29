@@ -1,7 +1,7 @@
 <template>
 	<div class="comHeader" :style="{backgroundColor:bgcolor ? bgcolor : 'rgb(0, 148, 232)',color:colorM ? colorM : '#fff'}">
 		<div class="leftA" @click="goBack">
-			<i class="icon iconfont icon-jiantou-copy"></i>
+			<i class="icon iconfont icon-jiantou-copy" v-show="showBack"></i>
 			<span>{{title}}</span>
 		</div>
 		<div>
@@ -17,7 +17,17 @@
 	import {lastPage} from '@/assets/commonjs/util.js';
 	
 	export default{
-		props:["title",'bgcolor','colorM'],
+		props:{
+			"title":'',
+			'bgcolor':'',
+			'colorM':'',
+			"showBack":{
+				default:true,
+			}
+		},
+		mounted(){
+			
+		},
 		methods:{
 			goBack(){
 				lastPage()

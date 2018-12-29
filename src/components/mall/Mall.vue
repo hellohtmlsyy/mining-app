@@ -1,7 +1,7 @@
 <template>
 	<div class="mall">
 		<div class="headerBox">
-			<Oheader :class="scrollD ? 'headerSty1' : 'headerSty2'" :title="title" v-if="showHeader" ref="header" :bgColor="bgColor"></Oheader>
+			<Oheader class="mallHeader" :class="scrollD ? 'headerSty1' : 'headerSty2'" :title="title" v-if="showHeader" ref="header" :bgColor="bgColor"></Oheader>
 			<div class="swiper-container" id="swiper1">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide swiperBox2" @click="goAddGoods">
@@ -28,7 +28,7 @@
 				<Malllist :shohid="shohid" :list="mallList" :imgShow="imgShow"></Malllist>
 			</my-scroll>
 		</div>
-		
+
 		<div class="addMall" @click="goAddGoods">
 			<span>发布<br>商品</span>
 		</div>
@@ -43,7 +43,7 @@
 	import Malllist from '@/components/common/Mall-list'
 	import myScroll from '@/components/base/myScroll'
 	import swiper from '@/static/js/swiper.min.js';
-	
+
 	export default {
 		components: {
 			Sticky,
@@ -60,8 +60,8 @@
 				showHeader: true,
 				title: '商城',
 				shohid: true,
-				column: [{name:"全部",value:0}, 
-				{name:"金属矿产",value:1}, 
+				column: [{name:"全部",value:0},
+				{name:"金属矿产",value:1},
 				{name:"有色金属",value:2},
 				{name:"黑色金属",value:3},
 				{name:"能源矿产",value:4},
@@ -83,23 +83,23 @@
 			}
 		},
 		mounted() {
-			
+
 			window.addEventListener('scroll', this.handleScroll);
-			
+
 			this.$nextTick(() => {
 				var mySwiper1 = new swiper('#swiper1', {
 					slidesPerView: 'auto',
 					//					spaceBetween: 15,
 				})
 			})
-			
-			
+
+
 			if(this.$route.query.type == undefined){
 				this.curTab = 0
 			}else{
 				this.curTab = this.$route.query.type
 			}
-			
+
 			if(isDevice() == 'ios') {
 				if(!this.$route.query.newpage) {
 					this.showHeader = false
@@ -113,11 +113,11 @@
 			} else {
 //				this.iosmargintop = false
 			}
-			
+
 //			if(this.$route.query.classify){
 //				this.getClassify()
 //			}else{
-//				this.getMallList()	
+//				this.getMallList()
 //			}
 			this.goWhere()
 		},
@@ -129,7 +129,7 @@
 					return 'topVal1'
 				}
 			},
-			
+
 			bgColor(){
 				if(this.scrollD){
 					return '#0094E8'
@@ -144,7 +144,7 @@
 					this.$axios.get(this.$root.urlPath.MCT + '/wap/company/comInfo')
 					.then(res => {
 						var data = res.data
-						
+
 						if(data.status == 2){//已经认证了
 							window.location.href = 'http://www.miningcircle.com/user/mg.do?landing7'
 						}else if(data.status == 0 || data.status == 3){//没认证
@@ -156,7 +156,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert('账户异常' + error)
+						console.log('账户异常' + error)
 					});
 				} else {
 					appLogin()
@@ -164,7 +164,7 @@
 			},
 			handleScroll(){
 				this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-				
+
 				if(this.scrollTop > 4) {
 					this.scrollD = true
 				} else {
@@ -175,7 +175,7 @@
 				if(this.$route.query.classify && !this.isTab){
 					this.getClassify()
 				}else{
-					this.getMallList()	
+					this.getMallList()
 				}
 			},
 			getClassify(){
@@ -188,22 +188,22 @@
 					})
 					.then(res => {
 						var data = res.data
-						
+
 						if(data.success){
 							this.$refs.scroll.loaded()
-							
+
 							this.mallList = this.mallList.concat(data.data.list)
 							this.total = data.data.totalCount
-							
+
 							var reg = /^(.*\.)[^.]+$/;
 							for(var i = (this.pageNum - 1) * 10; i < this.mallList.length; i++) {
 								if(this.mallList[i].img){
 									this.$set(this.mallList[i], "imgS", this.mallList[i].img.replace(reg, "$1") + 's.jpg')
 									this.$set(this.mallList[i], "imgM", this.mallList[i].img.replace(reg, "$1") + 'm.jpg')
 								}
-								
+
 							}
-							
+
 							if(this.total == this.mallList.length && this.total !== 0){
 								this.$refs.scroll.complete()
 							}else{
@@ -217,7 +217,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log('异常' + error)
 					});
 			},
 			tabClick(value) {
@@ -226,7 +226,7 @@
 				this.mallList = []
 				this.curTab = value
 				this.isTab = true
-				
+
 				this.getMallList()
 			},
 			getMallList() {
@@ -238,9 +238,9 @@
 						}
 					})
 					.then(res => {
-						
+
 						if(res.data.success) {
-							
+
 							this.$refs.scroll.loaded()
 							var data = res.data.data.list
 							if(data == 'null'){
@@ -248,14 +248,14 @@
 							}
 							this.total =res.data.data.totalCount
 							this.mallList = this.mallList.concat(data)
-							
+
 							var reg = /^(.*\.)[^.]+$/;
 							for(var i = (this.pageNum - 1) * 10; i < this.mallList.length; i++) {
 								if(this.mallList[i].img){
 									this.$set(this.mallList[i], "imgS", this.mallList[i].img.replace(reg, "$1") + 's.jpg')
 									this.$set(this.mallList[i], "imgM", this.mallList[i].img.replace(reg, "$1") + 'm.jpg')
 								}
-								
+
 							}
 
 							if(this.total == this.mallList.length && this.total !== 0){
@@ -271,47 +271,39 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						alert('异常' + error)
 					});
-			},		
+			},
 		}
 	}
 </script>
 
 <style>
-	@import url("../../../static/css/swiper.min.css");
+  @import url("../../../static/css/swiper.min.css");
+
+
 	::-webkit-scrollbar {
 		width: 0px;
 		display: none;
 		background-color: #fff;
-	}
+  }
 	.mall .headerBox{
 		line-height: 0;
-	}
+  }
+  .mallHeader{
+    transition:background 0.1s;
+  }
 	.mall .swiper-container img{
 		width:100%
-	}
-	.mall .headerSty1{
-		/*background-color:#0094E8 !important;*/
-	}
-	.mall .headerSty2{
-		/*background-color:#0094e800 !important;*/
 	}
 	.mall .oHeader .centerA {
 		width: 4.8rem
 	}
-	
+
 	.mall {
 		background: #EEEEEE;
 	}
-	/*nav*/
-	
-	/*.mall .mall-nav {
-		position: fixed;
-		left: 0;
-		width: 100%;
-	}*/
-	
+
 	.mall .topVal1 {
 		top: 1rem;
 		position: fixed;
@@ -329,27 +321,27 @@
 		padding-left: 0;
 	}
 	/*商品详情*/
-	
+
 	.malldetails .channelTab .bottom {
 		font-size: 0.24rem;
 		color: rgb(51, 51, 51);
 	}
-	
+
 	.malldetails .channelTab .bottom p {
 		line-height: 0.37rem;
 	}
 	/*列表*/
-	
-	
-	
+
+
+
 	.mall .margintop {
 		margin-top: 0.15rem;
 	}
-	
+
 	.mall .iosmargintop {
 		margin-top: 1rem;
 	}
-	
+
 	/*发布商品*/
 	.mall .addMall{
 		width:0.9rem;

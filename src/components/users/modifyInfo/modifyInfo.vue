@@ -18,7 +18,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="modifyName" v-else="modify">
 		<x-header :left-options="{backText: '取消', showBack : true, preventGoBack: true}" @on-click-back="unedit">编辑用户名<a slot="right" @click="save()">保存</a></x-header>
 		<div class="fillIn clearfix">
@@ -71,15 +71,15 @@
 					if(res.data.success){
 						this.$vux.toast.text('修改头像成功', 'default')
 					}
-				}).catch(err => console.log('个人账户异常', err));	
+				}).catch(err => console.log('个人账户异常', err));
 		    },
-		    goBack() {	
-		    	location.href = this.$root.urlPath.MCM + '/users/center?newpage=newpage'
+		    goBack() {
+		    	lastPage()
 			},
 		    //name
-			unedit() {					
+			unedit() {
 				this.modify = true;
-			},	
+			},
 			empty(){
 				this.user.name = '';
 			},

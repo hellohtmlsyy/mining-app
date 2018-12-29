@@ -4,7 +4,6 @@
 			<div slot="rightA" class="searchBox" @click="goSearch">
 				<icon type="search" class="searchIco"></icon>
 				<input type="text" placeholder="请输入关键字" readonly class="myInput" v-model="keyWord" />
-				<!--<span class="clear" @click.stop="clear"><i class="icon iconfont icon-cuohao"></i></span>-->
 			</div>
 		</com-header>
 		<div>
@@ -197,5 +196,5 @@
 	.databaseList .searchBox {
 		width: 4.3rem;
 	}
-	
+
 </style>

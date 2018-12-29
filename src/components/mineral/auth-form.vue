@@ -47,7 +47,7 @@
 				</div>
 				<x-textarea placeholder="项目要求" @on-focus="onEvent('focus')" @on-blur="onEvent('blur')" :max="20" v-model="form.requirement"></x-textarea>
 			</group>
-			
+
 			<toast v-model="show1" type="warn" :time="1000" is-show-mask>输入有误</toast>
 		</div>
 		<div class="endSave">
@@ -214,13 +214,13 @@
 					.then(res => {
 
 						if(res.data.success) {
-							
+
 							var addArr = []
-							
+
 							if(!res.data.data) {
 								return
 							}
-							
+
 							res.data.data.forEach((item, index) => {
 								addArr[index] = {
 									name: item.areaname,
@@ -382,22 +382,17 @@
 		font-size: 0.28rem;
 		padding-left: 0.15rem;
 	}
-	
+
 	.exForm .form .xinghao {
 		color: red;
 		line-height: 1rem;
 	}
-	
+
 	.exForm .form .vux-x-input {
 		height: 0.8rem;
 		padding-left: 0.1rem;
 	}
-	/*.endSave{
-		position: fixed;
-		bottom: 0;
-		width: 100%;
-	}*/
-	
+
 	.endSave button {
 		background-color: #FF5155;
 		color: #fff;
@@ -407,11 +402,11 @@
 		line-height: 1rem;
 		width: 100%;
 	}
-	
+
 	.exForm .weui-toast__content {
 		text-align: center;
 	}
-	
+
 	.authForm .weui-cells__title {
 		font-size: 0.28rem;
 		background: #fff;
@@ -419,28 +414,28 @@
 		line-height: 1rem;
 		color: #000000;
 	}
-	
+
 	.authForm .priceType .weui-label {
 		margin-left: 0.1rem;
 	}
-	
+
 	.authForm .priceType .weui-cell_select .weui-cell__bd:after {
 		width: 0.2rem;
 		height: 0.2rem;
 	}
-	
+
 	.authForm .weui-cells_checkbox {
 		font-size: 0.28rem;
 	}
-	
+
 	.authForm .weui-cells__title {
 		margin: 0;
 	}
-	
+
 	.authForm .addressBox .addressxinghao {
 		margin-top: 0.1rem;
 	}
-	
+
 	.authForm .type .xinghao {
 		color: red;
 		line-height: 1rem;
@@ -448,15 +443,15 @@
 		margin-left: 0.1rem;
 		margin-right: 0.05rem;
 	}
-	
+
 	.authForm .type .weui-cells__title {
 		margin-left: 0.2rem;
 	}
-	
+
 	.authForm .vux-checklist-disabled {
 		padding-left: 0.2rem;
 	}
-	
+
 	.authForm .vux-selector.weui-cell_select-after {
 		padding-left: 0.1rem;
 	}

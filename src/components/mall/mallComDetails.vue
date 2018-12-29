@@ -173,8 +173,8 @@
 	import { Flexbox, FlexboxItem, Group, PopupRadio, Tab, TabItem, Sticky, Swiper, SwiperItem, InlineXNumber, cookie } from 'vux';
 	import { getAppShare, isDevice, ShareTip,appLogin} from '@/assets/commonjs/util.js';
 	import openApp from '@/components/base/openApp'
-	
-	
+
+
 	export default {
 		components: {
 			Flexbox,
@@ -436,7 +436,7 @@
 					});
 			},
 			goShop(){
-				
+
 				window.location.href = this.$root.urlPath.MCM + "/flagship?newpage=newpage&shopId=" + this.companyInfo.id;
 			}
 		}
@@ -445,8 +445,8 @@
 
 <style>
 	@import url("../../../static/css/swiper.min.css");
-	
-	
+
+
 	table,
 	tr,
 	.bottomA tbody img,

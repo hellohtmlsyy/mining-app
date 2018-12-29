@@ -35,8 +35,8 @@
 			</div>
 			</transition>
 		</div>
-		
-			
+
+
 		<div class="nav" :class="{navFixed:isFixed}">
 			<sticky  scroll-box="vux_view_box_body" :check-sticky-support="false" :offset="46">
 				<tab :line-width=3 active-color="#ff4f54">
@@ -162,7 +162,7 @@
 			})
 
 			window.addEventListener("scroll", this.handleScroll)
-			
+
 			let params = {
 				numPerPage: 0,
 				pageNum: 0,
@@ -217,8 +217,8 @@
 			handleScroll() {
 				var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
 				var offsetTop = this.$refs.searchHeader.offsetHeight
-				
-				//滚动距离如果大于元素到顶部的距离时,就固定定位
+
+        //滚动距离如果大于元素到顶部的距离时,就固定定位
 				if(scrollTop > offsetTop) {
 					this.isFixed = true
 					this.showCompony = false
@@ -570,8 +570,39 @@
 				if(!cookie.get('MC_UID')) {
 					appLogin()
 					return
+				}else{
+					this.$axios.get(this.$root.urlPath.MCT + '/wap/company/comInfo')
+					.then(res => {
+						var data = res.data
+
+						if(data.status == 2){//已经认证了
+							window.location.href = this.$root.urlPath.MCM + "/leaveSpeak?&shopId=" + this.shopId + "&newpage=newpage"
+						}else if(data.status == 0 || data.status == 3){//没认证
+							this.$vux.confirm.show({
+							  // 组件除show外的属性
+							  title:'提示',
+							  content:'您没有认证企业，需要先去认证企业',
+							  onCancel () {
+							    console.log(this) // 非当前 vm
+							  },
+							  onConfirm () {
+							  	window.location.href = 'http://trade.miningcircle.com/cert?newpage=newpage'
+							  }
+							})
+						}else if(data.status == 1){
+							this.$vux.toast.text('您的企业正在申请中<br/>客服：400-819-6985', 'center');
+						}else if(data.status == 4){
+							this.$vux.toast.text('您的企业已冻结<br/>客服：400-819-6985', 'center');
+						}else if(res.data.errCode == '001002140'){
+							window.location.href = this.$root.urlPath.MCMHALL + '/cert?newpage=newpage';
+						}
+
+					})
+					.catch(function(error) {
+						alert('账户异常' + error)
+					});
 				}
-				window.location.href = this.$root.urlPath.MCM + "/leaveSpeak?&shopId=" + this.shopId + "&newpage=newpage"
+
 			},
 		}
 	}
@@ -584,23 +615,23 @@
 		opacity: .8;
 		/*transform: translate3d(0, 0, 0)*/
 	}
-	
+
 	.fade-enter,
 	.fade-leave-to
 	/* .fade-leave-active below version 2.1.8 */
-	
+
 	{
 		opacity: 0;
 		/*transform: translate3d(0, 26%, 0)*/
 	}
-	
 
-	
+
+
 	.flagshop .headerBg {
 		background: url(../../../static/img/flagship/bg.png) no-repeat;
 		background-size: 100% 100%;
 	}
-	
+
 	.flagshop .searchHeader {
 		display: flex;
 		padding: 0 0.2rem;
@@ -608,43 +639,44 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		z-index: 998;
+    z-index: 998;
+    transition: background 0.1s;
 	}
-	
+
 	.flagshop .headerColor_F {
 		color: #fff;
 	}
-	
+
 	.flagshop .headerBgColor {
 		background: #EEEEEE;
 		color: #333333;
 	}
-	
+
 	.flagshop .headerColor {
 		color: #333333 !important;
 	}
-	
+
 	.flagshop .searchHeader .weui-icon-search {
 		color: #fff;
 	}
-	
+
 	.flagshop .searchIcoColor {
 		color: #fff;
 	}
-	
+
 	.flagshop .searchHeaderBgColor {
 		background-color: rgba(106, 106, 106, 0.25);
 	}
-	
+
 	.flagshop .searchHeaderBgColorFixed {
 		background: #fff;
 	}
-	
+
 	.flagshop .searchHeader .icon-jiantou-copy {
 		font-size: 0.5rem;
 		line-height: 1rem;
 	}
-	
+
 	.flagshop .searchHeader .searchBox {
 		width: 5.5rem;
 		height: 0.58rem;
@@ -652,25 +684,25 @@
 		margin: 0.2rem;
 		line-height: 0.58rem
 	}
-	
+
 	.flagshop .searchHeader .searchBox .searchIco {
 		font-size: 0.3rem;
 		padding-left: 0.28rem;
 	}
-	
+
 	.flagshop .searchHeader input {
 		background: rgba(106, 106, 106, 0);
 	}
-	
+
 	.flagshop .myInput::-webkit-input-placeholder {
 		font-size: 0.24rem;
 		color: #fff;
 	}
-	
+
 	.flagshop .searchHeaderBgColorFixed::-webkit-input-placeholder {
 		color: #333333;
 	}
-	
+
 	.flagshop .searchHeader .searchBox input {
 		border: none;
 		height: 0.58rem;
@@ -678,71 +710,71 @@
 		padding-top: 0.04rem;
 		box-sizing: border-box;
 	}
-	
+
 	.flagshop .FixedBg {
 		background: #fff;
 	}
-	
+
 	.flagshop .searchHeader .moreBox .icon-morevert {
 		font-size: 0.5rem;
 		line-height: 1rem;
 	}
-	
+
 	.flagshop .compony {
 		display: flex;
 		padding: 0.2rem;
 		padding-top: 1rem;
 	}
-	
+
 	.flagshop .compony .logoBox img {
 		width: 0.8rem;
 		height: 0.8rem;
 		margin-right: 0.2rem;
 	}
-	
+
 	.flagshop .compony .nameBox {
 		font-size: 0.28rem;
 		color: #fff;
 		width: 4.9rem;
 	}
-	
+
 	.flagshop .compony .followBtnBox {
 		/*padding: 0.1rem 0.2rem*/
 	}
-	
+
 	.flagshop .compony .followBtnBox .followBox,
 	.flagshop .compony .followBtnBox .followedBox {
 		border-radius: 0.2rem;
 		padding: 0.05rem 0.15rem
 	}
-	
+
 	.flagshop .compony .followBtnBox .bgColor {
 		background: rgb(255, 79, 84);
 	}
-	
+
 	.flagshop .compony .followBtnBox .bgColored {
 		background: #fff;
 	}
-	
+
 	.flagshop .compony .followBtnBox {
 		font-size: 0.24rem;
 	}
-	
+
 	.flagshop .compony .followBtnBox .icon-iconfontadd {
 		color: #Fff;
 		vertical-align: top;
 		line-height: 0.32rem;
 		font-size: 0.16rem;
 	}
-	
+
 	.flagshop .compony .followBtnBox .follow {
 		color: #fff;
 	}
-	
+
 	.flagshop .compony .followBtnBox .followed {
 		color: #F35163;
 	}
-	
+
 	.navFixed {
 		position: fixed;
 		top: 1rem;
@@ -755,34 +787,34 @@
 		transition: all .5s;
 		transform: translate3d(0, -79%, 0)
 	}
-	
+
 	.nav-enter,
 	.nav-leave-to
 	/* .fade-leave-active below version 2.1.8 */
 	/*{
 		transform: translate3d(0, 0, 0)
 	}*/
-	
+
 	.flagshop .list {
 		padding-bottom: 0.73rem;
 	}
-	
+
 	.flagshop .list .introBox {
 		position: relative;
 		background: #fff;
 	}
-	
+
 	.flagshop .list .introBox p {
 		font-size: 0.26rem;
 		padding: 0.38rem 0.2rem 0.2rem 0.2rem;
 	}
-	
+
 	.flagshop .list .vux-divider {
 		padding-bottom: 0.5rem;
 	}
-	
+
 	.mineralList {}
-	
+
 	.flagshop .footer {
 		display: flex;
 		font-size: 0.28rem;
@@ -794,38 +826,38 @@
 		position: fixed;
 		bottom: 0;
 	}
-	
+
 	.flagshop .footer .componyIntroBtn {
 		border-right: 0.01rem solid #e5e5e5;
 		height: 0.94rem;
 		line-height: 0.94rem;
 	}
-	
+
 	.flagshop .footer .typeBtn {
 		flex: 1;
 		border-right: 0.01rem solid #e5e5e5;
 		height: 0.94rem;
 		line-height: 0.94rem;
 	}
-	
+
 	.flagshop .footer .btnWidthPf {
 		flex: 1;
 	}
-	
+
 	.flagshop .footer .btnWidth {
 		flex: 2;
 	}
-	
+
 	.flagshop .footer .leaveSpeakeBtn {
 		flex: 1
 	}
-	
+
 	.flagshop .list .titleBox {
 		background: #Fff;
 		width: 7.5rem;
 		height: 0.6rem;
 	}
-	
+
 	.titleBg {
 		width: 3.7rem;
 		height: 0.63rem;
@@ -833,34 +865,34 @@
 		transform: translateX(50%);
 		margin-top: -0.1rem;
 	}
-	
+
 	.titleBgUrl1 {
 		background: url(../../../static/img/flagship/title1.png) no-repeat center center;
 		background-size: 3.7rem 0.63rem;
 	}
-	
+
 	.titleBgUrl2 {
 		background: url(../../../static/img/flagship/title2.png) no-repeat center center;
 		background-size: 3.7rem 0.63rem;
 	}
-	
+
 	.titleBgUrl3 {
 		background: url(../../../static/img/flagship/title3.png) no-repeat center center;
 		background-size: 3.7rem 0.63rem;
 	}
-	
+
 	.titleBgUrl4 {
 		background: url(../../../static/img/flagship/title4.png) no-repeat center center;
 		background-size: 3.7rem 0.63rem;
 	}
-	
+
 	.flagshop .listItem {
 		margin: 0.22rem 0 0 0;
 	}
-	
+
 	.flagshop .list .mallBox {
 		position: relative;
 	}
-	
+
 	.flagshop .list .mallBox .mallList {}
 </style>

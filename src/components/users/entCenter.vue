@@ -29,14 +29,14 @@
 						<img slot="icon" src="../../../static/img/user2.0/enterprise/supply.png">
 						<div class="mtool_con">
 							<p>我的供应</p>
-							<span>供应的商品订单</span>
+							<span>商品和会展订单</span>
 						</div>
 					</grid-item>
 					<grid-item :link="linkTo.purordlist">
 						<img slot="icon" src="../../../static/img/user2.0/enterprise/purchase.png">
 						<div class="mtool_con">
 							<p>我的采购</p>
-							<span>采购的商品订单</span>
+							<span>商品和会展订单</span>
 						</div>
 					</grid-item>
 				</grid>
@@ -62,12 +62,28 @@
 					</grid-item>
 				</grid>
 			</div>
-			<!-- 投资管理 -->
+			<!-- 邀约管理 -->
 			<div class="mtool mtool_ser">
 				<div class="tit">
-					<p>投资管理</p>
+					<p>邀约管理</p>
 				</div>
 				<grid :show-lr-borders="false" :show-vertical-dividers="true">
+					<grid-item :link="linkTo.interview">
+						<img slot="icon" src="../../../static/img/user2.0/enterprise/news.png">
+						<div class="mtool_con">
+							<p>约谈消息</p>
+							<span>收到的约谈消息</span>
+						</div>
+					</grid-item>
+          <grid-item :link="linkTo.storeMsg">
+						<img slot="icon" src="../../../static/img/user2.0/enterprise/store-msg.png">
+						<div class="mtool_con">
+							<p>店铺留言</p>
+							<span>收到的店铺留言</span>
+						</div>
+					</grid-item>
+				</grid>
+        <grid :show-lr-borders="false" :show-vertical-dividers="true">
 					<grid-item :link="linkTo.inv">
 						<img slot="icon" src="../../../static/img/user2.0/enterprise/invest.png">
 						<div class="mtool_con">
@@ -87,7 +103,7 @@
 						<img slot="icon" src="../../../static/img/user2.0/enterprise/wallet.png">
 						<div class="mtool_con">
 							<p>我的钱包</p>
-							<span>我的矿业圈钱包</span>
+							<span>我的企业钱包</span>
 						</div>
 					</grid-item>
 				</grid>
@@ -98,7 +114,7 @@
 <script>
 	import { cookie } from 'vux'
 	import {lastPage} from '@/assets/commonjs/util.js';
-	export default {		
+	export default {
 		data() {
 			return {
 				//企业
@@ -112,18 +128,20 @@
 					purchase: 'http://member0.miningcircle.com/man_purchase',
 					offer: 'http://member0.miningcircle.com/man_quote',
 					inv: this.$root.urlPath.MCM + '/invest?newpage=newpage',
-					entpurse: this.$root.urlPath.MCM + '/entPurse?newpage=newpage',
+		        	entpurse: this.$root.urlPath.MCM + '/users/entPurse?newpage=newpage',
+		        	interview: this.$root.urlPath.MCM + '/users/interview?newpage=newpage',
+		        	storeMsg: this.$root.urlPath.MCM + '/users/storeMsg?newpage=newpage',
 				},
 				shezhiShow: false,
 				companyId: '',
 				shopId: '',
 			}
 		},
-		methods: {			
-			appBack() {		
+		methods: {
+			appBack() {
 				lastPage()
-			},	
-			appPopWindow() {	
+			},
+			appPopWindow() {
 				if(this.isInapp){
 					var a = '[{"act": "#set","ico": "http://www.miningcircle.com/img/m/app/set.png","id": 110,"title": "设置"},{"act": "#about","ico": "http://www.miningcircle.com/img/m/app/about.png","id": 130,"title": "关于我们"},{"act": "#out","ico": "http://www.miningcircle.com/img/m/app/out.png","id": 140,"title": "退出"}]';
 					if(this.equi.indexOf('Android') > -1 || this.equi.indexOf('Adr') > -1) {
@@ -143,7 +161,7 @@
 				})
 				.then(res => {
 					this.name = res.data.name;
-					this.companyId = res.data.companyId; 
+					this.companyId = res.data.companyId;
 					if(res.data.logo !='' && res.data.logo != null){
 						this.headImg = res.data.logo
 					}
@@ -160,7 +178,7 @@
 							this.shopId = res.data.data;
 						}
 					}).catch(err => console.log('个人账户异常', err));
-				}).catch(err => console.log('个人账户异常', err));	
+				}).catch(err => console.log('个人账户异常', err));
 			},
 			goUser(){
 				location.href = this.$root.urlPath.MCM + "/users/center?newpage=newpage"
@@ -168,19 +186,19 @@
 			goshop(){
 				location.href = this.$root.urlPath.MCM + "/flagship?shopId=" + this.shopId + '&newpage=newpage'
 			}
-		},	
-		mounted() {	
-			if(this.isInapp){				
+		},
+		mounted() {
+			if(this.isInapp){
 				this.shezhiShow=true;
 			}else{
 				this.shezhiShow=false;
-			}	
+			}
 			this.getInfo()
-		},		
+		},
 	}
 </script>
 <style>
-@import url("../../static/css/user2.0.css");	
+@import url("../../static/css/user2.0.css");
 /*.per .mtool .weui-grid,.per .mtool .weui-grids,.per .mtool .weui-grids:before,.weui-grids:after{
 	border: none!important;
 }*/

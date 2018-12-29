@@ -128,7 +128,7 @@
 			<div class="btnBuyBox btnBox" @click="buy">
 				立即订购
 			</div>
-			
+
 			<!--选择商品数量弹出框-->
 			<transition name="fold">
 				<div class="dialogCount" v-show="showOptionCount" transiton="fold">
@@ -204,12 +204,12 @@
 				<div>建档立卡市解放路会计师打两份</div>
 			</x-dialog>
 		</div>
-		
+
 		<transition name="mack" >
 			<div class="dialogMack" v-show="showOptionCount" @click="showOptionCount = !showOptionCount"></div>
 		</transition>
 
-		
+
 		<div class="shareMC" :style="{display:shareMC}" @click="shareMCClick"></div>
 		<actionsheet v-model="show2" :menus="shareType" :close-on-clicking-mask="false" show-cancel @on-click-mask="console('on click mask')" @on-click-menu-type1="shareWX" @on-click-menu-type2="sharePYQ" @on-click-menu-type3="shareWB" @on-click-menu-type4="shareQQKJ"></actionsheet>
 	</div>
@@ -222,8 +222,8 @@
 	import { getAppShare, isDevice, ShareTip,appLogin} from '@/assets/commonjs/util.js';
 	import { cookie } from 'vux';
 	import openApp from '@/components/base/openApp'
-	
-	
+
+
 	const loginUrl = 'http://member.miningcircle.com/login?where=mcVue'
 	export default {
 		components: {
@@ -443,6 +443,13 @@
 
 			},
 			speakSubmit() {
+        if(this.speakText == ''){
+          this.$vux.toast.show({
+ 								text: '不能为空',
+ 								type:'cancel'
+          })
+          return
+        }
 				axios.get(this.$root.urlPath.MC + '/wap/mall.do?interview', {
 						params: {
 							id: this.mallDetailsList.id,
@@ -463,7 +470,7 @@
 					});
 			},
 			goShop(){
-				
+
 				window.location.href = this.$root.urlPath.MCM + "/flagship?newpage=newpage&shopId=" + this.companyInfo.id;
 			},
 			console() {
@@ -484,24 +491,24 @@
 	.bottomA p img {
 		width: 100% !important;
 	}
-	
+
 	.malldetails .huanrao {
 		word-break: break-all;
 	}
-	
+
 	.malldetails .malldetails_nav {
 		margin: 0.15rem 0
 	}
-	
+
 	.malldetails .optionCount .countInfo .comNumb {
 		text-align: left;
 	}
-	
+
 	.malldetails .optionCount .countInfo .purity {
 		font-size: 0.24rem;
 		line-height: 0.46rem;
 	}
-	
+
 	.optionCount .allPrice .label1 {
 		padding-left: 0.2rem;
 	}

@@ -76,23 +76,13 @@
 				<span>约谈</span>
 			</div>
 		</footer>
-		<!--<div class="channelFooter">
-			<div class="followBox colm fl" @click="followClick(follow)">
-				<i class="icon iconfont" :class="follow == '关注' ? 'icon-guanzhu' : 'icon-xin'"></i><br />
-				<span :class="follow == '关注' ? '' : 'color_r'">{{follow}}</span>
-			</div>
-			<div class="colm fl" @click="speakClick">
-				<i class="iconfont icon-xiaoxi"></i><br />
-				<span>约谈</span>
-			</div>
-		</div>-->
 		<!--约谈弹出框-->
 		<div class="comSpeakDial">
 			<x-dialog v-model="showDiaLog" class="dialog-demo">
 				<div class="dialogHeader">
 					<span class="fl">约谈详细</span>
 					<i class="icon iconfont icon-cuohao fr" @click="showDiaLog = false"></i>
-					
+
 				</div>
 				<div class="bd">
 					<div>
@@ -118,7 +108,7 @@
 	import Detailsimage from '@/components/common/Detailsimage';
 	import { getTime1, getAppShare,isDevice,ShareTip} from '@/assets/commonjs/util.js';
 	import openApp from '@/components/base/openApp'
-	
+
 	export default {
 		components: {
 			Detailsimage,
@@ -196,7 +186,7 @@
 							}
 						})
 						.then(res => {
-							
+
 							if(res.data.success) {
 								this.follow = '取消关注'
 							} else {
@@ -235,7 +225,7 @@
 				} else {
 					this.$router.go(-1)
 				}
-				
+
 			},
 			moreClick() {
 				this.moreTF = !this.moreTF
@@ -246,7 +236,7 @@
 							id: this.$route.query.id
 						}
 					})
-					.then(res => {						
+					.then(res => {
 						if(res.data.success) {
 							this.investorDetailsList = res.data.data.investInfo[0]
 							if(this.investorDetailsList.type !== undefined) {
@@ -274,6 +264,13 @@
 				this.showDiaLog = true
 			},
 			speakSubmit() {
+        if(this.speakText == ''){
+          this.$vux.toast.show({
+ 								text: '不能为空',
+ 								type:'cancel'
+          })
+          return
+        }
 				axios.get(this.$root.urlPath.MC + '/wap/yiinvest.do?yiInvestInterView', {
 						params: {
 							id: this.$route.query.id,

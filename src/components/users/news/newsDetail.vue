@@ -1,18 +1,17 @@
 <template>
 	<div class="myNewsdetail">
 		<com-header bgcolor="#0094E8">
-			<div slot="centerA">{{newsInfo.type == '010'? '系统消息':(newsInfo.type == '430'? '商品约谈':(newsInfo.type == '230'? '项目约谈':(newsInfo.type == '260'? '投资约谈':(newsInfo.type == '530'? '店铺留言':'系统消息'))))}}</div>
+			<div slot="centerA">系统消息</div>
 		</com-header>
-		<div class="tips" :class="{pd : newsInfo.type != 530}">{{newsInfo.msg_title? newsInfo.msg_title:newsInfo.title}}</div>
-		<div class="det">
-			<div class="pl-15">
-				<div><span class="fs-20 col-75"><span class="fs-28 col-33 mr-15">{{newsInfo.userName? newsInfo.userName : ''}}</span>{{newsInfo.create_time?newsInfo.create_time:newsInfo.insert_time | fomatDate('yyyy-MM-dd hh:mm:ss')}}</span></div>
-				<!--<div class="fs-22 col-75 mt-15">发至 我</div>-->
-			</div>
-			<div class="con">
-				{{newsInfo.msg_content?newsInfo.msg_content:newsInfo.msg}}
-			</div>
-		</div>
+		<div class="tips" >
+      <div class="det">
+        <div class="time">{{newsInfo.create_time?newsInfo.create_time:newsInfo.insert_time | fomatDate('yyyy-MM-dd hh:mm:ss')}}</div>
+        <div class="tit">矿业圈温馨提示</div>
+        <div class="con">
+          {{newsInfo.msg_content?newsInfo.msg_content:newsInfo.msg}}
+        </div>
+      </div>
+	  </div>
 	</div>
 </template>
 
@@ -86,16 +85,5 @@
 </script>
 
 <style>
-	@import url("../../../static/css/user2.0.css");	
-	.fs-20{ font-size: 0.2rem; }
-	.fs-22{	font-size: 0.22rem; }
-	.fs-28{	font-size: 0.28rem;	}
-	.col-33{ color: #333; }
-	.col-75{ color: #757575; }
-	.mt-15{ margin-top: 0.15rem; }
-	.mr-15{ margin-right: 0.15rem; }
-	.pl-15{ padding-left: 0.15rem; }
-	.pd{
-		padding: 0.1rem 0.2rem 0.26rem 0.2rem;
-	}
+	@import url("../../../static/css/user2.0.css");
 </style>

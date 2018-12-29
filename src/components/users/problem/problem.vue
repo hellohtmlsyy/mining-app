@@ -24,7 +24,7 @@
 		},
 		methods: {
 			toDetail(index){
-				location.href = this.$root.urlPath.MCM + "/problem/detail?info=" + index + '&newpage=newpage';
+				location.href = this.$root.urlPath.MCM + "/users/problemDetail?info=" + index + '&newpage=newpage';
 			},
 		},
 	}

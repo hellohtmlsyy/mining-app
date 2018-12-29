@@ -1,4 +1,5 @@
 /*用户中心、企业中心首页 ----------*/
+
 .per .mtool .weui-grid,
 .per .mtool .weui-grid:before,
 .per .mtool .weui-grid:after,
@@ -10,691 +11,885 @@
 .ent .mtool .weui-grid:after,
 .ent .mtool .weui-grids,
 .ent .mtool .weui-grids:before,
-.ent .mtool .weui-grids:after{
-	border: none!important;
+.ent .mtool .weui-grids:after {
+    border: none!important;
 }
 
-/*个人top*/	
-.peraccount_top,.entaccount_top {
-	width: 100%;
-	height: 100%;
-	height: 2.6rem;
-	position: relative;
-}
-.peraccount_top{
-	background: url(../../../static/img/user2.0/personal/perBG.png) no-repeat;
-	background-size: 100% 100%;
-}
+
+/*个人top*/
+
+.peraccount_top,
 .entaccount_top {
-	background: url(../../../static/img/user2.0/enterprise/entBG.png) no-repeat;
-	background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    height: 2.6rem;
+    position: relative;
 }
-.peraccount_top .head,.entaccount_top .head{
-	position: absolute;
-	top: 0.25rem;
-	left: 0;
-	width: 100%;
+
+.peraccount_top {
+    background: url(../../../static/img/user2.0/personal/perBG.png) no-repeat;
+    background-size: 100% 100%;
 }
-.peraccount_top .icon-jiantou-copy,.entaccount_top .icon-jiantou-copy{
-	font-size:0.5rem;
-	margin-top: -0.13rem;
-	margin-left: 0.1rem;
+
+.entaccount_top {
+    background: url(../../../static/img/user2.0/enterprise/entBG.png) no-repeat;
+    background-size: 100% 100%;
 }
-.peraccount_top .icon-jiantou-copy{
-	color:#fff;
+
+.peraccount_top .head,
+.entaccount_top .head {
+    position: absolute;
+    top: 0.25rem;
+    left: 0;
+    width: 100%;
 }
-.entaccount_top .icon-jiantou-copy{
-	color:#81724d;
+
+.peraccount_top .icon-jiantou-copy,
+.entaccount_top .icon-jiantou-copy {
+    font-size: 0.36rem;
+    margin-top: -0.13rem;
+    margin-left: 0.1rem;
 }
-.peraccount_top .head .sett,.entaccount_top .head .sett{
-	width: 0.36rem;
-	vertical-align: middle;
+
+.peraccount_top .icon-jiantou-copy {
+    color: #fff;
 }
-.peraccount_top .head .toggle,.entaccount_top .head .toggle{
-	font-size:0.22rem;
-	font-weight:500;
-	opacity:0.75;
-	padding: 0.05rem 0.22rem;
-	border-radius: 10px 0 0 10px;
-	margin-left: 0.15rem;
+
+.entaccount_top .icon-jiantou-copy {
+    color: #81724d;
 }
-.peraccount_top .head .toggle{
-	color:#fff;
-	background:#01A0E9;
+
+.peraccount_top .head .sett,
+.entaccount_top .head .sett {
+    width: 0.36rem;
+    vertical-align: middle;
 }
-.entaccount_top .head .toggle{
-	color:rgba(212,178,95,1);
-	background:rgba(78,75,70,1);
+
+.peraccount_top .head .toggle,
+.entaccount_top .head .toggle {
+    font-size: 0.22rem;
+    font-weight: 500;
+    opacity: 0.75;
+    padding: 0.05rem 0.22rem;
+    border-radius: 10px 0 0 10px;
+    margin-left: 0.15rem;
 }
-.peraccount_top .info,.entaccount_top .info{
-	position: absolute;
-	top: 0.85rem;
-	left: 0.4rem;
+
+.peraccount_top .head .toggle {
+    color: #fff;
+    background: #01A0E9;
 }
-.peraccount_top .info .headImg,.entaccount_top .info .icon-wode-F {
+
+.entaccount_top .head .toggle {
+    color: rgba(212, 178, 95, 1);
+    background: rgba(78, 75, 70, 1);
+}
+
+.peraccount_top .info,
+.entaccount_top .info {
+    position: absolute;
+    top: 0.85rem;
+    left: 0.4rem;
+}
+
+.peraccount_top .info .headImg,
+.entaccount_top .info .icon-wode-F {
     width: 1.15rem;
     height: 1.15rem;
     border-radius: 0.57rem;
     margin-right: 0.52rem;
-}	
-.peraccount_top .info .user_name,.entaccount_top .info .user_name {
-	font-size:0.4rem;
-	font-weight:600;
-	margin-bottom: 0.2rem;
-}	
-.peraccount_top .info .user_name{
-	color:#fff;
 }
+
+.peraccount_top .info .user_name,
 .entaccount_top .info .user_name {
-	color:#F0C867;
-}	
-.peraccount_top .info .goShop,.entaccount_top .info .goShop{
-	font-size:0.2rem;
-	border-radius:15px;
+    font-size: 0.4rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.peraccount_top .info .user_name {
+    color: #fff;
+}
+
+.entaccount_top .info .user_name {
+    color: #F0C867;
+}
+
+.peraccount_top .info .goShop,
+.entaccount_top .info .goShop {
+    font-size: 0.2rem;
+    border-radius: 15px;
     padding: 0.04rem 0.15rem;
     width: 1.5rem;
     text-align: center;
-    vertical-align: middle;	
+    vertical-align: middle;
 }
-.peraccount_top .info .goShop{
-	color:#00A0E9;
-	background:#D2F1FF;
+
+.peraccount_top .info .goShop {
+    color: #00A0E9;
+    background: #D2F1FF;
 }
-.entaccount_top .info .goShop{
-	color:#D4B25F;
-	background:#4A4742;
+
+.entaccount_top .info .goShop {
+    color: #D4B25F;
+    background: #4A4742;
 }
-.peraccount_top .info .icon-yduibianxie{
-	color: #fff;
-	vertical-align: middle;
-	font-size: 0.32rem;
-	margin-left: 0.2rem;
+
+.peraccount_top .info .icon-yduibianxie {
+    color: #fff;
+    vertical-align: middle;
+    font-size: 0.32rem;
+    margin-left: 0.2rem;
 }
+
+
 /* 个人con、企业con */
-.userCenter .content,.entcenter .content{
-	padding: 0.04rem 0.1rem 0;
+
+.userCenter .shop {
+    background-color: #fff;
+    margin-top: 0.1rem;
+    padding: 0.11rem 0.15rem 0.11rem 0.24rem;
 }
-.per .mtool,.ent .mtool {
-	margin-top: 0.1rem;
-	background: #fff;
-	border-radius: 3px;
+
+.userCenter .fl span {
+    font-size: 0.24rem;
+    color: #00A0E9;
+    margin-left: 0.11rem;
 }
-.per .mtool .tit,.ent .mtool .tit {
-	padding: 0.24rem 0.2rem 0;
+
+.userCenter .shop .ent {
+    width: 0.36rem;
+    vertical-align: middle;
 }
-.per .mtool .tit p,.ent .mtool .tit p {
-	color: #757575;
-	font-size: 0.28rem;
+
+.userCenter .shop .ent {
+    width: 0.36rem;
+    vertical-align: middle;
 }
+
+.userCenter .content,
+.entcenter .content {
+    padding: 0.04rem 0.1rem 0;
+}
+
+.per .mtool,
+.ent .mtool {
+    margin-top: 0.1rem;
+    background: #fff;
+    border-radius: 3px;
+}
+
+.per .mtool .tit,
+.ent .mtool .tit {
+    padding: 0.24rem 0.2rem 0;
+}
+
+.per .mtool .tit p,
+.ent .mtool .tit p {
+    color: #757575;
+    font-size: 0.28rem;
+}
+
 .per .mtool .weui-grid {
-	padding: 0.3rem 0.2rem;
+    padding: 0.3rem 0.2rem;
 }
-.ent .mtool .weui-grid{
-	padding: 0.28rem 0.2rem;
+
+.ent .mtool .weui-grid {
+    padding: 0.28rem 0.2rem;
 }
+
 .per .mtool .weui-grid__label,
 .per .mtool .weui-grid__icon,
 .ent .mtool .weui-grid__label,
 .ent .mtool .weui-grid__icon {
-	display: inline-block;
+    display: inline-block;
 }
 
+
 /* 个人管理、企业管理 */
-.per .mtool_con,.ent .mtool_con  {
-	display: inline-block;
-	margin-left: 0.32rem;
-	padding: 0.04rem 0;
+
+.per .mtool_con,
+.ent .mtool_con {
+    display: inline-block;
+    margin-left: 0.32rem;
+    padding: 0.04rem 0;
 }
-.per .mtool_con p,.ent .mtool_con p {
-	font-size: 0.26rem;
-	color: #333;
-	margin-bottom: 0.08rem;
+
+.per .mtool_con p,
+.ent .mtool_con p {
+    font-size: 0.26rem;
+    color: #333;
+    margin-bottom: 0.08rem;
 }
-.per .mtool_con span,.ent .mtool_con span {
-	color: #757575;
-	font-size: 0.22rem;
+
+.per .mtool_con span,
+.ent .mtool_con span {
+    color: #757575;
+    font-size: 0.22rem;
 }
+
+
 /*用户中心、企业中心首页 end----------*/
 
 
 /*修改个人信息 ----------*/
-.modifyInfo .vux-header{
-	background-color: #FFF!important;
-}
-.modifyInfo .vux-header .vux-header-title{
-	color: #333!important;
-}
-.modifyInfo .vux-header .vux-header-left .left-arrow:before{
-	border: 1px solid #333!important;
-    border-width: 1px 0 0 1px!important;
-}
-.modifyInfo .userInfo{
-	background-color: #fff;
-	margin-top: 0.15rem;
-}
-.modifyInfo .userInfo .term{
-	border-bottom: 1px solid #E5E5E5;
-	padding: 0.36rem 0.3rem 0.36rem 0.2rem;
-}
-.modifyInfo .userInfo .term span{
-	font-size: 0.26rem;
-    border-radius: 50%;
-	color: #333;
-}
-.modifyInfo .userInfo .term .icon-jiantou5{
-	font-size: 0.32rem;
-	color: #757575;
-}
-.modifyInfo .userInfo .head{
-	position: relative;
-}
-.modifyInfo .userInfo .term .headImg{
-	width: 0.7rem;
-	height: 0.7rem;
-	position: absolute;
-    top: 0.15rem;
-	right: 0.7rem;
-}
-.modifyInfo .userInfo .term .name{
-	color: #757575;
+
+.modifyInfo .vux-header {
+    background-color: #FFF!important;
 }
 
+.modifyInfo .vux-header .vux-header-title {
+    color: #333!important;
+}
+
+.modifyInfo .vux-header .vux-header-left .left-arrow:before {
+    border: 1px solid #333!important;
+    border-width: 1px 0 0 1px!important;
+}
+
+.modifyInfo .userInfo {
+    background-color: #fff;
+    margin-top: 0.15rem;
+}
+
+.modifyInfo .userInfo .term {
+    border-bottom: 1px solid #E5E5E5;
+    padding: 0.36rem 0.3rem 0.36rem 0.2rem;
+}
+
+.modifyInfo .userInfo .term span {
+    font-size: 0.26rem;
+    border-radius: 50%;
+    color: #333;
+}
+
+.modifyInfo .userInfo .term .icon-jiantou5 {
+    font-size: 0.32rem;
+    color: #757575;
+}
+
+.modifyInfo .userInfo .head {
+    position: relative;
+}
+
+.modifyInfo .userInfo .term .headImg {
+    width: 0.7rem;
+    height: 0.7rem;
+    position: absolute;
+    top: 0.15rem;
+    right: 0.7rem;
+}
+
+.modifyInfo .userInfo .term .name {
+    color: #757575;
+}
+
+
 /*name*/
-.modifyName .vux-header{
-	background-color: #fff!important;
+
+.modifyName .vux-header {
+    background-color: #fff!important;
 }
-.modifyName .vux-header .vux-header-title{
-	color: #333!important;
+
+.modifyName .vux-header .vux-header-title {
+    color: #333!important;
 }
-.modifyName .vux-header .vux-header-left .left-arrow{
-	display: none!important;
+
+.modifyName .vux-header .vux-header-left .left-arrow {
+    display: none!important;
 }
-.modifyName .vux-header .vux-header-left .vux-header-back{
-	padding: 0!important;
+
+.modifyName .vux-header .vux-header-left .vux-header-back {
+    padding: 0!important;
 }
-.modifyName .vux-header .vux-header-left a{
-	color: #757575!important;
-	font-size: 0.3rem!important;
+
+.modifyName .vux-header .vux-header-left a {
+    color: #757575!important;
+    font-size: 0.3rem!important;
 }
-.modifyName button, .vux-header .vux-header-right a{
-	color: #0094E8!important;
-	font-size: 0.3rem!important;
+
+.modifyName button,
+.vux-header .vux-header-right a {
+    color: #0094E8!important;
+    font-size: 0.3rem!important;
 }
-.modifyName .fillIn{
-	margin-top: 0.15rem;
-	background-color: #fff;
-	padding: 0.35rem;
+
+.modifyName .fillIn {
+    margin-top: 0.15rem;
+    background-color: #fff;
+    padding: 0.35rem;
 }
-.modifyName .fillIn input{
-	border: none;
-	font-size: 0.26rem;
-	color: #757575;
-	width: 92%;
+
+.modifyName .fillIn input {
+    border: none;
+    font-size: 0.26rem;
+    color: #757575;
+    width: 92%;
 }
-.modifyName .fillIn .icon-cuohao{
-	color: #757575;
-	font-size: 0.32rem;
+
+.modifyName .fillIn .icon-cuohao {
+    color: #757575;
+    font-size: 0.32rem;
 }
+
+
 /*修改个人信息end ----------*/
 
 
 /*个人中心关注 ----------*/
+
 .follow .category {
-	padding: 0.28rem 0;
-	background-color: #fff;
-	position: fixed;
+    padding: 0.28rem 0;
+    background-color: #fff;
+    position: fixed;
     top: 1rem;
     z-index: 1;
     left: 0;
     width: 100%;
-    box-shadow: 5px 0px 5px rgba(170,170,170,0.15);
-}
-.follow .category .item{
-	width: 49.8%;
-	text-align: center;
-	float: left;
-	font-size: 0.28rem;
-}
-.follow .category .state{
-	border-right: 1px solid #e5e5e5;
-}
-.follow .category .item span{
-	color: #333;
-	margin-right: 0.18rem;
-}
-.follow .category .item .iconfont{
-	color: #757575;
-	vertical-align: middle;
-}
-	
-/*content*/
-.follow .followCon{
-	width: 100%;
-	margin-top: 1.95rem;
-}
-.follow .followCon .conItem{
-	padding: 0.25rem 0.2rem;
-	border-top: 0.15rem solid rgb(238,238,238);
-	background-color: #fff;
-}	
-.follow .followCon .conItemL{
-	width: 70%;
-}
-.follow .followCon .conItemL .type{
-	margin-bottom: 0.2rem;
-}
-.follow .followCon .conItemL .type .text{
-	color: #fff;
-	background-color: #FF7522;
-	padding: 0.04rem 0.18rem;
-	font-size: 0.24rem;
-	border-radius: 0.05rem;
-	margin-bottom: 0.2rem;
-}
-.follow .followCon .conItemL .type .invalid{
-	background-color: #d2d2d2;
-}
-.follow .followCon .conItemL .name{
-	font-size: 0.26rem;
-	color: #333;
-	margin-bottom: 0.1rem;
-}
-.follow .followCon .conItemR{
-	width: 20%;
-	text-align: right;
-	height: 0.96rem;
-	line-height: 0.96rem;
-}
-.follow .followCon .conItemR .det{
-	font-size: 0.24rem;
-	color: #FF7522;
-	background-color: #FFEEE3;
-	padding: 0.1rem 0.4rem;
-	border-radius: 0.05rem;
-}
-.follow .followCon .conItemR .invalid{
-	background-color: #fff!important;
-	color: #AAAAAA!important;
+    box-shadow: 5px 0px 5px rgba(170, 170, 170, 0.15);
 }
 
+.follow .category .item {
+    width: 49.8%;
+    text-align: center;
+    float: left;
+    font-size: 0.28rem;
+}
+
+.follow .category .state {
+    border-right: 1px solid #e5e5e5;
+}
+
+.follow .category .item span {
+    color: #333;
+    margin-right: 0.18rem;
+}
+
+.follow .category .item .iconfont {
+    color: #757575;
+    vertical-align: middle;
+}
+
+
+/*content*/
+
+.follow .followCon {
+    width: 100%;
+    margin-top: 1.95rem;
+}
+
+.follow .followCon .conItem {
+    padding: 0.25rem 0.2rem;
+    border-top: 0.15rem solid rgb(238, 238, 238);
+    background-color: #fff;
+}
+
+.follow .followCon .conItemL {
+    width: 70%;
+}
+
+.follow .followCon .conItemL .type {
+    margin-bottom: 0.2rem;
+}
+
+.follow .followCon .conItemL .type .text {
+    color: #fff;
+    background-color: #FF7522;
+    padding: 0.04rem 0.18rem;
+    font-size: 0.24rem;
+    border-radius: 0.05rem;
+    margin-bottom: 0.2rem;
+}
+
+.follow .followCon .conItemL .type .invalid {
+    background-color: #d2d2d2;
+}
+
+.follow .followCon .conItemL .name {
+    font-size: 0.26rem;
+    color: #333;
+    margin-bottom: 0.1rem;
+}
+
+.follow .followCon .conItemR {
+    width: 20%;
+    text-align: right;
+    height: 0.96rem;
+    line-height: 0.96rem;
+}
+
+.follow .followCon .conItemR .det {
+    font-size: 0.24rem;
+    color: #FF7522;
+    background-color: #FFEEE3;
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.05rem;
+}
+
+.follow .followCon .conItemR .invalid {
+    background-color: #fff!important;
+    color: #AAAAAA!important;
+}
+
+
 /*取消关注*/
-.follow .follow_bot{
-	width: 100%;
-	background-color: #fff;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	height: 0.94rem;
-	border-top: 1px solid #e5e5e5;
+
+.follow .follow_bot {
+    width: 100%;
+    background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 0.94rem;
+    border-top: 1px solid #e5e5e5;
 }
-.follow .follow_bot .all{
-	padding: 0.29rem 0.2rem;
-	font-size: 0.24rem;
-	color: #333;
-}	
-.follow .follow_bot .cancel{
-	color: #fff;
-	background-color: #FF7522;
-	font-size: 0.32rem;
-	text-align: center;
-	width: 2.2rem;
-	height: 0.94rem;
-	line-height: 0.94rem;
+
+.follow .follow_bot .all {
+    padding: 0.29rem 0.2rem;
+    font-size: 0.24rem;
+    color: #333;
 }
-.follow .followCon .checkBM{
-	width: 0.36rem;
-	height: 0.36rem;
-	margin: 0.5rem 0.3rem 0 0;
+
+.follow .follow_bot .cancel {
+    color: #fff;
+    background-color: #FF7522;
+    font-size: 0.32rem;
+    text-align: center;
+    width: 2.2rem;
+    height: 0.94rem;
+    line-height: 0.94rem;
 }
+
+.follow .followCon .checkBM {
+    width: 0.36rem;
+    height: 0.36rem;
+    margin: 0.5rem 0.3rem 0 0;
+}
+
+
 /*个人中心关注end ----------*/
 
 
-/*个人中心消息、详情 ----------*/
+/*个人中心消息、详情 + 企业中心约谈、详情、店铺留言、详情 ----------*/
+
 .mynews .mynewsCon .checkBM{
-	width: 0.36rem;
+    width: 0.36rem;
     height: 0.36rem;
-    margin-right: 0.25rem;
-    margin-top: 0.4rem;
+    margin-right: 0.2rem;
+    margin-top: 0.3rem;
 }
-.mynews .vux-header .vux-header-right a{
-	font-size: 0.3rem;
-	color: #fff;
+
+.mynews .vux-header .vux-header-right a {
+    font-size: 0.3rem;
+    color: #fff;
 }
-.mynews .category {
-	padding: 0.28rem 0;
-	background-color: #fff;
-	position: fixed;
-	top: 1rem;
-	left: 0;
-	width: 100%;
-	box-shadow:5px 0px 5px rgba(170,170,170,0.15);
-	z-index: 1;
-}
-.mynews .category .item{
-	width: 49.8%;
-	text-align: center;
-	float: left;
-	font-size: 0.28rem;
-}
-.mynews .category .state{
-	border-right: 1px solid #e5e5e5;
-}
-.mynews .category .item span{
-	color: #333;
-	margin-right: 0.18rem;
-}
-.mynews .category .item .iconfont{
-	color: #757575;
-	vertical-align: middle;
-}
+
 
 /*content*/
-.mynews .mynewsCon{
+
+.mynews .mynewsCon,.storemsg .storemsgCon{
+    width: 100%;
+    margin-top: 1rem;
+}
+.interview .interviewCon{
 	width: 100%;
-	margin-top: 1.95rem;
-}
-.mynews .mynewsCon .conItem{
-	padding: 0.2rem;
-    border-top: 0.15rem solid rgb(238,238,238);
-	background-color: #fff;
-}	
-.mynews .mynewsCon .conItemL{
-	width: 68%;
-}
-.mynews .mynewsCon .conItemL .circle{
-	width: 0.2rem;
-	height: 0.2rem;
-	background-color: #11A9FD;
-	border-radius: 50%;
-	display: inline-block;
-	margin-right: 0.2rem;
-}
-.mynews .mynewsCon .conItemL .tit .text{
-	color: #333;
-	font-size: 0.28rem;
-}
-.mynews .mynewsCon .conItemL .info{
-	font-size: 0.26rem;
-	color: #333;
-	margin-top: 0.08rem;
-}
-.mynews .mynewsCon .conItemL .monitor{
-	font-size: 0.2rem;
-	color: #757575;
-	margin-top: 0.06rem;
-}
-.mynews .mynewsCon .conItemR{
-	width: 22%;
-	height: 1.18rem;
-	line-height: 1.18rem;
-	text-align: right;
-}
-.mynews .mynewsCon .conItemR .time{
-	font-size: 0.2rem;
-	color: #757575;
+	margin-top: 3.85rem;
 }
 
-.mynews .readFooter{
-	height: 0.94rem;
-	background-color: #fff;
-	border-top:1px solid rgba(229,229,229,1);
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	width: 100%;
+.mynews .mynewsCon .conItem,.interview .interviewCon .conItem,.storemsg .storemsgCon .conItem{
+    padding: 0.32rem 0.28rem 0 0.28rem;
+    background-color: #fff;
 }
-.mynews .readFooter .item{
-	width: 49.5%;
-	line-height: 0.94rem;
-	height: 0.94rem;
-	text-align: center;
-	font-size: 0.32rem;
-	color: #333;
+
+.mynews .mynewsCon .conItemL{
+    width: 56%;
 }
-.mynews .readFooter .marked_read{
-	border-right: 1px solid #e5e5e5;
+.interview .interviewCon .conItemL,.storemsg .storemsgCon .conItemL{
+	width: 85%;
+	margin-top: 0.03rem;
 }
-/*消息详情*/
-.myNewsdetail .tips{
-	background-color: #0094E8;
-	font-size: 0.3rem;
-	color: #fff;
-	margin-top: 1rem;
+
+.mynews .mynewsCon .news-logo,.interview .interviewCon .news-logo,.storemsg .storemsgCon .news-logo {
+    width: 15%;
+    position: relative;
+    float: left;
 }
-.myNewsdetail .det{
-	padding: 0.2rem;
-	background-color: #fff;
+
+.mynews .mynewsCon .news-logo .circle {
+    position: absolute;
+    right: 0.1rem;
+    top: -0.05rem;
+    width: 0.2rem;
+    height: 0.2rem;
+    background-color: #FF9F00;
+    border-radius: 50%;
 }
-.myNewsdetail .det .con{
-	background-color: #f2f2f2;
-	padding: 0.3rem 0.25rem;
-	border-radius: 0.1rem;
-	line-height: 0.43rem;
-	color: #333;
-	font-size: 0.26rem;
-	margin-top: 0.25rem;
+.mynews .mynewsCon .conItemL .info,.interview .interviewCon .conItemL .info,.storemsg .storemsgCon .conItemL .info{
+    font-size: 0.32rem;
+    color: #333;
+}
+
+.mynews .mynewsCon .conItemL .monitor,.interview .interviewCon .conItemL .monitor,.storemsg .storemsgCon .conItemL .monitor {
+    font-size: 0.24rem;
+    color: #7d7d7d;
+    margin-top: 0.06rem;
+}
+
+.mynews .mynewsCon .conItemL .active2 {
+    color: #333;
+}
+
+.mynews .mynewsCon .conItemR,{
+    width: 20%;
+    text-align: right;
+    margin-top: 0.1rem;
+}
+
+.mynews .mynewsCon .conItemR .time,.interview .interviewCon .conItemL .time,.storemsg .storemsgCon .conItemL .time {
+    font-size: 0.24rem;
+    color: #7d7d7d;
+}
+
+.mynews .footer .read,
+.mynews .footer .del {
+    width: 1.6rem;
+    height: 0.6rem;
+    border-radius: 0.3rem;
+    font-size: 0.24rem;
+    color: #fff;
+    text-align: center;
+    line-height: 0.6rem;
+}
+
+.mynews .footer .read {
+    background-color: #00B7EE;
+    margin-right: 0.3rem;
+}
+
+.mynews .footer .del {
+    background-color: #FF9F00;
+    margin-right: 0.5rem;
+}
+
+
+/*消息详情,店铺留言详情,约谈详情*/
+
+.myNewsdetail .tips,.storemsgDet .tips,.interviewDet .tips{
+    margin-top: 1rem;
+    padding: 0.3rem 0.25rem;
+}
+
+.myNewsdetail .det,.storemsgDet .det,.interviewDet .det {
+    background: #fff;
+    border-radius: 0.1rem;
+    padding: 0.3rem;
+}
+
+.myNewsdetail .det .time,.storemsgDet .det .time,.interviewDet .det .time {
+    font-size: 0.24rem;
+    color: #7d7d7d;
+}
+
+.myNewsdetail .det .tit,.storemsgDet .det .tit,.interviewDet .det .tit {
+    font-size: 0.4rem;
+    color: #333;
+    margin-top: 0.1rem;
+	word-break: break-all;
+}
+
+.myNewsdetail .det .con,.storemsgDet .det .con,.interviewDet .det .con {
+    line-height: 0.43rem;
+    color: #333;
+    font-size: 0.26rem;
+    margin-top: 0.25rem;
     word-break: break-all;
+    padding: 0.28rem 0;
+    border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
 }
+
+
 /*个人中心消息、详情end ----------*/
 
 
 /*个人钱包、企业钱包 ----------*/
+
+
 /*top*/
-.perPurse .perPurse_top,.entPurse .entPurse_top{
-	height: 3.1rem;
-	padding: 0.25rem 0.15rem;
-	margin-bottom: 0.15rem;
-}
-.perPurse .perPurse_top{
-	background: url(../../../static/img/user2.0/personal/purseBG.png)no-repeat;
-	background-size: 100% 100%;
-}
-.entPurse .entPurse_top{
-	background: url(../../../static/img/user2.0/enterprise/purseBG.png)no-repeat;
-	background-size: 100% 100%;
+
+.perPurse .perPurse_top,
+.entPurse .entPurse_top {
+    height: 3.1rem;
+    padding: 0.25rem 0.15rem;
+    margin-bottom: 0.15rem;
 }
 
-.perPurse_top .icon-jiantou-copy{
-	font-size: 0.36rem;
-	color: #fff;
-}
-.entPurse_top .icon-jiantou-copy{
-	font-size: 0.36rem;
-	color: #F0C867;
+.perPurse .perPurse_top {
+    background: url(../../../static/img/user2.0/personal/purseBG.png)no-repeat;
+    background-size: 100% 100%;
 }
 
-.perPurse_top .money,.entPurse_top .money{
-	width: 100%;
-	margin-top: 0.35rem;
-	text-align: center;
-}
-.perPurse_top .money{
-	color: #fff;
-}
-.entPurse_top .money{
-	color: #F0C867;
+.entPurse .entPurse_top {
+    background: url(../../../static/img/user2.0/enterprise/purseBG.png)no-repeat;
+    background-size: 100% 100%;
 }
 
-.perPurse_top .money .available{
-	font-size: 0.22rem;
-	color: #E9F7FF;
-}
-.entPurse_top .money .available{
-	font-size: 0.22rem;
-	color: #D4B25F;
+.perPurse_top .icon-jiantou-copy {
+    font-size: 0.36rem;
+    color: #fff;
 }
 
-.perPurse_top .money .m,.entPurse_top .money .m{
-	display: inline;
-	font-size: 0.72rem;
-}
-.perPurse_top .money .m{
-	color: #FFF;
-}
-.entPurse_top .money .m{
-	color: #F0C867;
+.entPurse_top .icon-jiantou-copy {
+    font-size: 0.36rem;
+    color: #F0C867;
 }
 
-.perPurse_top .money .total,.entPurse_top .money .total{
-	font-size: 0.28rem;
-	margin-top: 0.2rem;
+.perPurse_top .money,
+.entPurse_top .money {
+    width: 100%;
+    margin-top: 0.35rem;
+    text-align: center;
 }
-.perPurse_top .money .total{
-	color: #fff;
+
+.perPurse_top .money {
+    color: #fff;
 }
-.entPurse_top .money .total{
-	color: #F0C867;
+
+.entPurse_top .money {
+    color: #F0C867;
 }
+
+.perPurse_top .money .available {
+    font-size: 0.22rem;
+    color: #E9F7FF;
+}
+
+.entPurse_top .money .available {
+    font-size: 0.22rem;
+    color: #D4B25F;
+}
+
+.perPurse_top .money .m,
+.entPurse_top .money .m {
+    display: inline;
+    font-size: 0.72rem;
+}
+
+.perPurse_top .money .m {
+    color: #FFF;
+}
+
+.entPurse_top .money .m {
+    color: #F0C867;
+}
+
+.perPurse_top .money .total,
+.entPurse_top .money .total {
+    font-size: 0.28rem;
+    margin-top: 0.2rem;
+}
+
+.perPurse_top .money .total {
+    color: #fff;
+}
+
+.entPurse_top .money .total {
+    color: #F0C867;
+}
+
 
 /*content*/
-.perPurse .purseCon,.entPurse .purseCon{
+
+.perPurse .purseCon,
+.entPurse .purseCon {
     /*margin-bottom: 0.94rem;*/
 }
 
-.perPurse .purseCon li,.entPurse .purseCon li{
-	border-bottom: 1px solid #d2d2d2;
-	padding: 0.3rem 0.35rem 0.3rem 0.2rem;
-	background-color: #fff;
+.perPurse .purseCon li,
+.entPurse .purseCon li {
+    border-bottom: 1px solid #d2d2d2;
+    padding: 0.3rem 0.35rem 0.3rem 0.2rem;
+    background-color: #fff;
 }
-.perPurse .purseCon li .use,.entPurse .purseCon li .use{
-	color: #333;
-	font-size: 0.26rem;
-	margin-bottom: 0.1rem;
+
+.perPurse .purseCon li .use,
+.entPurse .purseCon li .use {
+    color: #333;
+    font-size: 0.26rem;
+    margin-bottom: 0.1rem;
 }
-.perPurse .purseCon li .time,.entPurse .purseCon li .time{
-	color: #757575;
-	font-size: 0.22rem;
+
+.perPurse .purseCon li .time,
+.entPurse .purseCon li .time {
+    color: #757575;
+    font-size: 0.22rem;
 }
+
+
 /*提现、充值*/
-.perPurse .operation,.entPurse .operation{
-	width: 100%;
-	height: 0.94rem;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	border-top: 1px solid #E5E5E5;
-	background: #fff;
+
+.perPurse .operation,
+.entPurse .operation {
+    width: 100%;
+    height: 0.94rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #E5E5E5;
+    background: #fff;
 }
 
-.perPurse .operation div,.entPurse .operation div{
-	width: 50%;
-	text-align: center;
-	float: left;
-	line-height: 0.94rem;
-	font-size: 0.32rem;
-}
-.perPurse .operation div{
-	color: #0094E8;
-}
-.entPurse .operation div{
-	color: #D29500;
+.perPurse .operation div,
+.entPurse .operation div {
+    width: 50%;
+    text-align: center;
+    float: left;
+    line-height: 0.94rem;
+    font-size: 0.32rem;
 }
 
-.perPurse .operation .recharge{
-	background-color: #0094E8;
-	color: #fff;
+.perPurse .operation div {
+    color: #0094E8;
 }
-.entPurse .operation .recharge{
-	background-color: #D29500;
-	color: #fff;
+
+.entPurse .operation div {
+    color: #D29500;
 }
+
+.perPurse .operation .recharge {
+    background-color: #0094E8;
+    color: #fff;
+}
+
+.entPurse .operation .recharge {
+    background-color: #D29500;
+    color: #fff;
+}
+
+
 /*个人钱包、企业钱包end ----------*/
 
 
 /*个人中心常见问题 ----------*/
-.problem .problemCon{
-	width: 100%;
-	height: 100%;
-	background-color: #fff;
-	margin-top: 1rem;
+
+.problem .problemCon {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    margin-top: 1rem;
 }
-.problem .problemCon li{
-	border-bottom: 1px solid #E5E5E5;
-	padding: 0.36rem 0.2rem;
+
+.problem .problemCon li {
+    border-bottom: 1px solid #E5E5E5;
+    padding: 0.36rem 0.2rem;
 }
-.problem .problemCon li .text{
-	color: #333;
-	font-size: 0.26rem;
+
+.problem .problemCon li .text {
+    color: #333;
+    font-size: 0.26rem;
 }
-.problem .problemCon .icon-jiantou5{
-	float: right;
-	color: #757575;
-	font-size: 0.32rem;
+
+.problem .problemCon .icon-jiantou5 {
+    float: right;
+    color: #757575;
+    font-size: 0.32rem;
 }
+
+
 /*个人中心常见问题end ----------*/
 
 
 /*个人中心意见反馈 ----------*/
-.proposal .info{
-	margin-top: 1rem;
-	border-top: 0.15rem solid rgb(238,238,238);
-	padding: 0.7rem 0.78rem;
-	background: #fff;
-}
-.proposal .info .tit{
-	font-size: 0.28rem;
-	color: #333;
-	line-height: 0.5rem;
-	margin-bottom: 0.1rem;
-}
-.proposal .info .form input,.proposal .info .form textarea{
-	border-radius: 0.05rem;
-	border: 1px solid #aaa;
-	width: 5.54rem;
-	font-size: 0.26rem;
-	color: #aaa;
-	margin-bottom: 0.2rem;
-}
-.proposal .info .form input{
-	padding: 0 0.2rem;
-	height: 0.75rem;
-}
-.proposal .info .form textarea{
-	padding: 0.2rem;
-}
-.proposal .info .form button{
-	width: 100%;
-	background: #0094E8;
-	height: 0.74rem;
-	border-radius: 0.05rem;
-	border: none;
-	color: #fff;
-	font-size: 0.3rem;
+
+.proposal .info {
+    margin-top: 1rem;
+    border-top: 0.15rem solid rgb(238, 238, 238);
+    padding: 0.7rem 0.78rem;
+    background: #fff;
 }
 
+.proposal .info .tit {
+    font-size: 0.28rem;
+    color: #333;
+    line-height: 0.5rem;
+    margin-bottom: 0.1rem;
+}
+
+.proposal .info .form input,
+.proposal .info .form textarea {
+    border-radius: 0.05rem;
+    border: 1px solid #aaa;
+    width: 5.54rem;
+    font-size: 0.26rem;
+    color: #aaa;
+    margin-bottom: 0.2rem;
+}
+
+.proposal .info .form input {
+    padding: 0 0.2rem;
+    height: 0.75rem;
+}
+
+.proposal .info .form textarea {
+    padding: 0.2rem;
+}
+
+.proposal .info .form button {
+    width: 100%;
+    background: #0094E8;
+    height: 0.74rem;
+    border-radius: 0.05rem;
+    border: none;
+    color: #fff;
+    font-size: 0.3rem;
+}
+
+
 /*意见反馈详情*/
-.vux-header-title-area, .vux-header .vux-header-title{
-	margin: 0!important;
+
+.vux-header-title-area,
+.vux-header .vux-header-title {
+    margin: 0!important;
 }
-.problemDetail{
-	background: #fff;
+
+.problemDetail {
+    background: #fff;
 }
-.problemDetail .tit{
-	font-size: 0.28rem;
-	margin-top: 1rem;
-	font-weight: bold;
-	color: #333;
-	padding: 0.36rem 0.3rem;
-	border-bottom: 1px solid #E5E5E5;
+
+.problemDetail .tit {
+    font-size: 0.28rem;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #333;
+    padding: 0.36rem 0.3rem;
+    border-bottom: 1px solid #E5E5E5;
 }
-.problemDetail .con{
-	font-size: 0.26rem;
-	color: #4A4A4A;
-	padding: 0.25rem 0.3rem;
-	line-height: 0.45rem;
+
+.problemDetail .con {
+    font-size: 0.26rem;
+    color: #4A4A4A;
+    padding: 0.25rem 0.3rem;
+    line-height: 0.45rem;
 }
+
+
 /*个人中心意见反馈end ----------*/
 
 
 /*统一头部vux-header  ------------*/
-.vux-header{
-	background-color: #0094E8!important;
+
+.vux-header {
+    background-color: #0094E8!important;
 }
-.vux-header .vux-header-title{
-	font-size: 16px!important;
+
+.vux-header .vux-header-title {
+    font-size: 16px!important;
 }
-.vux-header .vux-header-left .left-arrow:before{
-	border: 1px solid #fff!important;
-	border-width: 1px 0 0 1px!important;
+
+.vux-header .vux-header-left .left-arrow:before {
+    border: 1px solid #fff!important;
+    border-width: 1px 0 0 1px!important;
 }
+
+
 /*end  ------------*/

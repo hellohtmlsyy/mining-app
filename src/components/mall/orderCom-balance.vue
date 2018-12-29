@@ -89,7 +89,6 @@
 			<div class="fr">
 				<div class="priceBox fl">
 					<span class="total">合计：</span>
-					<!--{{item.res[index].price * item.res[index].quantity | converAmount(2)}}-->
 					<span class="totalPrice">{{totalPrice | converAmount(2)}}</span>
 				</div>
 				<div class="submitBtn fl" @click="balance">结算</div>
@@ -143,19 +142,18 @@
 						title: '恭喜',
 						content: '支付成功',
 						onShow() {
-							
+
 						},
 						onHide() {
 							lastPage()
 						}
-					})  
+					})
 				}else{
 					window.location.href = this.$root.urlPath.MCM + '/user/pergoodslist?newpage=newpage'
 				}
 			},
-		
-			goWriteAddress() {
 
+			goWriteAddress() {
 				window.location.href = this.$root.urlPath.MCM + "/mall/order_addressList?newpage=newpage&id=" + this.$route.query.id;
 			},
 			getAddress() {
@@ -198,6 +196,11 @@
 					});
 			},
 			balance() {
+				if(this.curAddress == null){
+					this.showAddress = true
+					return
+				}
+
 				if(isDevice() !== '微信浏览器' && isDevice() !== 'ios' && isDevice() !== 'adr') {
 					this.$vux.alert.show({
 						title: '提示',
@@ -290,7 +293,6 @@
 												mallName = this.balanceInfo[0].res[0].title + '等商品'
 											}
 											if(isDevice() == 'adr') {
-//												var price = this.totalPrice * 100
 												var params = {'userId':data.user_id,'orderNo':data.serialno,'amount':this.totalPrice *100}
 												params = JSON.stringify(params)
 												adwebkit.callApp("FYPAY", params);
@@ -364,7 +366,7 @@
 		},
 		watch: {}
 	}
-	
+
 </script>
 
 <style>
@@ -374,36 +376,36 @@
 	.orderConfirm .writeAddress {
 		font-size: 0.28rem;
 	}
-	
+
 	.orderConfirm .addressBox {
 		padding: 0.34rem 0.2rem;
 		line-height: 0.88rem
 	}
-	
+
 	.orderConfirm .dituicoBox {
 		margin-right: 0.28rem;
 	}
-	
+
 	.orderConfirm .dituicoBox .icon-dizhi {
 		font-size: 0.36rem;
 		color: rgb(117, 117, 117)
 	}
-	
+
 	.orderConfirm .addressBox .namePhoneBox {
 		font-size: 0.28rem;
 		line-height: 0.6rem;
 	}
-	
+
 	.orderConfirm .addressBox .namePhoneBox span {
 		margin-right: 0.2rem;
 	}
-	
+
 	.orderConfirm .addressBox .address {
 		font-size: 0.24rem;
 		color: #323232;
 		line-height: 0.4rem;
 	}
-	
+
 	.orderConfirm .addressBox .icon-jiantou {
 		font-size: 0.36rem;
 		color: #323232;
@@ -412,104 +414,104 @@
 		width: 6rem;
 	}
 	/*商品信息*/
-	
+
 	.orderConfirm .mallInfo {
 		margin: 0.15rem 0;
 	}
-	
+
 	.orderConfirm .mallInfo .compony {
 		font-size: 0.28rem;
 		line-height: 0.7rem;
 		padding: 0.2rem;
 	}
-	
+
 	.orderConfirm .mallInfo .mall {
 		padding: 0 0.2rem;
 		background: #F5F5F5;
 	}
-	
+
 	.orderConfirm .mallInfo .mall .imgTitleBox {
 		padding: 0.2rem 0;
 	}
-	
+
 	.orderConfirm .mallInfo .mall img {
 		width: 1.45rem;
 		height: 1.45rem;
 		margin-right: 0.25rem;
 	}
-	
+
 	.orderConfirm .mallInfo .mall .mallName {
 		width: 5.4rem;
 	}
-	
+
 	.orderConfirm .mallInfo .mall .mallName {
 		font-size: 0.26rem;
 	}
-	
+
 	.orderConfirm .mallInfo .mall .priceType {
 		margin-top: 0.2rem;
 	}
-	
+
 	.orderConfirm .mallInfo .mall span {
 		font-size: 0.24rem;
 		color: #979797;
 	}
-	
+
 	.orderConfirm .mallInfo .mall .priceBox2 {
 		padding-bottom: 0.2rem;
 	}
-	
+
 	.orderConfirm .mallInfo .mall .spanVal {
 		color: #313131;
 	}
-	
+
 	.orderConfirm .mallInfo .mall .price {
 		font-size: 0.3rem;
 		color: red;
 	}
-	
+
 	.orderConfirm .mallInfo .cellM {
 		line-height: 0.8rem;
 		font-size: 0.28rem;
 	}
-	
+
 	.orderConfirm .weui-cell {
 		height: 0.6rem;
 		font-size: 0.28rem;
 	}
-	
+
 	.orderConfirm .weui-cell .vux-cell-bd .vux-label span {
 		margin-top: 0.17rem;
 	}
-	
+
 	.orderConfirm .weui-cell_access .weui-cell__ft:after {
 		width: 0.15rem;
 		height: 0.15rem;
 	}
-	
+
 	.orderConfirm .weui-cell .weui-cell__ft {
 		padding-right: 0.3rem;
 	}
-	
+
 	.orderConfirm .allDiscount {
 		height: 2.2rem;
 	}
-	
+
 	.orderConfirm .bottomM {
 		height: 0.8rem;
 		line-height: 0.8rem;
 	}
-	
+
 	.orderConfirm .bottomM .total {
 		font-size: 0.28rem;
 	}
-	
+
 	.orderConfirm .bottomM .totalPrice {
 		font-size: 0.3rem;
 		color: red;
 	}
 	.orderConfirm .bottomM .priceBox{
-		height: 0.8rem;	
+		height: 0.8rem;
 	}
 	.orderConfirm .bottomM .submitBtn {
 		font-size: 0.32rem;

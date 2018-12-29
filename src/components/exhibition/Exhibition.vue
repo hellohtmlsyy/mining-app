@@ -1,7 +1,8 @@
 <template>
 	<div class="exhibtion">
-		<Oheader :title="title"></Oheader>
-		<div class="exhibtion-nav channelBTab clearfix">
+    <Oheader :title="title"></Oheader>
+    <Carousel class="carousel" :imgUrl="imgUrl" v-show="!scrollD" @goDetails="goDetails" ></Carousel>
+		<div class="exhibtion-nav channelBTab clearfix" :class="{posiFixed:scrollD}">
 			<sticky  scroll-box="vux_view_box_body" :check-sticky-support="false" :offset="46">
 				<div ref="tabBoxOuter" class="fl" style="width: 6.39rem;overflow:scroll;-webkit-overflow-scrolling:touch;">
 					<tab ref="tabBox" style="background-color: #f2f4f5;font-size: 0.28rem" active-color="rgb(225, 158, 36)" :line-width="3" :style="{width: tabWidth + 'px'}">
@@ -26,7 +27,8 @@
 	import { getTime2} from '@/assets/commonjs/util.js';
 	import ExhibitionList from '@/components/common/Exhibition-list'
 	import Oheader from '@/components/common/header/Oheader'
-	import myScroll from '@/components/base/myScroll'
+  import myScroll from '@/components/base/myScroll'
+  import Carousel from '@/components/base/carousel'
 	import axios from 'axios'
 	const baseList = [{
 		img: '../../../static/img/banner1.jpg'
@@ -47,7 +49,8 @@
 			PopupRadio,
 			Flexbox,
 			FlexboxItem,
-			myScroll
+      myScroll,
+      Carousel
 		},
 		data() {
 			return {
@@ -64,13 +67,30 @@
 				pageNum: 1,
 				numPerPage: 10,
 				total:0,
-				isTab:false
+        isTab:false,
+        scrollTop:0,
+        scrollD:false,
+        imgUrl:'../../../static/img/data/meet.jpg'
 			}
 		},
 		mounted() {
+      window.addEventListener('scroll', this.handleScroll);
+
 			this.getMeetingList()
 		},
 		methods: {
+      handleScroll(){
+        this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+
+        if(this.scrollTop > 4) {
+					this.scrollD = true
+				} else {
+					this.scrollD = false
+				}
+      },
+      goDetails(){
+        window.location.href = this.$root.urlPath.MCM + '/exhibition/details?id=30f2073b3dfa493ab98defb115bd9067&newpage=newpage'
+      },
 			getMeetingList() {
 				axios.get(this.$root.urlPath.MC + '/wap/meeting.do?meetingList', {
 						params: {
@@ -83,16 +103,16 @@
 						if(res.data.success) {
 							this.isTab = false
 							this.$refs.scroll.loaded()
-							
+
 							var data = res.data.data.meetingList
 							this.meetingList = this.meetingList.concat(data)
 							this.total = res.data.data.totalCount
-					
+
 							if(this.total == this.meetingList.length && this.total !== 0){
 								this.$refs.scroll.complete()
 							}else{
 								this.pageNum++
-							}							
+							}
 						}
 					})
 					.catch(function(error) {
@@ -104,7 +124,7 @@
 				this.pageNum = 1
 				this.meetingList = []
 				this.curTab = value
-				
+
 				this.isTab = true
 				this.getMeetingList()
 			},
@@ -114,27 +134,29 @@
 
 <style>
 	/*tab*/
-	
+   .exhibtion .carousel{
+      margin-top: 0.5rem
+    }
 	::-webkit-scrollbar {
 		width: 0px;
 		display: none;
 		background-color: #fff;
 	}
-	
+
 	.exhibtion .oHeader .centerA {
 		width: 4rem
 	}
-	
+
 	.exhibtion {
 		background-color: rgb(238, 238, 238);
 	}
-	
+
 	.exhibtion .lefttext {
 		color: #fff;
 	}
-	
+
 	/*nav*/
-	.exhibtion .exhibtion-nav{
+	.exhibtion .exhibtion-nav.posiFixed{
 		position: fixed;
 		left: 0;
 		top: 1rem;
@@ -142,26 +164,26 @@
 	}
 	/*list*/
 	.exhibtion .meetingList{
-		margin-top: 1.94rem;
+		margin-top: 0.15rem;
 	}
-	
+
 	.exhibtion .options {
 		position: absolute;
 		right: 0;
 		top: 0
 	}
-	
+
 	.exhibtion .options .vux-no-group-title {
 		border-left: 1px solid #ccc;
 		box-shadow: -1px 0px 2px #333333;
 		margin-top: 0;
 		height: 44px;
 	}
-	
+
 	.exhibtion .weui-cell__ft .vux-cell-value {
 		display: none;
 	}
-	
+
 	.exhibtion .weui-cell_access .weui-cell__ft:after {
 		display: none !important
 	}

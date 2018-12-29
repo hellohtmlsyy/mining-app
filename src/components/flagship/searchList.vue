@@ -88,9 +88,36 @@
 					if(!cookie.get('MC_UID')) {
 						appLogin()
 						return
+					}else{
+						this.$axios.get(this.$root.urlPath.MCT + '/wap/company/comInfo')
+					.then(res => {
+						var data = res.data
+						if(data.status == 2){//已经认证了
+							window.location.href = this.$root.urlPath.MCM + "/leaveSpeak?&shopId=" + this.shopId + "newpage=newpage"
+						}else if(data.status == 0 || data.status == 3){//没认证
+							this.$vux.confirm.show({
+							  // 组件除show外的属性
+							  title:'提示',
+							  content:'您没有认证企业，需要先去认证企业',
+							  onCancel () {
+							    console.log(this) // 非当前 vm
+							  },
+							  onConfirm () {
+							  	window.location.href = 'http://trade.miningcircle.com/cert?newpage=newpage'
+							  }
+							})
+						}else if(data.status == 1){
+							this.$vux.toast.text('您的企业正在申请中<br/>客服：400-819-6985', 'center');
+						}else if(data.status == 4){
+							this.$vux.toast.text('您的企业已冻结<br/>客服：400-819-6985', 'center');
+						}else if(res.data.errCode == '001002140'){
+							window.location.href = this.$root.urlPath.MCMHALL + '/cert?newpage=newpage';
+						}
+					})
+					.catch(function(error) {
+						alert('账户异常' + error)
+					});
 					}
-					window.location.href = this.$root.urlPath.MCM + "/leaveSpeak?&shopId=" + this.shopId + "newpage=newpage"
-
 				} else if(index == 3) {
 					goHomeApp()
 				}

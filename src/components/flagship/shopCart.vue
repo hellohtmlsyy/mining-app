@@ -30,7 +30,7 @@
 <script>
 	import VueQr from 'vue-qr'
 	import {lastPage,getAppShare,isDevice} from '@/assets/commonjs/util.js'
-	
+
 	export default{
 		components:{
 			VueQr
@@ -46,7 +46,7 @@
 			}
 		},
 		mounted(){
-			
+
 		},
 		methods:{
 			back(){
@@ -56,8 +56,8 @@
 //				this.imgUrl = document.querySelector('#qrcode img').src
 //				alert(document.querySelector('#qrcode img').src)
 //				let url = document.querySelector('#qrcode img').src
-//				
-//				let a = document.createElement('a') 
+//
+//				let a = document.createElement('a')
 //				let  event = new MouseEvent('click')
 //				a.download = "矿业圈旗舰店铺二维码"
 //				a.href = url
@@ -110,7 +110,7 @@
 		background: #ff4f54;
 		flex: 1;
 		color: #fff;
-		
+
 	}
-	
+
 </style>

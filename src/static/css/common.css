@@ -23,7 +23,15 @@ td {
 	margin: 0;
 	padding: 0;
 }
-
+button{
+  margin: 0;
+padding: 0;
+border: 1px solid transparent;
+outline: none;
+}
+html{
+	scroll-behavior:smooth;
+}
 body {
 	font-size: 12px;
 	/*color: #666;*/
@@ -137,8 +145,8 @@ a:focus {
 
 .clamp{
 	display: -webkit-box;
-	/*! autoprefixer: off */  
-    -webkit-box-orient: vertical;  
+	/*! autoprefixer: off */
+    -webkit-box-orient: vertical;
      /* autoprefixer: on */
 	overflow: hidden;
 	-webkit-line-clamp: 1;
@@ -146,8 +154,8 @@ a:focus {
 
 .clamp2{
 	display: -webkit-box;
-	/*! autoprefixer: off */  
-    -webkit-box-orient: vertical;  
+	/*! autoprefixer: off */
+    -webkit-box-orient: vertical;
      /* autoprefixer: on */
 	overflow: hidden;
 	-webkit-line-clamp: 2;
@@ -155,8 +163,8 @@ a:focus {
 
 .clamp3{
 	display: -webkit-box;
-	/*! autoprefixer: off */  
-    -webkit-box-orient: vertical;  
+	/*! autoprefixer: off */
+    -webkit-box-orient: vertical;
      /* autoprefixer: on */
 	overflow: hidden;
 	-webkit-line-clamp: 3;
@@ -420,7 +428,7 @@ table {
 
 
 /*.channelTab .bottomA{
-		
+
 	    font-size: 0.2rem;
 	    line-height: 0.35rem;
 
@@ -678,6 +686,7 @@ table {
 /*头部*/
 
 .oHeader {
+	line-height: 0.6rem;
 	padding: 0.2rem;
 	font-size: 0.36rem;
 	background-color: #0094E8;
@@ -812,7 +821,7 @@ table {
 	/* color: #FF4E56; */
 	margin-top: 0.1rem;
 	background-color: #FF4E56;
-	
+
 }
 
 .comlist .icon-icon7 {
@@ -831,13 +840,13 @@ table {
 	.addBtn {
 		background: #fff;
 	}
-	
+
 	.comlist table {
 		font-size: 0.28rem;
 		margin: 1rem 0;
 	}
 	.comlist table .checkbox{
-		
+
 	    margin-left: 0.2rem;
 	    width: 0.36rem;
 	    height: 0.36rem;
@@ -850,18 +859,18 @@ table {
 		height: 1rem;
 		border-bottom:0.01rem solid #E4E4E4;
 	}
-	
+
 	.comlist .icon-icon7 {
 		font-size: 0.36rem;
 		color: #A2A2A2;
     	margin-right: 0.2rem;
 	}
-	
+
 	.comlist .vux-check-icon>.weui-icon-success:before,
 	.vux-check-icon>.weui-icon-success-circle:before {
 		color: #FB5250;
 	}
-	
+
 	/*.comlist .endSave {
 		position: fixed;
 		bottom: 0;
@@ -877,7 +886,7 @@ table {
 		line-height: 1rem;
 		width: 100%;
 	}*/
-	
+
 	.comlist .exForm .weui-toast__content {
 		text-align: center;
 	}
@@ -993,7 +1002,7 @@ table {
 
 .contentItem .image {
 	line-height: 1.35rem;
-	
+
 }
 
 .contentItem img {
@@ -1086,7 +1095,7 @@ input:checked{
 		bottom: 0;
 		width: 100%;
 }
-	
+
 .endSave .btn {
 		background-color: #FF5155;
 		color: #fff;
@@ -1148,13 +1157,13 @@ input:checked{
 	.channelTab .bottomA {
 		margin-top: 0.2rem;
 	}
-	
+
 	.channelTab .bottomA label {
 		font-size: 0.24rem;
 		color: rgb(117, 117, 117);
 		line-height: 0.45rem;
 	}
-	
+
 	.malldetails .bottomA .spanText {
 		font-size: 0.24rem;
 		color: rgb(51, 51, 51);
@@ -1164,12 +1173,12 @@ input:checked{
 .malldetails .carousel {
 		position: relative;
 	}
-	
+
 	.malldetails .carousel img {
 		width: 100%;
 		height: 6rem;
 	}
-	
+
 	.malldetails .swiper-pagination {
 		text-align: center;
 		margin-right: 0.2rem;
@@ -1182,13 +1191,13 @@ input:checked{
 		left: 6.5rem;
 		font-size: 0.2rem;
 	}
-	
+
 	.swiper-container-horizontal>.swiper-pagination-bullets,
 	.swiper-pagination-custom,
 	.swiper-pagination-fraction {
 		bottom: 0.2rem !important
 	}
-	
+
 	.malldetails .revert,
 	.malldetails .info {
 		width: 0.6rem;
@@ -1202,32 +1211,32 @@ input:checked{
 		top: 0.2rem;
 		z-index: 999
 	}
-	
+
 	.revert {
 		left: 0.2rem;
 	}
-	
+
 	.info {
 		right: 0.2rem;
 	}
-	
+
 	.revert .icon-jiantou-copy,
 	.icon-tubiao212 {
 		font-size: 0.3rem;
 	}
-	
+
 	.malldetails .common {
 		padding: 0.2rem;
 	}
-	
+
 	.malldetails .details .title {
 		margin-bottom: 0.12rem;
 	}
-	
+
 	.malldetails .details .contentrow {
 		margin-bottom: 0.4rem;
 	}
-	
+
 	.malldetails .details .priceType {
 		background-color: rgb(255, 79, 84);
 		color: #fff;
@@ -1236,51 +1245,51 @@ input:checked{
 		padding: 0 0.05rem;
 		margin-right: 0.3rem;
 	}
-	
+
 	.malldetails .details .namee {
 		font-size: 0.28rem;
 	}
-	
+
 	.malldetails .details .content p {
 		font-size: 0.24rem;
 		line-height: 0.35rem;
 	}
-	
+
 	.malldetails .details .priceBox {
 		line-height: 0.6rem;
 	}
-	
+
 	.malldetails .details .priceBox .money {
 		font-size: 0.45rem;
 		color: rgb(254, 81, 65);
 		font-weight: bold;
 	}
-	
+
 	.malldetails .details .priceBox label,
 	s {
 		color: rgb(161, 161, 161);
 		font-size: 0.24rem;
 		margin-left: 0.1rem;
 	}
-	
+
 	.malldetails .details .yangjiao {
 		color: rgb(254, 81, 65);
 		font-size: 0.24rem;
 	}
-	
+
 	.malldetails .vux-no-group-title {
 		margin: 0;
 		font-size: 0.22rem
 	}
-	
+
 	.malldetails .weui-cell_access {
 		height: 0.6rem
 	}
-	
+
 	.malldetails .vux-cell-primary p {
 		padding-top: 0.2rem
 	}
-	
+
 	.malldetails .malldetails_nav {
 		margin: 0.15rem 0
 	}
@@ -1288,65 +1297,65 @@ input:checked{
 		margin-bottom: 1rem;
 	}
 
-	
+
 .optionCount .mallInfo {
 		padding: 0.2rem;
 	}
-	
+
 	.optionCount .mallInfo img {
 		width: 1.2rem;
 		height: 1.2rem;
 		margin-right: 0.2rem;
 	}
-	
+
 	.optionCount .mallInfo .name {
 		font-size: 0.26rem;
 		margin-bottom: 0.2rem;
 		width: 4.88rem;
-		
+
 	}
-	
+
 	.optionCount .price {
 		font-size: 0.24rem;
 		color: red;
 		margin-right: 0.1rem;
 	}
-	
+
 	.optionCount .label {
 		font-size: 0.24rem;
 		color: rgb(117, 117, 117)
 	}
-	
+
 	.optionCount .mallInfo .close {
 		font-size: 0.24rem;
 		line-height: 1.2rem;
 	}
-	
+
 	.optionCount .mallInfo .close .icon-cuohao {
 		font-size: 0.28rem;
 		color: rgb(170, 170, 170);
 	}
-	
+
 	.optionCount .vux-inline-x-number {
 		float: right;
 	}
-	
+
 	.optionCount .stock {
 		font-size: 0.2rem;
 		color: #7B7B7B;
 		margin-top: 0.1rem;
 	}
-	
+
 	.optionCount .countInfo {
 		padding: 0.2rem 0.2rem 0.1rem;
 		border: 1px solid #E5E5E5;
 	}
-	
+
 	.optionCount .allPrice {
 		text-align: right;
 		line-height: 0.65rem;
 	}
-	
+
 	.optionCount .btn {
 		background-color: #FF5155;
 		color: #fff;
@@ -1368,7 +1377,7 @@ input:checked{
 		transform: translate3d(0, -79%, 0);
 		background: #fff;
 	}
-	
+
 	.dialogMack {
 		position: fixed;
 		left: 0;
@@ -1380,38 +1389,38 @@ input:checked{
 		backdrop-filter: blur(2px);
 		z-index: 30;
 	}
-	
+
 	.mack-enter-active,
 	.mack-leave-active {
 		transition: all .3s;
 		opacity: .8;
 	}
-	
+
 	.mack-enter,
 	.mack-leave-to
 	/* .fade-leave-active below version 2.1.8 */
-	
+
 	{
 		opacity: 0;
 	}
-	
+
 	.fold-enter-active,
 	.fold-leave-active {
 		transition: all .5s;
 		transform: translate3d(0, -79%, 0)
 	}
-	
+
 	.fold-enter,
 	.fold-leave-to
 	/* .fade-leave-active below version 2.1.8 */
-	
+
 	{
 		transform: translate3d(0, 0, 0)
 	}
 	.malldetails .vux-x-dialog .weui-dialog {
 		max-width: 6rem;
 	}
-	
+
 /*搜索头部*/
 .searchHeader {
 		padding: 0 0.2rem;
@@ -1431,7 +1440,7 @@ input:checked{
 		line-height: 0.58rem;
 		/*background-color: #ccc;*/
 	}
-	
+
 	.searchHeader .searchBox .searchIco {
 		font-size: 0.3rem;
 		padding-left: 0.28rem;
@@ -1456,8 +1465,8 @@ input:checked{
 	}
 	.searchHeader .moreBox  .icon-morevert{
 		font-size: 0.5rem;
-	}	
-	
+	}
+
 /*公共的卡片样式*/
 .card{
 	background: #fff;
@@ -1466,7 +1475,7 @@ input:checked{
 }
 .card .cellM{
 	line-height: 0.5rem;
-	
+
 }
 .card .title{
 	font-size: 0.28rem;
@@ -1477,4 +1486,3 @@ input:checked{
 	font-size: 0.24rem;
 	padding-bottom: 0.2rem;
 }
-		

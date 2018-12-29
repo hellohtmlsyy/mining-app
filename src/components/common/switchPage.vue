@@ -14,11 +14,10 @@
 		      <grid-item label="商城" href="http://m.miningcircle.com/mall?newpage=newpage">
 		        <img slot="icon" src="../../../static/img/ico15.png">
 		      </grid-item>
-		     
+
 		      <grid-item label="求购大厅" href="http://trade.miningcircle.com/purchase?newpage=newpage">
 		        	<img slot="icon" src="../../../static/img/ico14.png">
 		      </grid-item>
-		      <!--</a>-->
 		      <grid-item label="矿权交易" href="http://m.miningcircle.com/mineral?newpage=newpage">
 		        <img slot="icon" src="../../../static/img/ico13.png">
 		      </grid-item>
@@ -40,10 +39,10 @@
 
 <script>
 	import {getAppShare,isDevice,ShareTip,goHomeApp} from '@/assets/commonjs/util.js';
-	
+
 	export default {
 		components: {
-			
+
 		},
 		methods:{
 			back(){
@@ -59,7 +58,7 @@
 				window.location.href = 'http://trade.miningcircle.com/purchase'
 			},
 			toHome(){
-				
+
 				goHomeApp()
 			}
 		}
@@ -75,7 +74,7 @@
 		margin-top: 1rem;
 	}
 	.selectPage .list img{
-		width: 0.6rem;
-		height: 0.6rem;
+		width: 30px;
+		height: 30px;
 	}
 </style>

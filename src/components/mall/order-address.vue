@@ -10,12 +10,10 @@
 		</div>
 		<div class="form">
 			<group>
-				<!--<div class="xinghao fl">*</div>-->
 				<x-input title="姓名" placeholder="请填写" placeholder-align="right" required v-model="form.name" :is-type="nameVail" ref="myname" @on-change="change">
 				</x-input>
 			</group>
 			<group>
-				<!--<div class="xinghao fl">*</div>-->
 				<x-input title="手机" placeholder="请填写" placeholder-align="right" required v-model="form.tel" is-type="china-mobile" ref="tel" @on-change="change">
 				</x-input>
 			</group>
@@ -26,9 +24,6 @@
 			<group class="address">
 				<x-address title="地区" v-model="addressValue" raw-value :list="addressData" @on-shadow-change="addressChange"></x-address>
 			</group>
-			<!--<group>-->
-			<!-- <x-textarea placeholder="请填写详细地址" @on-focus="onEvent('focus')" @on-blur="onEvent('blur')" :max="20" v-model="form.addr"></x-textarea>-->
-			<!--</group>-->
 			<textarea v-model="form.addr" class="textarea" placeholder="请填写详细地址" @blur.prevent="checkUp()"></textarea>
 		</div>
 		<div class="endSave">
@@ -43,7 +38,7 @@
 <script>
 	import axios from 'axios'
 	import { ChinaAddressData, XAddress, XTextarea } from 'vux'
-	import { isDevice } from '@/assets/commonjs/util.js'
+	import { isDevice,lastPage} from '@/assets/commonjs/util.js'
 
 	export default {
 		components: {
@@ -86,7 +81,7 @@
 		},
 		methods: {
 			change(){
-				if(!this.$refs.myname.valid || !this.$refs.tel.valid 
+				if(!this.$refs.myname.valid || !this.$refs.tel.valid
 				|| !this.$refs.email.valid){
 					this.isError = true
 				}else{
@@ -118,13 +113,7 @@
 				this.form.county = names[2]
 			},
 			back() {
-				if(isDevice() == 'adr') {
-					adwebkit.callApp("BACK", '');
-				} else if(isDevice() == 'ios') {
-					oswebkit.callApp("BACK", '');
-				} else {
-					this.$router.go(-1)
-				}
+        lastPage()
 			},
 			save() {
 //				除了详细地址之外其他的不能为空,提示输入有误
@@ -145,7 +134,7 @@
 					this.toastText = '详细地址不能超过50个字'
 					return
 				}
-				
+
 
 				var params = this.form
 				axios.get(this.$root.urlPath.MC + '/wap/trade.do?operateAddress', {
@@ -154,7 +143,7 @@
 					.then(res => {
 
 						if(res.data.success) {
-							window.location.href = this.$root.urlPath.MCM + "/mall/orderCom_balance?newpage=newpage&id=" + this.$route.query.id;
+              lastPage()
 						} else {
 							console.log(res.data.errMsg)
 						}
@@ -181,7 +170,7 @@
 	.orderAddress .form {
 		margin: 1rem 0;
 	}
-	
+
 	.orderAddress .textarea {
 		width: 100%;
 		height: 2rem;

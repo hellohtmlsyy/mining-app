@@ -57,17 +57,6 @@
 								</div>
 							</flexbox-item>
 						</flexbox>
-
-						<!--<flexbox class="bottom comsmalltitlefontsize20 color_h">
-						<flexbox-item>
-							<div class="price flex-demo look" v-show="item.price">
-								{{item.price | converAmount(2)}}
-							</div>
-							<div class="price flex-demo look" v-show="item.price == undefined">
-								免费
-							</div>
-						</flexbox-item>
-					</flexbox>-->
 					</div>
 				</div>
 			</div>
@@ -88,7 +77,7 @@
 			}
 		},
 		mounted() {
-			
+
 		},
 		methods: {
 			toDetails(id) {

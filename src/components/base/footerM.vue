@@ -25,7 +25,8 @@
 
 <script>
 	import {appLogin,isDevice} from '@/assets/commonjs/util.js';
-	
+  import {cookie} from 'vux'
+
 	export default{
 		data(){
 			return {
@@ -38,7 +39,7 @@
 			if(this.curFath){
 				this.cur = this.curFath
 			}
-			
+
 			if(isDevice() == 'adr' || isDevice() == 'ios'){
 				this.isApp = true
 			}
@@ -55,14 +56,14 @@
 			goAdd(idx){
 				this.cur = idx
 				if(cookie.get('MC_UID')) {
-					window.location.href = this.$root.urlPath.MCM + "/sell?newpage=newpage";
+					window.location.href = this.$root.urlPath.MCMHALL + "/sell?newpage=newpage";
 				} else {
 					appLogin()
 				}
 			},
 			goNews(idx){
 				this.cur = idx
-				this.$router.push({path:'follow'})
+				this.$router.push({path:'users/news'})
 			},
 			goMe(idx){
 				this.cur = idx
@@ -95,7 +96,7 @@
     	width: 0.45rem;
     	height: 0.45rem;
 	}
-	   
+
 	.footerM .icoMH{
 		background:url('../../../static/img/btn/btn-home.png');
 		background-size:0.45rem;

@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/home/Home'
+// import Home from '@/components/home/Home'
+const Home = () => import('@/components/home/Home')
 import Search from '@/components/Search/Search'
 import SearchList from '@/components/Search/SearchList'
-import News from '@/components/news/News'
+// import News from '@/components/news/News'
+const News = () => import('@/components/news/News')
 import NewsDetails from '@/components/news/Details'
 import Mineral from '@/components/mineral/Mineral'
 import ProjectDetails from '@/components/mineral/ProjectDetails'
@@ -19,7 +21,8 @@ import exform from '@/components/exhibition/ex-form'
 import exList from '@/components/exhibition/ex-list'
 import ExhibitionDetails from '@/components/exhibition/details'
 import Malldetails from '@/components/mall/Malldetails'
-import Mall from '@/components/mall/Mall'
+// import Mall from '@/components/mall/Mall'
+const Mall = () => import(/* webpackChunkName: "mall" */ '@/components/mall/Mall')
 import mallComDetails from '@/components/mall/mallComDetails'
 import pay from '@/components/mall/pay'
 import order_confirm from '@/components/mall/order-confirm'
@@ -48,37 +51,48 @@ import databaseDetails from '@/components/database/details'
 
 //分类
 import classify from '@/components/classify/classify'
+import vip from '@/components/vip/vip'
+
+import activity from '@/components/activity/activity-20190106'
 
 //好礼
 //import courtesy from '@/components/courtesy/courtesy'
 
+
 //com
 import switchPage from '@/components/common/switchPage';
-import pergoodslist from '@/components/user/pergoodslist';
-//user
-//import userCenter from '@/components/user/userCenter';
-//import entCenter from '@/components/user/entCenter';
-import ordlistdetail from '@/components/user/ordlistdetail';
-import purOrdlist from '@/components/user/purOrdlist';
-import supOrdlist from '@/components/user/supOrdlist';
-import purcommOrdlist from '@/components/user/purcommOrdlist';
-import supcommOrdlist from '@/components/user/supcommOrdlist';
 
-//user2.0
-import usersCenter from '@/components/users/userCenter';
-import usersEntcenter from '@/components/users/entCenter';
-import problem from '@/components/users/problem/problem';
-import problemDetail from '@/components/users/problem/problemDetail';
-import perPurse from '@/components/users/wallet/perPurse';
-import entPurse from '@/components/users/wallet/entPurse';
-import proposal from '@/components/users/proposal/proposal';
-import modifyInfo from '@/components/users/modifyInfo/modifyInfo';
-import follow from '@/components/users/follow/follow';
-import usersNews from '@/components/users/news/news';
-import usersNewsdetail from '@/components/users/news/newsdetail';
-import invest from '@/components/users/invest/invest';
-import investDet from '@/components/users/invest/details';
+//个人中心
+import usersCenter from '@/components/users/userCenter'; //首页
+import modifyInfo from '@/components/users/modifyInfo/modifyInfo'; //修改信息
+import pergoodslist from '@/components/user/pergoodslist'; //我的采购
+import ordlistdetail from '@/components/user/ordlistdetail'; //采购详情
+import follow from '@/components/users/follow/follow'; //关注
+import usersNews from '@/components/users/news/news'; //消息
+import usersNewsdetail from '@/components/users/news/newsdetail'; //消息详情
+import perPurse from '@/components/users/wallet/perPurse'; //钱包
+import problem from '@/components/users/problem/problem'; //常见问题
+import problemDetail from '@/components/users/problem/problemDetail'; //常见问题详情
+import proposal from '@/components/users/proposal/proposal'; //意见反馈
 
+//企业中心
+import usersEntcenter from '@/components/users/entCenter'; //首页
+import supOrdlist from '@/components/user/supOrdlist'; //供应-大宗
+import supcommOrdlist from '@/components/user/supcommOrdlist'; //供应-普通
+import purOrdlist from '@/components/user/purOrdlist'; //采购-大宗
+import purcommOrdlist from '@/components/user/purcommOrdlist'; //采购-普通
+import interview from '@/components/users/interview/interview'; //约谈消息
+import interviewDetail from '@/components/users/interview/interviewDetail'; //约谈消息详情
+import storeMsg from '@/components/users/store/message'; //店铺留言
+import storeMsgDetail from '@/components/users/store/messageDetail'; //店铺留言详情
+import invest from '@/components/users/invest/invest'; //预约投资
+import investDet from '@/components/users/invest/details'; //投资详情
+import entPurse from '@/components/users/wallet/entPurse'; //钱包
+
+// act20181220抽奖
+import Act2018122001 from '@/components/act/20181220/01';
+import Act2018122002 from '@/components/act/20181220/02';
+import Act2018122003 from '@/components/act/20181220/03';
 //
 import test from '@/components/test/test'
 import test1 from '@/components/test/test1'
@@ -102,7 +116,7 @@ const router = new Router({
             component: Search
         },
         { path: '/search/list/:category', name: 'search.list', component: SearchList },
-        
+
         {
             path: '/exhibition',
             name: 'exhibition',
@@ -140,24 +154,24 @@ const router = new Router({
             component: InvestorDetails,
             meta: { requireAuth: true }
         },
-       
+
         {
             path: '/mineral/projectDetails',
             name: 'projectDetails',
             component: ProjectDetails,
-            meta: {requireAuth :true}
+            meta: { requireAuth: true }
         },
-         {
+        {
             path: '/mineral/projectDetails/auth-form',
             name: 'authForm',
             component: auth_form,
             meta: { requireAuth: true }
         },
-         {
+        {
             path: '/mineral/projectDetails/form',
             name: 'projectForm',
             component: form,
-            meta: {requireAuth :true}
+            meta: { requireAuth: true }
         },
         {
             path: '/news',
@@ -190,7 +204,7 @@ const router = new Router({
             name: 'mallOrderConfirm',
             component: order_confirm
         },
-         {
+        {
             path: '/mall/order_address',
             name: 'mallOrderAddress',
             component: order_address
@@ -200,12 +214,12 @@ const router = new Router({
             name: 'mallOrderAddressList',
             component: order_addressList
         },
-        
+
         {
             path: '/mall/orderCom_list',
             name: 'mallOrderComList',
             component: orderCom_list,
-            meta: {requireAuth :true}
+            meta: { requireAuth: true }
         },
         {
             path: '/mall/orderCom_balance',
@@ -217,8 +231,8 @@ const router = new Router({
             name: 'pay',
             component: pay
         },
-        
-        
+
+
         {
             path: '/flagship',
             name: 'flagship',
@@ -245,85 +259,92 @@ const router = new Router({
             name: 'flagshipSearch',
             component: flagshipSearch
         },
-		
-		{
+
+        {
             path: '/flagship/searchList',
             name: 'flagshipSearchList',
             component: flagshipSearchList
         },
         {
-        	path: '/market',
+            path: '/market',
             name: 'market',
             component: market
         },
-         {
-        	path: '/market/details',
+        {
+            path: '/market/details',
             name: 'marketDetails',
             component: marketDetails
         },
         {
-        	path: '/database/list',
+            path: '/database/list',
             name: 'databaseList',
             component: databaseList
         },
         {
-        	path: '/database/searchList',
+            path: '/database/searchList',
             name: 'databaseSearchList',
             component: databaseSearchList
         },
         {
-        	path: '/database/details',
+            path: '/database/details',
             name: 'databaseDetails',
             component: databaseDetails,
-            meta: {requireAuth :true}
+            meta: { requireAuth: true }
         },
         {
-        	path: '/classify',
+            path: '/classify',
             name: 'classify',
             component: classify,
         },
-//      {
-//      	path: '/courtesy',
-//          name: 'courtesy',
-//          component: courtesy
-//      },
-//      { path: '/user/center', name: 'usercenter', component: userCenter },  
-//      { path: '/entcenter', name: 'entCenter', component: entCenter, meta: {requireAuth :true} },  
-        { path: '/user/ordlistdetail', name: 'ordlistdetail', component: ordlistdetail, meta: {requireAuth :true} },
-        { path: '/user/purordlist', name: 'purOrdlist', component: purOrdlist, meta: {requireAuth :true} },
-        { path: '/user/purcommOrdlist', name: 'purcommOrdlist', component: purcommOrdlist, meta: {requireAuth :true} },
-        { path: '/user/supordlist', name: 'supOrdlist', component: supOrdlist, meta: {requireAuth :true} },
-        { path: '/user/supcommOrdlist', name: 'supcommOrdlist', component: supcommOrdlist, meta: {requireAuth :true} },
-        { path: '/user/pergoodslist', name: 'pergoodslist', component: pergoodslist, meta: {requireAuth :true} },
+        {
+            path: '/vip',
+            name: 'vip',
+            component: vip,
+        },
+        {
+          path: '/activity20190106',
+          name: 'activity',
+          component: activity,
+        },
+        { path: '/user/ordlistdetail', name: 'ordlistdetail', component: ordlistdetail, meta: { requireAuth: true } },
+        { path: '/user/purordlist', name: 'purOrdlist', component: purOrdlist, meta: { requireAuth: true } },
+        { path: '/user/purcommOrdlist', name: 'purcommOrdlist', component: purcommOrdlist, meta: { requireAuth: true } },
+        { path: '/user/supordlist', name: 'supOrdlist', component: supOrdlist, meta: { requireAuth: true } },
+        { path: '/user/supcommOrdlist', name: 'supcommOrdlist', component: supcommOrdlist, meta: { requireAuth: true } },
+        { path: '/user/pergoodslist', name: 'pergoodslist', component: pergoodslist, meta: { requireAuth: true } },
         //user2.0
-        { path: '/users/center', name: 'usersCenter', component: usersCenter },  
-        { path: '/users/entcenter', name: 'usersEntcenter', component: usersEntcenter,meta: {requireAuth :true} },  
-        { path: '/problem', name: 'problem', component: problem,meta: {requireAuth :true} },  
-        { path: '/problem/detail', name: 'problemDetail', component: problemDetail,meta: {requireAuth :true} }, 
-        { path: '/perPurse', name: 'perPurse', component: perPurse,meta: {requireAuth :true} }, 
-        { path: '/entPurse', name: 'entPurse', component: entPurse,meta: {requireAuth :true} }, 
-        { path: '/proposal', name: 'proposal', component: proposal,meta: {requireAuth :true} },
-        { path: '/modifyInfo', name: 'modifyinfo', component: modifyInfo,meta: {requireAuth :true} },
-        { path: '/follow', name: 'follow', component: follow,meta: {requireAuth :true} },
-        { path: '/users/news', name: 'usersnews', component: usersNews,meta: {requireAuth :true} },
-        { path: '/users/newsDetail', name: 'usersnewsdetail', component: usersNewsdetail,meta: {requireAuth :true} },
-        { path: '/invest', name: 'invest', component: invest,meta: {requireAuth :true} },
-		{ path: '/invest/details', name: 'investDet', component: investDet,meta: {requireAuth :true} },
-		{
-			path: '/test1',
-			name: 'test1',
-			component: test1
-		},
-		{
-			path: '/test',
-			name: 'test',
-			component: test
-		},
-
-//      {
-//          path: '*',
-//          component: NotFound
-//      },
+        { path: '/users/center', name: 'usersCenter', component: usersCenter },
+        { path: '/users/entcenter', name: 'usersEntcenter', component: usersEntcenter, meta: { requireAuth: true } },
+        { path: '/users/modifyInfo', name: 'modifyinfo', component: modifyInfo, meta: { requireAuth: true } },
+        { path: '/users/follow', name: 'follow', component: follow, meta: { requireAuth: true } },
+        { path: '/users/news', name: 'usersnews', component: usersNews, meta: { requireAuth: true } },
+        { path: '/users/newsDetail', name: 'usersnewsdetail', component: usersNewsdetail, meta: { requireAuth: true } },
+        { path: '/users/problem', name: 'problem', component: problem, meta: { requireAuth: true } },
+        { path: '/users/problemDetail', name: 'problemDetail', component: problemDetail, meta: { requireAuth: true } },
+        { path: '/users/perPurse', name: 'perPurse', component: perPurse, meta: { requireAuth: true } },
+        { path: '/users/entPurse', name: 'entPurse', component: entPurse, meta: { requireAuth: true } },
+        { path: '/users/proposal', name: 'proposal', component: proposal, meta: { requireAuth: true } },
+        { path: '/invest', name: 'invest', component: invest, meta: { requireAuth: true } },
+        { path: '/invest/details', name: 'investDet', component: investDet, meta: { requireAuth: true } },
+        { path: '/users/interview', name: 'interview', component: interview, meta: { requireAuth: true } },
+        { path: '/users/interviewDetail', name: 'interviewdetail', component: interviewDetail, meta: { requireAuth: true } },
+        { path: '/users/storeMsg', name: 'storemsg', component: storeMsg, meta: { requireAuth: true } },
+        { path: '/users/storeMsgDetail', name: 'storemsgdetail', component: storeMsgDetail, meta: { requireAuth: true } },
+        {
+            path: '/test1',
+            name: 'test1',
+            component: test1
+        },
+        {
+            path: '/test',
+            name: 'test',
+            component: test
+        },
+		
+		//act20181220抽奖
+		{ path: '/act/act2018122001', name: 'act.act2018122001', component: Act2018122001, meta: { title: '企业入驻赢好礼' } },
+		{ path: '/act/act2018122002', name: 'act.act2018122002', component: Act2018122002, meta: { title: '企业入驻赢好礼' } },
+		{ path: '/act/act2018122003', name: 'act.act2018122003', component: Act2018122003, meta: { title: '企业入驻赢好礼' } },
     ]
 });
 export default router;

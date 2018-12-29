@@ -12,7 +12,9 @@ import api from './assets/config/api.js'
 //import store from './store/store.js';
 import rootPath from './assets/config/api.js' // 接口路径
 import VueClipboard from 'vue-clipboard2'
-import { appLogin} from '@/assets/commonjs/util.js';
+import {
+	appLogin
+} from '@/assets/commonjs/util.js';
 Vue.use(VueClipboard)
 Vue.prototype.$http = axios
 const FastClick = require('fastclick')
@@ -46,6 +48,9 @@ import {
 	XHeader,
 	Tab,
 	TabItem,
+	Swipeout,
+	SwipeoutItem,
+	SwipeoutButton
 } from 'vux'
 Vue.use(AlertPlugin) // vux alert组件
 
@@ -80,41 +85,44 @@ Vue.component('tab-item', TabItem)
 Vue.use(ToastPlugin);
 Vue.use(ConfirmPlugin);
 Vue.use(LoadingPlugin)
+Vue.component('swipeout', Swipeout)
+Vue.component('swipeout-item', SwipeoutItem)
+Vue.component('swipeout-button', SwipeoutButton)
 
-Vue.filter('fomatDate', function(timeStamp,fmt) {
+Vue.filter('fomatDate', function(timeStamp, fmt) {
 	let date = new Date(timeStamp)
-	if(/(y+)/.test(fmt)){
-		fmt = fmt.replace(RegExp.$1,(date.getFullYear() + '').substr(4 - RegExp.$1.length))
+	if (/(y+)/.test(fmt)) {
+		fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
 	}
-	
+
 	let o = {
-		"M+":date.getMonth() + 1,
-		"d+":date.getDate(),
-		"h+":date.getHours(),
-		"m+":date.getMinutes(),
-		"s+":date.getSeconds()
+		"M+": date.getMonth() + 1,
+		"d+": date.getDate(),
+		"h+": date.getHours(),
+		"m+": date.getMinutes(),
+		"s+": date.getSeconds()
 	}
-	
-	for(let k in o){
-		if(new RegExp(`(${k})`).test(fmt)){
+
+	for (let k in o) {
+		if (new RegExp(`(${k})`).test(fmt)) {
 			let str = o[k] + ''
-			fmt = fmt.replace(RegExp.$1,(RegExp.$1.length === 1) ? str : ('00' + str).substr(str.length))
+			fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : ('00' + str).substr(str.length))
 		}
 	}
-	
+
 	return fmt;
 });
 
 //保留几位小数
-Vue.filter('smallN', function(num,bit) {
-	if(num) return num.toFixed(bit)
-	
+Vue.filter('smallN', function(num, bit) {
+	if (num) return num.toFixed(bit)
+
 })
 Vue.filter('convertTime', function(timeStr) {
 	return Moment(timeStr).format('YYYY-MM-DD');
 });
 Vue.filter('subStr', function(titleStr, num) {
-	if(titleStr.length <= num) return titleStr;
+	if (titleStr.length <= num) return titleStr;
 	else
 		return titleStr.substr(0, num) + '...';
 })
@@ -125,7 +133,7 @@ Vue.filter('converAmount', function(s, n) {
 	var l = s.split(".")[0].split("").reverse(),
 		r = s.split(".")[1];
 	var t = "";
-	for(var i = 0; i < l.length; i++) {
+	for (var i = 0; i < l.length; i++) {
 		t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
 	}
 	return '￥' + t.split("").reverse().join("") + "." + r;
@@ -151,8 +159,8 @@ Object.defineProperty(Vue.prototype, '$axios', {
 Axios.defaults.withCredentials = true; //让ajax携带cookie
 
 router.beforeEach((to, from, next) => {
-	if(to.meta.requireAuth) { // 判断该路由是否需要登录权限
-		if(cookie.get('MC_UID')) { // 通过vuex state获取当前的token是否存在
+	if (to.meta.requireAuth) { // 判断该路由是否需要登录权限
+		if (cookie.get('MC_UID')) { // 通过vuex state获取当前的token是否存在
 			next();
 		} else {
 			appLogin()
@@ -168,11 +176,28 @@ router.beforeEach((to, from, next) => {
 	}
 })
 
+router.beforeEach((to, from, next) => {
+	/* 路由发生变化修改页面meta */
+	if (to.meta.content) {
+		let head = document.getElementsByTagName('head');
+		let meta = document.createElement('meta');
+		meta.content = to.meta.content;
+		head[0].appendChild(meta)
+	}
+	/* 路由发生变化修改页面title */
+	if (to.meta.title) {
+		document.title = to.meta.title;
+	}
+	next()
+});
+
+import store from './store/store.js'
+
 /* eslint-disable no-new */
-new Vue({
+const vm = new Vue({
 	el: '#app',
 	router,
-	//  store,
+	store, //使用store
 	components: {
 		App
 	},
@@ -181,4 +206,4 @@ new Vue({
 	},
 	//font-awesome,
 	template: '<App/>'
-});;
+});

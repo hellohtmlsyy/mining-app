@@ -93,18 +93,8 @@
 			}
 		},
 		mounted() {
-//			window.addEventListener('scroll', this.handleScroll)
 		},
 		methods: {
-//			handleScroll() {
-//				var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-//				var height = this.$refs.listSection.offsetHeight
-//				
-//				this.$emit("scrollValue", {
-//					"scrollTop": scrollTop,
-//					"height": height
-//				})
-//			},
 			toDetails(id) {
 				window.location.href = this.$root.urlPath.MCM + "/news/details?id=" + id + '&newpage=newpage';
 			}
@@ -116,7 +106,7 @@
 	.newslist .titleAndintro {
 		min-height: 0.83rem;
 	}
-	
+
 	.newsListOnly .firstNews .image {
 		background: #f2f2f2;
 		width: 1.8rem;
@@ -124,27 +114,27 @@
 		text-align: center;
 		margin-right: 0.2rem;
 	}
-	
+
 	.newsListOnly img {
 		margin-right: 0;
 	}
-	
+
 	.newsListOnly .imgWidth {
 		width: 1.8rem;
 		height: 1.36rem;
 	}
-	
+
 	.newsListOnly .firstNews .zhanweitu {
 		width: 0.8rem;
 		height: 0.8rem;
 	}
-	
+
 	.newsListOnly .secondNews .image {
 		width: 3.27rem;
 		height: 1.86rem;
 		text-align: center;
 	}
-	
+
 	.newsListOnly .secondNews .contentItem .image .zhanweitu {
 		width: 1.3rem;
 		height: 1.2rem;

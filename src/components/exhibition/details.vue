@@ -41,18 +41,14 @@
 					<div class="row">
 						<label class="spanBox">售价</label>
 						<span class="price_span colorr" style="color:red">{{ticketlist[checkTicket-1] && ticketlist[checkTicket-1].ticket_money | converAmount(2)}}</span>
-						<!--<span v-show="item.ticket_name == '免费'">免费</span>-->
 					</div>
 					<div class="row clearfix">
 						<label class="spanBox fl">票种</label>
-						<!--<span class="ticket" :class="item.ticket_name == '免费' ? 'ticketM' : 'ticketS'" v-for="item in ticketlist">{{item.ticket_name}}{{item.ticket_money}}</span>-->
 						<div class="fl">
 							<checker v-model="checkTicket" default-item-class="demo5-item" selected-item-class="demo5-item-selected" >
 								<checker-item v-for="i in indexTicketType" :key="i" :value="i">{{ticketType[i-1]}}<span class="priceColor">{{ticketlist[checkTicket-1].ticket_money | converAmount(2)}}</span></checker-item>
 							</checker>
 						</div>
-
-						<!--<div class="signUpBtn fr" v-show="false">报名截止</div>-->
 					</div>
 					<div class="row clearfix">
 						<div class="signUpBtn fr" :style="{'background-color':type=='现在报名' ? '#ff4f54' : '#D2D2D2'}" @click="singUp">{{type}}</div>
@@ -133,7 +129,7 @@
 				companyInfo: '',
 				attrib: '',
 				priceRange: '',
-				
+
 				ticketType: [],
 				indexTicketType: [],
 				checkTicket: 1,
@@ -150,11 +146,11 @@
 			share() {
 				if(isDevice() == "其他浏览器") {
 					this.show1 = true
-					
+
 				}else{
 					getAppShare(window.location.href, this.meetingDetailsList.title, this.meetingDetailsList.img, this.meetingDetailsList.begin_time, "")
 				}
-				
+
 			},
 			shareMCClick(){
 				this.shareMC = 'none'
@@ -197,7 +193,7 @@
 				if(this.ticketlist[this.checkTicket - 1].ticket_money == 0 || this.ticketType[this.checkTicket - 1] == '免费'){
 					var status = '免费'
 				}
-				
+
 				if(cookie.get('MC_UID')) {
 					this.$axios.get(this.$root.urlPath.MC + '/meeting.do?isticket', {
 						params: {
@@ -213,10 +209,10 @@
 								  title: '提示',
 								  content: '没有剩余票数了',
 								  onShow () {
-								   
+
 								  },
 								  onHide () {
-								    
+
 								  }
 								})
 							}else{
@@ -292,8 +288,8 @@
 //									this.priceRange = priceArr[0] + '到' + priceArr[priceArr.length - 1] + '之间'
 //								}
 //							} else {
-//								
-//								
+//
+//
 ////								if(this.ticketlist[0].ticket_money) {
 //									this.priceRange = this.ticketlist[0].ticket_money
 ////								}
@@ -325,7 +321,7 @@
 	.content p {
 		margin-left: 0 !important;
 	}
-	
+
 	.ExhibitionDetails .content table{
 		width: 100% !important;
 	}
@@ -336,13 +332,13 @@
 		width: 100% !important;
 		height: auto;
 	}
-	
+
 	.ExhibitionDetails .top .image_box img {
 		width: 7.5rem;
 		height: 4.2rem;
 		position: relative;
 	}
-	
+
 	.ExhibitionDetails .top .revert,
 	.ExhibitionDetails .info {
 		width: 0.6rem;
@@ -355,44 +351,44 @@
 		position: absolute;
 		top: 0.2rem;
 	}
-	
+
 	.ExhibitionDetails .top .revert {
 		left: 0.2rem;
 	}
-	
+
 	.ExhibitionDetails .top .icon-jiantou3,
 	.icon-tubiao212 {
 		font-size: 0.3rem;
 		color: #fff
 	}
-	
+
 	.ExhibitionDetails .top .info {
 		right: 0.2rem;
 	}
-	
+
 	.ExhibitionDetails .top .detail_text {
 		padding: 0.2rem;
 		background-color: #fff;
 		font-size: 0.24rem;
 	}
-	
+
 	.ExhibitionDetails .small_content .priceColor {
 		color: red;
 	}
-	
+
 	.ExhibitionDetails .channelDetailText label {
 		margin-right: 0.2rem;
 	}
-	
+
 	.ExhibitionDetails .channelDetailText .dateBox {
 		margin-left: 0.77rem;
 	}
-	
+
 	.ExhibitionDetails .channelDetailText .colorr {
 		color: red;
 		line-height: 0.5rem
 	}
-	
+
 	.ExhibitionDetails .channelDetailText .ticket {
 		width: 0.65rem;
 		height: 0.48rem;
@@ -400,18 +396,18 @@
 		text-align: center;
 		margin-top: 0.08rem;
 	}
-	
+
 	.ExhibitionDetails .channelDetailText .ticketS {
 		background: url(../../../static/img/ico2.png) no-repeat center center;
 		background-size: 0.65rem 0.48rem;
 		margin-right: 0.2rem;
 	}
-	
+
 	.ExhibitionDetails .channelDetailText .ticketM {
 		background: url(../../../static/img/ico1.png) no-repeat center center;
 		background-size: 0.65rem 0.48rem;
 	}
-	
+
 	.ExhibitionDetails .channelDetailText .signUpBtn {
 		font-size: 0.32rem;
 		color: #fff;
@@ -420,20 +416,20 @@
 		border-radius: 0.05rem;
 	}
 	/*vux里checklist样式*/
-	
+
 	.box {
 		padding: 0 15px;
 	}
-	
+
 	.demo1-item {
 		border: 1px solid #ececec;
 		padding: 5px 15px;
 	}
-	
+
 	.demo1-item-selected {
 		border: 1px solid green;
 	}
-	
+
 	.demo2-item {
 		width: 40px;
 		height: 40px;
@@ -443,20 +439,20 @@
 		line-height: 40px;
 		text-align: center;
 	}
-	
+
 	.demo2-item-selected {
 		border-color: green;
 	}
-	
+
 	.demo3-item {
 		padding: 5px 5px;
 		font-size: 0;
 	}
-	
+
 	.demo3-item-selected {
 		outline: 1px solid #8B8AEE;
 	}
-	
+
 	.demo4-item {
 		background-color: #ddd;
 		color: #222;
@@ -466,16 +462,16 @@
 		line-height: 18px;
 		border-radius: 0.15rem;
 	}
-	
+
 	.demo4-item-selected {
 		background-color: #FF3B3B;
 		color: #fff;
 	}
-	
+
 	.demo4-item-disabled {
 		color: #999;
 	}
-	
+
 	.demo5-item {
 		/*width: 100px;*/
 		height: 0.4rem;
@@ -487,7 +483,7 @@
 		margin-right: 0.2rem;
 		padding: 0 0.2rem;
 	}
-	
+
 	.demo5-item-selected {
 		background: #ffffff url(../../../static/img/ico10.png) no-repeat right bottom;
 		border-color: #ff4a00;

@@ -1,6 +1,6 @@
 <template>
 	<div class="follow">
-		<com-header bgcolor="#0094E8">
+		<com-header bgcolor="#0094E8" :showBack="showBack">
 			<div slot="centerA">我的关注(<span>{{total}}</span>)</div>
 			<div slot="rightA">
 				<a slot="right" @click="adm" v-show="!isMan">管理</a>
@@ -40,7 +40,7 @@
 			</div>
 			<button class="btn" @click="unfollow()">取消关注</button>
 		</footer>
-		
+
 		<!--type  state-->
 		<div class="type" v-show="style">
 	    	<div class="mask" @click="toggleStyle(2)"></div>
@@ -48,15 +48,15 @@
 	    		<li v-for="(item,index) in type" :key="index" @click="gotypeList(item.recordType)">{{item.name}}</li>
 	    	</ul>
 	    </div>
-	    
+
 	</div>
-	
+
 </template>
 
 <script>
 	import { cookie } from 'vux';
 	import myScroll from '@/components/base/myScroll'
-	import {appLogin} from '@/assets/commonjs/util.js';
+	import {appLogin,isDevice} from '@/assets/commonjs/util.js';
 	export default{
 		components: {
 			myScroll
@@ -70,7 +70,7 @@
 				isInapp:navigator.userAgent.indexOf('/mcapp')>=0,//判断是否在app打开
 				style: false,
 				attlst: [],
-				type: [ 
+				type: [
 					{name:'商品',recordType:'410'},
 					{name:'会展',recordType:'610'},
 					{name:'新闻',recordType:'320'},
@@ -81,12 +81,16 @@
 				pageNum: 1,
 				numPerPage: 10,
 				recordType: '000',
+				showBack:true,
 			}
 		},
 		methods: {
 			adm(){
 				this.isMan = !this.isMan;
-				$("#all")[0].checked = false;
+        $("#all")[0].checked = false;
+        this.attlst.forEach(ele => {
+					ele.checked = false;
+				})
 			},
 			all(){},
 			toggleStyle(num){
@@ -128,16 +132,16 @@
 					var data = res.data;
 					this.total = data.data.totalCount;
 					this.attlst = this.attlst.concat(data.data.attlst);
-					
+
 					this.attlst.forEach(ele => {
-						this.$set(ele, 'checked', false); 						
+						this.$set(ele, 'checked', false);
 					});
 					if(this.total == this.attlst.length && this.total !== 0){
 						this.$refs.scroll.complete()
 					}else{
 						this.pageNum++
 					}
-				}).catch(err => console.log('个人账户异常', err));		
+				}).catch(err => console.log('个人账户异常', err));
 			},
 			unfollow(){
 				var ids = '',resultCheckOrderId = '';
@@ -206,12 +210,20 @@
 			}else{
 				appLogin()
 			}
+
+			if(isDevice() == 'adr'){
+				if(!this.$route.query.newpage){
+					this.showBack = false
+				}else{
+					this.showBack = true
+				}
+			}
 		}
 	}
 </script>
 
 <style>
-	@import url("../../../static/css/user2.0.css");	
+	@import url("../../../static/css/user2.0.css");
 	@import url("../../../static/css/allCheckFoot.css");
 	@import url("../../../static/css/checkBox.css");
 	.pb_94{
@@ -221,11 +233,11 @@
 		font-size: 0.3rem;
 		color: #fff;
 	}
-	
+
 	.follow .weui-mask_transparent{
 		opacity: 0;
 	}
-	
+
 	.follow .type .mask, .follow .state .mask{
 	    position: fixed;
 	    z-index: 10;

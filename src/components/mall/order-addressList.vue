@@ -11,7 +11,8 @@
 			</div>
 		</div>
 		<!--表单-->
-		<div class="table">
+		
+		<div class="table" :class="where ? 'tableMg2' : 'tableMg1'">
 			<table>
 				<div class="list" style="width:7.5rem" v-for="(item,index) in addressList" :key="index">
 					<tr>
@@ -43,7 +44,7 @@
 				</div>
 			</table>
 		</div>
-		<div class="endSave" @click="save">
+		<div class="endSave" @click="save" v-show="!where">
 			<button>确定并使用</button>
 		</div>
 		<toast v-model="show1" type="warn" :time="1000" is-show-mask>{{toastText}}</toast>
@@ -68,7 +69,8 @@
 				check:"",
 				addressList:[],
 				toastText:'',
-				show1:false
+				show1:false,
+				where:this.$route.query.where
 			}
 		},
 		mounted(){
@@ -165,8 +167,11 @@
 		background: url(../../../static/img/ico8.png);
 		background-size: 100% 100%;
 	}
-	.addressList .table{
+	.addressList .tableMg1{
 		margin: 1rem 0;
+	}
+	.addressList .tableMg2{
+		margin:1rem 0 0 0;
 	}
 	.addressList .table,
 	.addBtn {

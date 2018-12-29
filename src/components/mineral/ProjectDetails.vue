@@ -45,9 +45,6 @@
 						<label class="spanBox">原矿品位</label>
 						<span>{{mapAttrib.grade}}</span>
 					</div>
-					<!--<div>
-						<button>立即报名</button>
-					</div>-->
 				</div>
 			</div>
 			<div class="channelSec">
@@ -61,7 +58,7 @@
 							下载项目资料
 						</span>
 					</a>
-					
+
 				</div>
 				<fieldset>
 					<legend align="center">
@@ -95,7 +92,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="project_details">
 			<div class="nav1">
 				<sticky scroll-box="vux_view_box_body" :check-sticky-support="false" :offset="46">
@@ -106,13 +103,13 @@
 					</tab>
 					<div class="tab-content">
 						<div v-show="index == 0" v-html="projectInfoList.vtext">
-							
+
 						</div>
 						<div v-show="index == 1" v-html="ykym.introduction">
-							
+
 						</div>
 						<div v-show="index == 2" v-html="mapAttrib.Tfdemands">
-							
+
 						</div>
 					</div>
 				</sticky>
@@ -136,7 +133,6 @@
 			<x-dialog v-model="showDiaLog" class="dialog-demo">
 				<div class="dialogHeader">
 					<span class="fl">约谈详细</span>
-					<!--<i class="fr" @click="showDiaLog = false">+</i>-->
 					<i class="icon iconfont icon-cuohao fr" @click="showDiaLog = false"></i>
 				</div>
 				<div class="bd">
@@ -222,16 +218,16 @@
 				payUrl: "http://www.miningcircle.com/yi/project/order.do?orderDetail&yiId=" + this.$route.query.id,
 				minMovingDistance:100,
 				test:2000,
-				
+
 			}
 		},
 		mounted() {
-			
-				
+
+
 			this.getProjectDetailsList()
 		},
 		computed:{
-			
+
 		},
 		methods: {
 			share() {
@@ -340,7 +336,7 @@
 							this.projectDetailsList.prd.insert_time = getTime1(this.projectDetailsList.prd.insert_time)
 
 						} else {
-							
+
 						}
 					})
 					.catch(function(error) {
@@ -391,6 +387,13 @@
 				this.showDiaLog = true
 			},
 			speakSubmit() {
+        if(this.speakText == ''){
+          this.$vux.toast.show({
+ 								text: '不能为空',
+ 								type:'cancel'
+          })
+          return
+        }
 				axios.get(this.$root.urlPath.MC + '/wap/yitrade.do?interView', {
 						params: {
 							id: this.$route.query.id,
@@ -449,11 +452,11 @@
 		width: 100%;
 		height: 5rem;
 	}
-	
+
 	.projectDetails .download {
 		text-align: right;
 	}
-	
+
 	.projectDetails .download span {
 		font-size: 0.2rem;
 		margin-right: 0.2rem;
@@ -461,11 +464,11 @@
 		border-radius: 0.05rem;
 		padding: 0.03rem 0.2rem;
 	}
-	
+
 	.projectDetails .nav1 .swiper1 .vux-swiper {
 		min-height: 1.8rem !important;
 	}
-	
+
 	.projectDetails .textBox {
 		margin-top: 0.15rem;
 		padding: 0.2rem;
@@ -476,11 +479,11 @@
 		display: inline-block;
 		width: 1.2rem;
 	}
-	
+
 	.projectDetails .small_content .typeWidth {
 		width: 5.6rem;
 	}
-	
+
 	.projectDetails .small_content i {
 		font-size: 0.25rem;
 		color: #ccc;
@@ -488,64 +491,49 @@
 		right: 0.2rem;
 		margin-left: 0.4rem;
 	}
-	
+
 	.projectDetails .textBox .mrow {
 		line-height: 0.45rem;
 	}
-	
+
 	.projectDetails .textBox .mcol {
 		width: 3.54rem;
 	}
-	
+
 	.projectDetails .textBox label {
 		width: 1.8rem;
 		display: inline-block;
 		color: #7B7B7B;
 	}
-	
+
 	.projectDetails .textBox .akey {
 		color: #EF852C
 	}
-	
-	
+
+
 	.projectDetails .detail_text {
 		padding: 0.2rem;
 		background-color: #fff;
 	}
-	
+
 	.projectDetails .nav1 .vux-swiper img {
 		width: 100%;
 	}
-	/*.projectDetails .channelFooter .colm {
-		width: 2.5rem;
-	}
-	
-	.projectDetails .channelFooter .followBox {
-		border-left: 0;
-	}
-	
-	.projectDetails .channelFooter .followBox .color_r {
-		color: red;
-	}
-	
-	.projectDetails .channelFooter .btn1 {
-		background-color: #F6822E
-	}*/
-	
+
 	.projectDetails .detail_text .icon-dalou {
 		color: red;
 		font-size: 0.4rem;
 	}
-	
+
 	.projectDetails .project_details {
 		padding-top: 0.15rem;
 		margin-bottom: 1rem;
 	}
-	
+
 	.projectDetails .icon-xin {
 		color: red;
 	}
-	
+
 	.projectDetails .vux-swiper-item {
 		padding: 0.1rem;
 		box-sizing: border-box;

@@ -36,9 +36,9 @@
 				</ul>
 			</section>
 		</nav>
-		
+
 		<footer-m :curFath="1">
-			
+
 		</footer-m>
 	</div>
 </template>
@@ -1767,7 +1767,7 @@
 		background: #fff;
 		color: #0094E8;
 	}
-	
+
 	.classify .nav .left {
 		position: fixed;
 		top: 1rem;
@@ -1776,7 +1776,7 @@
 		width: 29%;
 		padding-bottom: 1rem;
 	}
-	
+
 	.classify .nav .right {
 		position: fixed;
 		right: 0;
@@ -1786,13 +1786,13 @@
 	    width: 71%;
 	    padding-bottom: 1rem;
 	    background: #fff;
-		
+
 	}
-	
+
 	.classify .nav .right li:first-child .title1-box{
 		margin-bottom: 0;
 	}
-	
+
 	.classify .nav .right li {
 		border-top: 1px solid rgba(229, 229, 229, 1);
 		border-bottom: 1px solid rgba(229, 229, 229, 1);
@@ -1801,19 +1801,19 @@
 	}
 	.classify .nav .right li .text{
 		font-weight: 500;
-		
+
 	}
 	.classify .nav .right .title1-box {
 		display: flex;
 		margin-bottom: 0.15rem;
 	}
-	
+
 	.classify .nav .right .title1-box .text {
 		display: inline-block;
 		font-size: 0.26rem;
 		width: 4.5rem;
 	}
-	
+
 	.classify .nav .right .title1-box .icoM {
 		display: flex;
 		flex-grow: 1;
@@ -1832,7 +1832,7 @@
 	/*.classify .nav .right .title2-box .text:nth-child(3n){
 		padding-left: 0;
 	}*/
-	
+
 	.classify .nav .right .title2-box .text {
 		font-size: 0.22rem;
 		color: #757575;
@@ -1849,7 +1849,7 @@
 		vertical-align: middle;
 		margin: -0.06rem 0.2rem 0 0.2rem;
 	}
-	
+
 	.classify .nav .right .icoM {
 		vertical-align: middle;
 		display: flex;
@@ -1857,7 +1857,7 @@
 		justify-content: flex-end;
 		margin: 0;
 	}
-	
+
 	.classify .nav .left li {
 		width: 2.17rem;
 		height: 1.2rem;
@@ -1866,11 +1866,11 @@
 		align-items: center;
 		box-sizing: border-box;
 	}
-	
+
 	.classify .nav .text {
 		font-size: 0.26rem;
 	}
-	
+
 	.icoM {
 		display: inline-block;
 		width: 0.35rem;
@@ -1878,47 +1878,47 @@
 		margin-right: 0.12rem;
 		vertical-align: top;
 	}
-	
+
 	.icoM:after {
 		width: 0.35rem;
 		height: 0.35rem;
 		display: inline-block;
 	}
-	
+
 	.ico1:after {
 		content: "";
 		background: url(../../../static/img/classify/jinshu.png) no-repeat;
 		background-size: 0.35rem;
 	}
-	
+
 	.ico2:after {
 		content: url(../../../static/img/classify/youse.png);
 	}
-	
+
 	.ico3:after {
 		content: url(../../../static/img/classify/heise.png);
 	}
-	
+
 	.ico4:after {
 		content: url(../../../static/img/classify/nengyuan.png);
 	}
-	
+
 	.ico5:after {
 		content: url(../../../static/img/classify/xiyou.png);
 	}
-	
+
 	.ico6:after {
 		content: url(../../../static/img/classify/feijin.png);
 	}
-	
+
 	.ico7:after {
 		content: url(../../../static/img/classify/kuangyong.png);
 	}
-	
+
 	.ico8:after {
 		content: url(../../../static/img/classify/haocai.png);
 	}
-	
+
 	.ico9:after {
 		content: url(../../../static/img/classify/zhuanye.png);
 	}
