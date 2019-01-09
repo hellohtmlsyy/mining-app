@@ -8,7 +8,7 @@
 				<span>新闻资讯</span>
 			</div>
 			<div class="rightA fr">
-				<i class="icon iconfont icon-tubiao212" @click="share"></i>
+				<i class="icon iconfont icon-tubiao212" @click="share" v-if="!wxDevice"></i>
 			</div>
 		</div>
 		</div>
@@ -29,7 +29,7 @@
 
 			</div>
 		</div>
-		
+
 
 		<footer>
 			<div class="block" @click="likeClick(310)">
@@ -47,7 +47,7 @@
 			<div class="block" @click="shareWB">
 				<i class="iconfont icon-weibo1"></i>
 			</div>
-			
+
 			<div class="shareMC" :style="{display:shareMC}" @click="shareMCClick"></div>
 			<actionsheet v-model="show1" :menus="shareType" :close-on-clicking-mask="false" show-cancel @on-click-mask="console('on click mask')" @on-click-menu-type1="shareWX" @on-click-menu-type2="sharePYQ" @on-click-menu-type3="shareWB" @on-click-menu-type4="shareQQKJ"></actionsheet>
 		</footer>
@@ -60,7 +60,7 @@
 	import { cookie, Alert } from 'vux'
 	import axios from 'axios'
 	import Oheader from '@/components/common/header/Oheader'
-	import { getTime1, getAppShare, isDevice, ShareTip,appLogin} from '@/assets/commonjs/util.js';
+	import { getTime1, getAppShare, isDevice, ShareTip,appLogin,wxShare} from '@/assets/commonjs/util.js';
 	import openApp from '@/components/base/openApp'
 
 
@@ -87,22 +87,21 @@
 				landCount: '', //0是没有点赞   1是点赞
 				likeOrNo: '',
 				landOrNo: '',
-				haveMarginContent:true,
 				contentMargin:{
 					contentMargin1:true,
 					contentMargin2:false
-				}
+        },
+        wxDevice:false,
+        url:window.location.href
 			}
-		},
-		mounted() {
-			if(isDevice() == 'ios' || isDevice() == 'adr'){
-				this.haveMarginContent = false
-			}else{
-				this.haveMarginContent = true
-			}
-			
-			this.getNewsDetailsList()
-		},
+    },
+    created(){
+      if(isDevice() == '微信浏览器'){
+        this.wxDevice = true
+      }
+
+      this.getNewsDetailsList()
+    },
 		computed:{
 			colorZan(){
 				return this.landOrNo ? 'red' : 'black'
@@ -120,7 +119,7 @@
 					this.contentMargin.contentMargin2 = true
 					this.contentMargin.contentMargin1 = false
 				}
-				
+
 			},
 			console() {
 
@@ -136,7 +135,7 @@
 					})
 					.then(res => {
 						if(res.data.success) {
-							
+
 							this.newsDetailsList = res.data.data.res
 							this.likeCount = res.data.data.ucolle
 							this.landCount = res.data.data.ulike
@@ -145,7 +144,10 @@
 
 							this.newsDetailsList.insert_time = getTime1(this.newsDetailsList.insert_time)
 						} else {}
-					})
+          })
+          .then(()=>{
+              wxShare(this.$root.urlPath.MCT + '/wx/share', this.url,this.newsDetailsList.title, this.newsDetailsList.img, this.newsDetailsList.vdesc, this.url);
+          })
 					.catch(function(error) {
 
 					});
@@ -216,7 +218,7 @@
 			},
 			shareWX() {
 				if(isDevice() == '其他浏览器') {
-					
+
 					this.shareMC = 'block'
 				} else if(isDevice() == 'adr' || isDevice() == 'ios') {
 					getAppShare(window.location.href, this.newsDetailsList.title, this.newsDetailsList.img, this.newsDetailsList.vdesc, "WEIXIN")
@@ -271,8 +273,8 @@
 </script>
 
 <style>
-	
-	
+
+
 	.newsDetails .oHeader{
 		width: 7.5rem;
 	}
@@ -298,43 +300,43 @@
 		width: 100% !important;
 		height: auto !important;
 	}
-	
+
 	.newsDetails .color_r {
 		color: red
 	}
-	
+
 	.newsDetails .color_h {
 		color: #ccc;
 	}
-	
+
 	.newsDetails {
 		background-color: #fff;
 	}
-	
+
 	.newsDetails .oHeader .rightA .icon-tubiao212 {
 		font-size: 0.36rem;
 	}
-	
+
 	.newsDetails .content {
 		padding: 0.2rem 0.2rem;
 	}
-	
+
 	.newsDetails .content h1 {
 		font-size: 0.4rem;
 		margin-bottom: 0.14rem;
 		font-weight: normal;
 	}
-	
+
 	.newsDetails .content .smh1 {
 		font-size: 0.24rem;
 		color: rgb(117, 117, 117);
 		margin-bottom: 0.22rem;
 	}
-	
+
 	.newsDetails .content .smh1 i {
 		font-size: 0.24rem;
 	}
-	
+
 	.newsDetails .content .smh1 span {
 		margin-right: 0.2rem;
 	}
@@ -355,7 +357,7 @@
 		width: 100%;
 		height: 0.94rem;
 		align-items: center;
-		background: #fff; 
+		background: #fff;
 		border-top: solid 1px #e5e5e5;
 	}
 	.newsDetails footer .block{
@@ -368,11 +370,11 @@
 	.newsDetails footer .icon-wechat {
 		color: #39B42E;
 	}
-	
+
 	.newsDetails footer .icon-pengyouquan1 {
 		color: #EE8817;
 	}
-	
+
 	.newsDetails footer .icon-weibo1 {
 		color: #F95465;
 	}

@@ -7,7 +7,7 @@
 				<div class="revert" @click='back'>
 					<i class="icon iconfont icon-jiantou3"></i>
 				</div>
-				<div class="info" @click="share">
+				<div class="info" @click="share" v-if="!wxDevice">
 					<i class="icon iconfont icon-tubiao212"></i>
 				</div>
 			</div>
@@ -94,8 +94,9 @@
 
 	import { Tab, TabItem, Sticky, Swiper, SwiperItem, cookie, Checker, CheckerItem } from 'vux'
 	import axios from 'axios'
-	import { getTime2, getAppShare ,isDevice,ShareTip,appLogin} from '@/assets/commonjs/util.js'
+	import { getTime2, getAppShare ,isDevice,ShareTip,appLogin,wxShare} from '@/assets/commonjs/util.js'
 	import openApp from '@/components/base/openApp'
+import { setTimeout } from 'timers';
 
 	export default {
 		components: {
@@ -129,15 +130,19 @@
 				companyInfo: '',
 				attrib: '',
 				priceRange: '',
-
 				ticketType: [],
 				indexTicketType: [],
 				checkTicket: 1,
-				ticketNum:''
+        ticketNum:'',
+        url:window.location.href,
+        wxDevice:false
 			}
-		},
+    },
+    created(){
+      this.getMeetingDetailsList()
+    },
 		mounted() {
-			this.getMeetingDetailsList()
+
 		},
 		methods: {
 			console() {
@@ -148,7 +153,13 @@
 					this.show1 = true
 
 				}else{
-					getAppShare(window.location.href, this.meetingDetailsList.title, this.meetingDetailsList.img, this.meetingDetailsList.begin_time, "")
+          let title
+          if(this.$route.query.id == '30f2073b3dfa493ab98defb115bd9067'){
+             title = '新年必修课：高金平教授——新税制改革下的风险管理国地税合并下个税改革与社保入税政策疑点及风险管理，变事后弥补为事前规划'
+          }else{
+            title = this.meetingDetailsList.title
+          }
+					getAppShare(this.url,title, this.meetingDetailsList.img, this.meetingDetailsList.begin_time, "")
 				}
 
 			},
@@ -305,7 +316,19 @@
 						} else {
 
 						}
-					})
+          })
+          .then(()=>{
+            if(isDevice() == '微信浏览器'){
+              this.wxDevice = true
+              let title
+              if(this.$route.query.id == '30f2073b3dfa493ab98defb115bd9067'){
+                title = '新年必修课：高金平教授——新税制改革下的风险管理国地税合并下个税改革与社保入税政策疑点及风险管理，变事后弥补为事前规划'
+              }else{
+                title = this.meetingDetailsList.title
+              }
+              wxShare(this.$root.urlPath.MCT + '/wx/share', this.url, title, this.meetingDetailsList.img, '', this.url);
+            }
+          })
 					.catch(function(error) {
 
 					});

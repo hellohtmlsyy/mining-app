@@ -2,6 +2,9 @@
 	<div>
 		<div class="act03">
 			<div class="imgbox"><img src="../../../../static/img/act/20181220/3-1.png" class="img" /></div>
+      <!-- <div class="revert" @click="back">
+				<i class="icon iconfont icon-jiantou-copy color_f"></i>
+			</div> -->
 			<div class="con">
 				<div class="btn btn-back mb-28" @click="share()">分享</div>
 				<div class="btn btn-close" @click="index()">返回活动首页</div>
@@ -13,6 +16,7 @@
 	</div>
 </template>
 <script>
+import { getAppShare,isDevice,lastPage} from '@/assets/commonjs/util.js';
 	import Vue from 'vue';
 	import {
 		setCookie,
@@ -29,11 +33,19 @@
 			}
 		},
 		methods: {
+      back() {
+				lastPage()
+		  },
 			index() {
 				window.location.href = this.$root.urlPath.MCM + '/act/act2018122001';
 			},
 			share() {
-				this.shareLay = !this.shareLay;
+        if(isDevice() == 'adr' || isDevice() == 'ios'){
+          getAppShare('http://m.miningcircle.com/act/act2018122001?newpage=newpage', '矿业圈让你挥别寒冷的2018，走进温暖的2019', 'http://www.miningcircle.com/img/20181228spread.jpg', '凛冬骤降，矿业圈新年礼包等你来，点击开启你的三亚免费之旅', "")
+        }else{
+          this.shareLay = !this.shareLay;
+        }
+
 			},
 		},
 		created() {
@@ -101,7 +113,7 @@
 			wxShare(this.$root.urlPath.MCT + '/wx/share', this.url, title, imgUrl, desc, golink);
 		},
 		mounted() {
-			var winHeight = $(window).height(); //获取当前页面高度  
+			var winHeight = $(window).height(); //获取当前页面高度
 			$('.act03').css('height', winHeight + 'px');
 		},
 	}
@@ -124,7 +136,19 @@
 	.act03 .imgbox {
 		padding: 0 0.35rem;
 	}
-
+  .act03 .revert{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 0.6rem;
+    background-color: rgba(119, 110, 93, .6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
 	.act03 .img {
 		width: 100%;
 		margin-bottom: 0.83rem;

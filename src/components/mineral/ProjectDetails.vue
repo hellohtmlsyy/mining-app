@@ -7,7 +7,7 @@
 				<div class="revert" @click="back">
 					<i class="icon iconfont icon-jiantou3"></i>
 				</div>
-				<div class="info" @click="share">
+				<div class="info" @click="share" v-if="!wxDevice">
 					<i class="icon iconfont icon-tubiao212"></i>
 				</div>
 			</div>
@@ -166,7 +166,7 @@
 
 <script>
 	import { Flexbox, FlexboxItem, Tab, TabItem, Sticky, Swiper, SwiperItem, cookie } from 'vux'
-	import { getTime1, getAppShare, isDevice, ShareTip } from '@/assets/commonjs/util.js';
+	import { getTime1, getAppShare, isDevice, ShareTip,wxShare } from '@/assets/commonjs/util.js';
 	import Detailsimage from '@/components/common/Detailsimage';
 	import openApp from '@/components/base/openApp'
 	import axios from 'axios'
@@ -217,18 +217,18 @@
 				showAuthInvest: false,
 				payUrl: "http://www.miningcircle.com/yi/project/order.do?orderDetail&yiId=" + this.$route.query.id,
 				minMovingDistance:100,
-				test:2000,
+        test:2000,
+        wxDevice:false,
+        url:window.location.href
 
 			}
-		},
-		mounted() {
-
-
-			this.getProjectDetailsList()
-		},
-		computed:{
-
-		},
+    },
+    created(){
+       if(isDevice() == '微信浏览器'){
+        this.wxDevice = true
+      }
+      this.getProjectDetailsList()
+    },
 		methods: {
 			share() {
 				if(isDevice() == "其他浏览器") {
@@ -335,12 +335,13 @@
 
 							this.projectDetailsList.prd.insert_time = getTime1(this.projectDetailsList.prd.insert_time)
 
-						} else {
-
 						}
-					})
+          })
+          .then(()=>{
+              wxShare(this.$root.urlPath.MCT + '/wx/share', this.url,this.projectInfoList.title, this.projectInfoList.img, this.mapAttrib.productvdesc, this.url);
+          })
 					.catch(function(error) {
-
+              console.log(error)
 					});
 			},
 			followClick(type) {

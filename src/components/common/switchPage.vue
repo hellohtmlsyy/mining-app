@@ -38,7 +38,7 @@
 </template>
 
 <script>
-	import {getAppShare,isDevice,ShareTip,goHomeApp} from '@/assets/commonjs/util.js';
+	import {isDevice,goHomeApp} from '@/assets/commonjs/util.js';
 
 	export default {
 		components: {

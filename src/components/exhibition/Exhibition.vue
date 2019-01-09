@@ -135,7 +135,7 @@
 <style>
 	/*tab*/
    .exhibtion .carousel{
-      margin-top: 0.5rem
+      margin-top: 1rem
     }
 	::-webkit-scrollbar {
 		width: 0px;

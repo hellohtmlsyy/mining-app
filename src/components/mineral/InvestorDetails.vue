@@ -6,7 +6,7 @@
 			<div class="revert" @click="back">
 				<i class="icon iconfont icon-jiantou3"></i>
 			</div>
-			<div class="info" @click="share">
+			<div class="info" @click="share" v-if="!wxDevice">
 				<i class="icon iconfont icon-tubiao212"></i>
 			</div>
 		</div>
@@ -104,9 +104,8 @@
 
 <script>
 	import axios from 'axios'
-	import {} from 'vux'
 	import Detailsimage from '@/components/common/Detailsimage';
-	import { getTime1, getAppShare,isDevice,ShareTip} from '@/assets/commonjs/util.js';
+	import { getTime1, getAppShare,isDevice,ShareTip,wxShare} from '@/assets/commonjs/util.js';
 	import openApp from '@/components/base/openApp'
 
 	export default {
@@ -133,12 +132,17 @@
 				follow: '',
 				type: '',
 				showDiaLog: false,
-				showTost: false
+        showTost: false,
+        wxDevice:false,
+        url:window.location.href
 			}
-		},
-		mounted() {
-			this.getInvestorDetailsList()
-		},
+    },
+    created(){
+      if(isDevice() == '微信浏览器'){
+        this.wxDevice = true
+      }
+      this.getInvestorDetailsList()
+    },
 		methods: {
 			console() {
 
@@ -174,7 +178,7 @@
 				if(isDevice() == "其他浏览器") {
 					this.show1 = true
 				}else{
-					getAppShare(window.location.href, this.investorDetailsList.name, this.investorDetailsList.logo, this.investorDetailsList.requirement, "")
+					getAppShare(this.url, this.investorDetailsList.name, this.investorDetailsList.logo, this.investorDetailsList.requirement, "")
 				}
 			},
 			followClick(type) {
@@ -255,7 +259,10 @@
 						} else {
 
 						}
-					})
+          })
+          .then(()=>{
+              wxShare(this.$root.urlPath.MCT + '/wx/share', this.url, this.investorDetailsList.name, this.investorDetailsList.logo, this.investorDetailsList.requirement, this.url);
+          })
 					.catch(function(error) {
 
 					});

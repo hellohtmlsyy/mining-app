@@ -14,7 +14,7 @@
 				<div class="revert" @click="back">
 					<i class="icon iconfont icon-jiantou-copy color_f"></i>
 				</div>
-				<div class="info" @click="share">
+				<div class="info" @click="share"  v-if="!wxDevice">
 					<i class="icon iconfont icon-tubiao212 color_f"></i>
 				</div>
 			</div>
@@ -219,7 +219,7 @@
 	import swiper2 from '@/static/js/swiper.min.js';
 	import axios from 'axios'
 	import { Flexbox, FlexboxItem, Group, PopupRadio, Tab, TabItem, Sticky, Swiper, SwiperItem, Actionsheet, InlineXNumber } from 'vux';
-	import { getAppShare, isDevice, ShareTip,appLogin} from '@/assets/commonjs/util.js';
+	import { getAppShare, isDevice, ShareTip,appLogin,wxShare} from '@/assets/commonjs/util.js';
 	import { cookie } from 'vux';
 	import openApp from '@/components/base/openApp'
 
@@ -268,13 +268,17 @@
 				price: '',
 				count: 1,
 				showaddCart: false,
-				showOptionCount: false
+        showOptionCount: false,
+        wxDevice:false,
+        url:window.location.href
 			}
-		},
-		mounted: function() {
-			this.getMallDetailsList()
-
-		},
+    },
+    created(){
+       if(isDevice() == '微信浏览器'){
+        this.wxDevice = true
+      }
+      this.getMallDetailsList()
+    },
 		methods: {
 
 			shareMCClick() {
@@ -308,7 +312,7 @@
 				if(isDevice() == "其他浏览器") {
 					this.show2 = true
 				} else {
-					getAppShare(window.location.href, this.mallDetailsList.title, this.imgs[0], this.mallDetailsList.vdesc, "")
+					getAppShare(this.url, this.mallDetailsList.title, this.imgs[0], this.mallDetailsList.vdesc, "")
 				}
 
 			},
@@ -429,7 +433,10 @@
 						} else {
 							console.log(res.data.errMsg)
 						}
-					})
+          })
+          .then(()=>{
+              wxShare(this.$root.urlPath.MCT + '/wx/share', this.url, this.mallDetailsList.title, this.imgs[0], this.mallDetailsList.vdesc, this.url);
+          })
 					.catch(function(error) {
 						alert(error)
 					});

@@ -1,11 +1,26 @@
 <template>
 	<div>
 		<div class="act01">
+      <div class="revert" @click="back">
+				<i class="icon iconfont icon-jiantou-copy color_f"></i>
+			</div>
 			<div class="mb-20"><img src="../../../../static/img/act/20181220/1-1.png" alt="" class="img"></div>
 			<div class="imgbox mb-30"><img src="../../../../static/img/act/20181220/1-2.png" alt="" class="img"></div>
+
 			<div class="reward mb-24">
 				<div class="con">
-					<div class="fs-26 col-1e47ff fw-6">注册矿业圈--生成旗舰店--分享朋友圈</div>
+          <div>
+            <div class="step">
+              <span>01 注册矿业圈</span>
+            </div>
+            <div class="step">
+             <span>02 生成旗舰店</span>
+            </div>
+            <div class="step">
+              <span>03 分享朋友圈</span>
+            </div>
+          </div>
+					<!-- <div class="fs-26 col-1e47ff fw-6">注册矿业圈--生成旗舰店--分享朋友圈</div> -->
 					<div class="prize">完成以上三步，即可有机会获得<br><span class="fw-6 col-f398 fs-28">免费一日小镇豪华别墅住宿+免费精美早餐一份</span></div>
 					<div><span class="partake" @click="luckdraw()">参与活动</span></div>
 				</div>
@@ -13,11 +28,11 @@
 			<div class="imgbox text mb-50">
 				<p>1. 奖项可转赠亲友使用，每栋别墅最多可入住6人</p>
 				<p>2. 活动时间：2018年12月28日-2018年1月6日</p>
-				<p>3. 活动咨询请致电：400-819-6985（9:00-18:00）<br><span style="text-indent: 0.26rem;display: inline-block;">活动邮箱：dyh@qlfg.com</span></p>
+				<p>3. 活动咨询请致电：400-819-6985<span class="toPhone" style="text-indent: 0.26rem;display: inline-block;" @click="call">拨打</span></p>
 				<p>4. 本活动最终解释权归清蓝矿业圈所有</p>
 			</div>
 			<div class="imgbox mb-30">
-				<a href="http://f.amap.com/pYfR_0605gGE" target="_blank">
+				<a href="http://f.amap.com/pYfR_0605gGE?newpage=newpage" target="_blank">
 					<img src="../../../../static/img/act/20181220/1-4.png" alt="" class="img">
 				</a>
 			</div>
@@ -30,6 +45,8 @@
 	</div>
 </template>
 <script>
+import { lastPage,toPhone ,isDevice} from '@/assets/commonjs/util.js';
+
 	import {
 		wxShare,
 		setCookie,
@@ -38,10 +55,17 @@
 	export default {
 		data() {
 			return {
-				url: window.location.href,
+        url: window.location.href,
+        isApp:false
 			}
 		},
 		methods: {
+      call() {
+				toPhone("4008196985")
+			},
+      back() {
+				lastPage()
+		  },
 			luckdraw(data) {
 				if (getCookie("MC_UID")) {
 					//是否报名
@@ -102,7 +126,7 @@
 						})
 				} else {
 					//未登录
-					window.location.href = this.$root.urlPath.MCM + '/act/act2018122002';
+					window.location.href = this.$root.urlPath.MCM + '/act/act2018122002?newpage=newpage';
 				}
 			},
 		},
@@ -112,13 +136,21 @@
 			var imgUrl = 'http://www.miningcircle.com/img/20181228spread.jpg';
 			var desc = '凛冬骤降，矿业圈新年礼包等你来，点击开启你的三亚免费之旅';
 			var golink = window.location.href;
-			wxShare(this.$root.urlPath.MCT + '/wx/share', this.url, title, imgUrl, desc, golink);
+      wxShare(this.$root.urlPath.MCT + '/wx/share', this.url, title, imgUrl, desc, golink);
+      // if(isDevice() == 'adr' || isDevice() == 'ios'){
+      //   this.isApp = true
+      // }else{
+      //   this.isApp = false
+      // }
 		},
 	}
 </script>
 <style scoped>
 	@import url('../../../static/css/act.css');
-
+.toPhone{
+  text-decoration:underline;
+  color: rgb(60, 255, 0);
+}
 	.fw-6 {
 		font-weight: 600;
 	}
@@ -156,7 +188,19 @@
 		position: relative;
 		padding: 0 0.3rem;
 	}
-
+.act01 .revert{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 0.6rem;
+    background-color: rgba(119, 110, 93, .6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
 	.act01 .img {
 		width: 100%;
 	}
@@ -165,7 +209,18 @@
 		width: 100%;
 		padding: 0 0.3rem;
 	}
+  .act01 .step{
+  color: #fff;
+  text-align: center;
+  margin-bottom: 0.25rem;
+  font-size: 0.26rem;
+}
+.act01 .step span{
+background-color: #1e47ff;
+padding: 0.07rem 0.2rem;
+border-radius: 0.05rem;
 
+}
 	.act01 .reward .con {
 		text-align: center;
 		background-color: #fff;

@@ -2,6 +2,9 @@
 	<div>
 		<div class="act02">
 			<div class="imgbox"><img src="../../../../static/img/act/20181220/1-1.png" class="img" /></div>
+      <div class="revert" @click="back">
+				<i class="icon iconfont icon-jiantou-copy color_f"></i>
+			</div>
 			<div class="con">
 				<input type="text" placeholder="请输入手机号" class="mb-20" v-model.trim="userinfo.tel" />
 				<div class="dis-fl clearfix">
@@ -28,6 +31,8 @@
 	</div>
 </template>
 <script>
+import { lastPage } from '@/assets/commonjs/util.js';
+
 	import Vue from 'vue';
 	import {
 		setCookie,
@@ -52,7 +57,7 @@
 				mobileIsEixt: false,
 				count: 60,
 				show_time: true,
-				activityNo: '20181228', //活动编号 
+				activityNo: '20181228', //活动编号
 				code_url: '',
 				show_captcha: false,
 				enroll: false, //是否报名
@@ -66,6 +71,9 @@
 			},
 		},
 		methods: {
+      back() {
+				lastPage()
+		  },
 			signUp() {
 				console.log(this.enroll)
 				this.msg_codeError = this.userinfo.msgCode.length > 0 ? false : true;
@@ -108,7 +116,7 @@
 											this.$vux.toast.text('您已报名，不能重复报名!', 'center');
 											var self = this;
 											window.setTimeout(function() {
-												window.location.href = self.$root.urlPath.MCM + '/act/act2018122003';
+												window.location.href = self.$root.urlPath.MCM + '/act/act2018122003?newpage=newpage';
 											}, 2000)
 										} else {
 											//未报名
@@ -130,7 +138,7 @@
 															)
 															.then(res => {
 																if (res.data.success) {
-																	window.location.href = this.$root.urlPath.MCM + '/act/act2018122003';
+																	window.location.href = this.$root.urlPath.MCM + '/act/act2018122003?newpage=newpage';
 																} else {
 																	this.$vux.toast.text(res.data.errMsg, 'center');
 																}
@@ -233,7 +241,7 @@
 						.catch(err => {
 							this.disable = false;
 						})
-					
+
 					time = setInterval(function() {
 						self.time = count;
 						Vue.set([self.time], 'time', count)
@@ -274,7 +282,7 @@
 							this.$vux.toast.text('您已报名，不能重复报名!', 'center');
 							var self = this;
 							window.setTimeout(function() {
-								window.location.href = self.$root.urlPath.MCM + '/act/act2018122003';
+								window.location.href = self.$root.urlPath.MCM + '/act/act2018122003?newpage=newpage';
 							}, 2000)
 						} else {
 							//未报名
@@ -296,7 +304,7 @@
 											)
 											.then(res => {
 												if (res.data.success) {
-													window.location.href = this.$root.urlPath.MCM + '/act/act2018122003';
+													window.location.href = this.$root.urlPath.MCM + '/act/act2018122003?newpage=newpage';
 												} else {
 													this.$vux.toast.text(res.data.errMsg, 'center');
 												}
@@ -326,14 +334,26 @@
 			wxShare(this.$root.urlPath.MCT + '/wx/share', this.url, title, imgUrl, desc, golink);
 		},
 		mounted() {
-			var winHeight = $(window).height(); //获取当前页面高度  
+			var winHeight = $(window).height(); //获取当前页面高度
 			$('.act02').css('height', winHeight + 'px');
 		},
 	}
 </script>
 <style scoped="scoped">
 	@import url('../../../static/css/act.css');
-
+  .act02 .revert{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 0.6rem;
+    background-color: rgba(119, 110, 93, .6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
 	.act02 {
 		padding: 0 0.22rem;
 		height: 100%;
