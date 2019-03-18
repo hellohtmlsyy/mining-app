@@ -123,7 +123,9 @@
 		/*指定垂直居中*/
 		font-size: 0.36rem;
 		height: 0.6rem;
-		line-height: 0.6rem;
+    line-height: 0.6rem;
+    box-sizing: content-box;
+    width: 100%;
 	}
 	.mheader .searchBox{
 		margin: 0 0.2rem;

@@ -290,6 +290,9 @@
 	.newsDetails .content{
 		margin-top: 1rem;
 	}
+  .newsDetails .content img{
+    width: 100%;
+  }
 	.newsDetails .contentMargin1{
 		margin-top: 1.95rem;
 	}

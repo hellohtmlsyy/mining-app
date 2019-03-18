@@ -4,7 +4,7 @@
     <Carousel class="carousel" :imgUrl="imgUrl" v-show="!scrollD" @goDetails="goDetails" ></Carousel>
 		<div class="exhibtion-nav channelBTab clearfix" :class="{posiFixed:scrollD}">
 			<sticky  scroll-box="vux_view_box_body" :check-sticky-support="false" :offset="46">
-				<div ref="tabBoxOuter" class="fl" style="width: 6.39rem;overflow:scroll;-webkit-overflow-scrolling:touch;">
+				<div ref="tabBoxOuter" class="fl" style="width: 6.4rem;overflow:scroll;-webkit-overflow-scrolling:touch;">
 					<tab ref="tabBox" style="background-color: #f2f4f5;font-size: 0.28rem" active-color="rgb(225, 158, 36)" :line-width="3" :style="{width: tabWidth + 'px'}">
 						<tab-item v-for="(item,index) in column" :key="index" @on-item-click="tabClick(item.value)" :selected="item.value == curTab">{{item.name}}
 						</tab-item>
@@ -89,7 +89,7 @@
 				}
       },
       goDetails(){
-        window.location.href = this.$root.urlPath.MCM + '/exhibition/details?id=30f2073b3dfa493ab98defb115bd9067&newpage=newpage'
+        window.location.href = this.$root.urlPath.MCM + '/exhibition/details?id=704716e4dd284f41acd36cee706e8f0e&newpage=newpage'
       },
 			getMeetingList() {
 				axios.get(this.$root.urlPath.MC + '/wap/meeting.do?meetingList', {

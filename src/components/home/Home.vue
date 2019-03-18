@@ -12,7 +12,7 @@
 		</div>
 			<!--认证-->
 			<section @click="goCert">
-				<img src="../../../static/img/bg/bg-cert.png" width='100%'
+				<img src="../../../static/img/bg/bg-cert.jpg" width='100%'
     height='100%'/>
 			</section>
 			<!--nav-->
@@ -482,24 +482,25 @@
 			},
 			goCert(){
 				if(cookie.get('MC_UID')) {
-					this.$axios.get(this.$root.urlPath.MCT + '/wap/company/comInfo')
-					.then(res => {
-						var data = res.data
-						if(data.status == 2){//已经认证了
-							window.location.href=this.$root.urlPath.MCM+"/users/entcenter?newpage=newpage"
-						}else if(data.status == 0 || data.status == 3){//没认证
-							window.location.href = this.$root.urlPath.MCMHALL + '/cert?newpage=newpage';
-						}else if(data.status == 1){
-							this.$vux.toast.text('您的企业正在申请中<br/>客服：400-819-6985', 'center');
-						}else if(data.status == 4){
-							this.$vux.toast.text('您的企业已冻结<br/>客服：400-819-6985', 'center');
-						}else if(res.data.errCode = '001002140'){
-							window.location.href = this.$root.urlPath.MCMHALL + '/cert?newpage=newpage';
-						}
-					})
-					.catch(function(error) {
-						alert('账户异常' + error)
-					});
+          window.location.href = this.$root.urlPath.MCM + '/vip?newpage=newpage';
+					// this.$axios.get(this.$root.urlPath.MCT + '/wap/company/comInfo')
+					// .then(res => {
+					// 	var data = res.data
+					// 	if(data.status == 2){//已经认证了
+					// 		window.location.href=this.$root.urlPath.MCM+"/users/entcenter?newpage=newpage"
+					// 	}else if(data.status == 0 || data.status == 3){//没认证
+					// 		window.location.href = this.$root.urlPath.MCMHALL + '/cert?newpage=newpage';
+					// 	}else if(data.status == 1){
+					// 		this.$vux.toast.text('您的企业正在申请中<br/>客服：400-819-6985', 'center');
+					// 	}else if(data.status == 4){
+					// 		this.$vux.toast.text('您的企业已冻结<br/>客服：400-819-6985', 'center');
+					// 	}else if(res.data.errCode = '001002140'){
+					// 		window.location.href = this.$root.urlPath.MCMHALL + '/cert?newpage=newpage';
+					// 	}
+					// })
+					// .catch(function(error) {
+					// 	alert('账户异常' + error)
+					// });
 				} else {
 					appLogin()
 				}

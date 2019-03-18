@@ -1,8 +1,9 @@
 <!--  -->
 <template>
+<!-- 注意：活动已经下掉，此代码暂时没有用了 -->
   <div class='activity'>
     <div class="content">
-      <img src="../../../static/img/data/active.jpg" alt="">
+      <!-- <img src="../../../static/img/data/active.jpg" alt=""> -->
       <div class="revert" @click="back">
 				<i class="icon iconfont icon-jiantou-copy color_f"></i>
 			</div>

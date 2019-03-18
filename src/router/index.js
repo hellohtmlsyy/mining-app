@@ -93,258 +93,303 @@ import entPurse from '@/components/users/wallet/entPurse'; //钱包
 import Act2018122001 from '@/components/act/20181220/01';
 import Act2018122002 from '@/components/act/20181220/02';
 import Act2018122003 from '@/components/act/20181220/03';
-//
+
+//act20190209 初五活动act2019020901
+import Act2019020901 from '@/components/act/20190209/01'
+import Act2019020902 from '@/components/act/20190209/02'
+import Act2019020903 from '@/components/act/20190209/03'
+import Act2019020904 from '@/components/act/20190209/04'
+import Act2019020905 from '@/components/act/20190209/05'
+import Act2019020906 from '@/components/act/20190209/06'
+
 import test from '@/components/test/test'
 import test1 from '@/components/test/test1'
 Vue.use(Router)
 const router = new Router({
-    mode: 'history',
-    routes: [{
-            path: '/',
-            redirect: {
-                name: 'home'
-            }
-        },
-        {
-            path: '/home',
-            name: 'home',
-            component: Home
-        },
-        {
-            path: '/search',
-            name: 'search',
-            component: Search
-        },
-        { path: '/search/list/:category', name: 'search.list', component: SearchList },
+  mode: 'history',
+  routes: [{
+    path: '/',
+    redirect: {
+      name: 'home'
+    }
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: Home
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: Search
+  },
+  { path: '/search/list/:category', name: 'search.list', component: SearchList },
 
-        {
-            path: '/exhibition',
-            name: 'exhibition',
-            component: Exhibition,
-        },
-        {
-            path: '/switchPage',
-            name: 'switchPage',
-            component: switchPage,
-        },
-        {
-            path: '/exhibition/details',
-            name: 'exhibitionDetails',
-            component: ExhibitionDetails
-        },
-        {
-            path: '/exhibition/exform',
-            name: 'exform',
-            component: exform
-        },
-        {
-            path: '/exhibition/exlist',
-            name: 'exList',
-            component: exList,
-            meta: { requireAuth: true }
-        },
-        {
-            path: '/mineral',
-            name: 'mineral',
-            component: Mineral
-        },
-        {
-            path: '/mineral/investorDetails',
-            name: 'investorDetails',
-            component: InvestorDetails,
-            meta: { requireAuth: true }
-        },
+  {
+    path: '/exhibition',
+    name: 'exhibition',
+    component: Exhibition,
+  },
+  {
+    path: '/switchPage',
+    name: 'switchPage',
+    component: switchPage,
+  },
+  {
+    path: '/exhibition/details',
+    name: 'exhibitionDetails',
+    component: ExhibitionDetails
+  },
+  {
+    path: '/exhibition/exform',
+    name: 'exform',
+    component: exform
+  },
+  {
+    path: '/exhibition/exlist',
+    name: 'exList',
+    component: exList,
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/mineral',
+    name: 'mineral',
+    component: Mineral
+  },
+  {
+    path: '/mineral/investorDetails',
+    name: 'investorDetails',
+    component: InvestorDetails,
+    meta: { requireAuth: true }
+  },
 
-        {
-            path: '/mineral/projectDetails',
-            name: 'projectDetails',
-            component: ProjectDetails,
-            meta: { requireAuth: true }
-        },
-        {
-            path: '/mineral/projectDetails/auth-form',
-            name: 'authForm',
-            component: auth_form,
-            meta: { requireAuth: true }
-        },
-        {
-            path: '/mineral/projectDetails/form',
-            name: 'projectForm',
-            component: form,
-            meta: { requireAuth: true }
-        },
-        {
-            path: '/news',
-            name: 'news',
-            component: News,
+  {
+    path: '/mineral/projectDetails',
+    name: 'projectDetails',
+    component: ProjectDetails,
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/mineral/projectDetails/auth-form',
+    name: 'authForm',
+    component: auth_form,
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/mineral/projectDetails/form',
+    name: 'projectForm',
+    component: form,
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/news',
+    name: 'news',
+    component: News,
 
-        },
-        {
-            path: '/news/details',
-            name: 'newsDetails',
-            component: NewsDetails
-        },
-        {
-            path: '/mall',
-            name: 'mall',
-            component: Mall
-        },
-        {
-            path: '/mall/details',
-            name: 'malldetails',
-            component: Malldetails
-        },
-        {
-            path: '/mallCom/details',
-            name: 'mallComDetails',
-            component: mallComDetails
-        },
-        {
-            path: '/mall/order_confirm',
-            name: 'mallOrderConfirm',
-            component: order_confirm
-        },
-        {
-            path: '/mall/order_address',
-            name: 'mallOrderAddress',
-            component: order_address
-        },
-        {
-            path: '/mall/order_addressList',
-            name: 'mallOrderAddressList',
-            component: order_addressList
-        },
+  },
+  {
+    path: '/news/details',
+    name: 'newsDetails',
+    component: NewsDetails
+  },
+  {
+    path: '/mall',
+    name: 'mall',
+    component: Mall
+  },
+  {
+    path: '/mall/details',
+    name: 'malldetails',
+    component: Malldetails
+  },
+  {
+    path: '/mallCom/details',
+    name: 'mallComDetails',
+    component: mallComDetails
+  },
+  {
+    path: '/mall/order_confirm',
+    name: 'mallOrderConfirm',
+    component: order_confirm
+  },
+  {
+    path: '/mall/order_address',
+    name: 'mallOrderAddress',
+    component: order_address
+  },
+  {
+    path: '/mall/order_addressList',
+    name: 'mallOrderAddressList',
+    component: order_addressList
+  },
 
-        {
-            path: '/mall/orderCom_list',
-            name: 'mallOrderComList',
-            component: orderCom_list,
-            meta: { requireAuth: true }
-        },
-        {
-            path: '/mall/orderCom_balance',
-            name: 'mallOrderComBalance',
-            component: orderCom_balance
-        },
-        {
-            path: '/mall/pay',
-            name: 'pay',
-            component: pay
-        },
+  {
+    path: '/mall/orderCom_list',
+    name: 'mallOrderComList',
+    component: orderCom_list,
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/mall/orderCom_balance',
+    name: 'mallOrderComBalance',
+    component: orderCom_balance
+  },
+  {
+    path: '/mall/pay',
+    name: 'pay',
+    component: pay
+  },
 
 
-        {
-            path: '/flagship',
-            name: 'flagship',
-            component: Flagship
-        },
-        {
-            path: '/shopCart',
-            name: 'shopCart',
-            component: shopCart
-        },
-        {
-            path: '/leaveSpeak',
-            name: 'leaveSpeak',
-            component: leaveSpeak,
-            meta: { requireAuth: true }
-        },
-        {
-            path: '/componyIntro',
-            name: 'componyIntro',
-            component: componyIntro
-        },
-        {
-            path: '/flagship/search',
-            name: 'flagshipSearch',
-            component: flagshipSearch
-        },
+  {
+    path: '/flagship',
+    name: 'flagship',
+    component: Flagship
+  },
+  {
+    path: '/shopCart',
+    name: 'shopCart',
+    component: shopCart
+  },
+  {
+    path: '/leaveSpeak',
+    name: 'leaveSpeak',
+    component: leaveSpeak,
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/componyIntro',
+    name: 'componyIntro',
+    component: componyIntro
+  },
+  {
+    path: '/flagship/search',
+    name: 'flagshipSearch',
+    component: flagshipSearch
+  },
 
-        {
-            path: '/flagship/searchList',
-            name: 'flagshipSearchList',
-            component: flagshipSearchList
-        },
-        {
-            path: '/market',
-            name: 'market',
-            component: market
-        },
-        {
-            path: '/market/details',
-            name: 'marketDetails',
-            component: marketDetails
-        },
-        {
-            path: '/database/list',
-            name: 'databaseList',
-            component: databaseList
-        },
-        {
-            path: '/database/searchList',
-            name: 'databaseSearchList',
-            component: databaseSearchList
-        },
-        {
-            path: '/database/details',
-            name: 'databaseDetails',
-            component: databaseDetails,
-            meta: { requireAuth: true }
-        },
-        {
-            path: '/classify',
-            name: 'classify',
-            component: classify,
-        },
-        {
-            path: '/vip',
-            name: 'vip',
-            component: vip,
-        },
-        {
-          path: '/activity20190106',
-          name: 'activity',
-          component: activity,
-        },
-        { path: '/user/ordlistdetail', name: 'ordlistdetail', component: ordlistdetail, meta: { requireAuth: true } },
-        { path: '/user/purordlist', name: 'purOrdlist', component: purOrdlist, meta: { requireAuth: true } },
-        { path: '/user/purcommOrdlist', name: 'purcommOrdlist', component: purcommOrdlist, meta: { requireAuth: true } },
-        { path: '/user/supordlist', name: 'supOrdlist', component: supOrdlist, meta: { requireAuth: true } },
-        { path: '/user/supcommOrdlist', name: 'supcommOrdlist', component: supcommOrdlist, meta: { requireAuth: true } },
-        { path: '/user/pergoodslist', name: 'pergoodslist', component: pergoodslist, meta: { requireAuth: true } },
-        //user2.0
-        { path: '/users/center', name: 'usersCenter', component: usersCenter },
-        { path: '/users/entcenter', name: 'usersEntcenter', component: usersEntcenter, meta: { requireAuth: true } },
-        { path: '/users/modifyInfo', name: 'modifyinfo', component: modifyInfo, meta: { requireAuth: true } },
-        { path: '/users/follow', name: 'follow', component: follow, meta: { requireAuth: true } },
-        { path: '/users/news', name: 'usersnews', component: usersNews, meta: { requireAuth: true } },
-        { path: '/users/newsDetail', name: 'usersnewsdetail', component: usersNewsdetail, meta: { requireAuth: true } },
-        { path: '/users/problem', name: 'problem', component: problem, meta: { requireAuth: true } },
-        { path: '/users/problemDetail', name: 'problemDetail', component: problemDetail, meta: { requireAuth: true } },
-        { path: '/users/perPurse', name: 'perPurse', component: perPurse, meta: { requireAuth: true } },
-        { path: '/users/entPurse', name: 'entPurse', component: entPurse, meta: { requireAuth: true } },
-        { path: '/users/proposal', name: 'proposal', component: proposal, meta: { requireAuth: true } },
-        { path: '/invest', name: 'invest', component: invest, meta: { requireAuth: true } },
-        { path: '/invest/details', name: 'investDet', component: investDet, meta: { requireAuth: true } },
-        { path: '/users/interview', name: 'interview', component: interview, meta: { requireAuth: true } },
-        { path: '/users/interviewDetail', name: 'interviewdetail', component: interviewDetail, meta: { requireAuth: true } },
-        { path: '/users/storeMsg', name: 'storemsg', component: storeMsg, meta: { requireAuth: true } },
-        { path: '/users/storeMsgDetail', name: 'storemsgdetail', component: storeMsgDetail, meta: { requireAuth: true } },
-        {
-            path: '/test1',
-            name: 'test1',
-            component: test1
-        },
-        {
-            path: '/test',
-            name: 'test',
-            component: test
-        },
-		
-		//act20181220抽奖
-		{ path: '/act/act2018122001', name: 'act.act2018122001', component: Act2018122001, meta: { title: '企业入驻赢好礼' } },
-		{ path: '/act/act2018122002', name: 'act.act2018122002', component: Act2018122002, meta: { title: '企业入驻赢好礼' } },
-		{ path: '/act/act2018122003', name: 'act.act2018122003', component: Act2018122003, meta: { title: '企业入驻赢好礼' } },
-    ]
+  {
+    path: '/flagship/searchList',
+    name: 'flagshipSearchList',
+    component: flagshipSearchList
+  },
+  {
+    path: '/market',
+    name: 'market',
+    component: market
+  },
+  {
+    path: '/market/details',
+    name: 'marketDetails',
+    component: marketDetails
+  },
+  {
+    path: '/database/list',
+    name: 'databaseList',
+    component: databaseList
+  },
+  {
+    path: '/database/searchList',
+    name: 'databaseSearchList',
+    component: databaseSearchList
+  },
+  {
+    path: '/database/details',
+    name: 'databaseDetails',
+    component: databaseDetails,
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/classify',
+    name: 'classify',
+    component: classify,
+  },
+  {
+    path: '/vip',
+    name: 'vip',
+    component: vip,
+  },
+  {
+    path: '/activity20190106',
+    name: 'activity',
+    component: activity,
+  },
+  { path: '/user/ordlistdetail', name: 'ordlistdetail', component: ordlistdetail, meta: { requireAuth: true } },
+  { path: '/user/purordlist', name: 'purOrdlist', component: purOrdlist, meta: { requireAuth: true } },
+  { path: '/user/purcommOrdlist', name: 'purcommOrdlist', component: purcommOrdlist, meta: { requireAuth: true } },
+  { path: '/user/supordlist', name: 'supOrdlist', component: supOrdlist, meta: { requireAuth: true } },
+  { path: '/user/supcommOrdlist', name: 'supcommOrdlist', component: supcommOrdlist, meta: { requireAuth: true } },
+  { path: '/user/pergoodslist', name: 'pergoodslist', component: pergoodslist, meta: { requireAuth: true } },
+  //user2.0
+  { path: '/users/center', name: 'usersCenter', component: usersCenter },
+  { path: '/users/entcenter', name: 'usersEntcenter', component: usersEntcenter, meta: { requireAuth: true } },
+  { path: '/users/modifyInfo', name: 'modifyinfo', component: modifyInfo, meta: { requireAuth: true } },
+  { path: '/users/follow', name: 'follow', component: follow, meta: { requireAuth: true } },
+  { path: '/users/news', name: 'usersnews', component: usersNews, meta: { requireAuth: true } },
+  { path: '/users/newsDetail', name: 'usersnewsdetail', component: usersNewsdetail, meta: { requireAuth: true } },
+  { path: '/users/problem', name: 'problem', component: problem, meta: { requireAuth: true } },
+  { path: '/users/problemDetail', name: 'problemDetail', component: problemDetail, meta: { requireAuth: true } },
+  { path: '/users/perPurse', name: 'perPurse', component: perPurse, meta: { requireAuth: true } },
+  { path: '/users/entPurse', name: 'entPurse', component: entPurse, meta: { requireAuth: true } },
+  { path: '/users/proposal', name: 'proposal', component: proposal, meta: { requireAuth: true } },
+  { path: '/invest', name: 'invest', component: invest, meta: { requireAuth: true } },
+  { path: '/invest/details', name: 'investDet', component: investDet, meta: { requireAuth: true } },
+  { path: '/users/interview', name: 'interview', component: interview, meta: { requireAuth: true } },
+  { path: '/users/interviewDetail', name: 'interviewdetail', component: interviewDetail, meta: { requireAuth: true } },
+  { path: '/users/storeMsg', name: 'storemsg', component: storeMsg, meta: { requireAuth: true } },
+  { path: '/users/storeMsgDetail', name: 'storemsgdetail', component: storeMsgDetail, meta: { requireAuth: true } },
+  {
+    path: '/test1',
+    name: 'test1',
+    component: test1
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: test
+  },
+
+  //act20181220抽奖
+  { path: '/act/act2018122001', name: 'act.act2018122001', component: Act2018122001, meta: { title: '企业入驻赢好礼' } },
+  { path: '/act/act2018122002', name: 'act.act2018122002', component: Act2018122002, meta: { title: '企业入驻赢好礼' } },
+  { path: '/act/act2018122003', name: 'act.act2018122003', component: Act2018122003, meta: { title: '企业入驻赢好礼' } },
+  // 初五活动act2019020901
+  {
+    path: '/act/act2019020901',
+    name: 'act.act2019020901',
+    component: Act2019020901,
+    meta: { title: '矿业圈邀你参加三亚财神节庙会' }
+  },
+  {
+    path: '/act/act2019020902',
+    name: 'act.act2019020902',
+    component: Act2019020902,
+    meta: { title: '矿业圈邀你参加三亚财神节庙会' }
+  },
+  {
+    path: '/act/act2019020903',
+    name: 'act.act2019020903',
+    component: Act2019020903,
+    meta: { title: '矿业圈邀你参加三亚财神节庙会' }
+  },
+  {
+    path: '/act/act2019020904',
+    name: 'act.act2019020904',
+    component: Act2019020904,
+    meta: { title: '矿业圈邀你参加三亚财神节庙会' }
+  },
+  {
+    path: '/act/act2019020905',
+    name: 'act.act2019020905',
+    component: Act2019020905,
+    meta: { title: '矿业圈邀你参加三亚财神节庙会' }
+  },
+  {
+    path: '/act/act2019020906',
+    name: 'act.act2019020906',
+    component: Act2019020906,
+    meta: { title: '矿业圈邀你参加三亚财神节庙会' },
+  },
+  ]
 });
 export default router;
