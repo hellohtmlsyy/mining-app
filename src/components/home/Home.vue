@@ -11,8 +11,8 @@
 				</div>
 		</div>
 			<!--认证-->
-			<section @click="goCert">
-				<img src="../../../static/img/bg/bg-cert.jpg" width='100%'
+			<section  @click="goCert">
+				<img class="va-t" src="../../../static/img/bg/bg-cert.jpg" width='100%'
     height='100%'/>
 			</section>
 			<!--nav-->
@@ -225,14 +225,14 @@
 			</div>
 
 			<!--广告-->
-			<div class="exclusive" style="margin: 0.15rem 0;
+			<!-- <div class="exclusive" style="margin: 0.15rem 0;
 		position: relative;">
 				<div class="fixed-swiper dis-fl text-center" v-show="showSwiper">
 					<span class="close" @click="closeSwiper"></span>
 					<swiper :list="advertList" :duration="1000" :show-dots="false" dots-class="custom-bottom" dots-position="center" height="2.4rem" :auto="true" style="width:100%">
 					</swiper>
 				</div>
-			</div>
+			</div> -->
 			<!--矿权交易-->
 			<div class="mineTrade">
 				<div class="common_top clearfix">
@@ -549,7 +549,7 @@
 						this.marketList = data.list
 					}
 				}).catch(function(error) {
-					alert(error)
+					console.log(error)
 				});
 			},
 			toMarketList() {

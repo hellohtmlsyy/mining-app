@@ -120,7 +120,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 			getSearchList() {
@@ -152,7 +152,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 			getIsVip(id) {
@@ -177,7 +177,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 			clear() {

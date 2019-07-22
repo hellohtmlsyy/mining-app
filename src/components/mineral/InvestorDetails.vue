@@ -271,7 +271,8 @@
 				this.showDiaLog = true
 			},
 			speakSubmit() {
-        if(this.speakText == ''){
+        let reg = /^\s*$/g
+        if(this.speakText == '' || reg.test(this.speakText)){
           this.$vux.toast.show({
  								text: '不能为空',
  								type:'cancel'

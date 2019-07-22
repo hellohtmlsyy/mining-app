@@ -64,7 +64,7 @@
 			},
 			scrollEvent() {
 				if(this.total == 0) return
-				
+
 				if(this.isComplete) return
 //				滚动距离
 //				可见高度
@@ -73,12 +73,12 @@
 				let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
 				let viewHeight = window.innerHeight;
 				let docHeight = this.$refs.scroll.childNodes[0].offsetHeight
-				
+
 //				如果滚动距离加浏览器窗口高度,就说明到底部了,若大于等于内容高度,就加载
 				if(scrollTop + viewHeight >= docHeight - this.distance){
 					this.isLoading = true
 				}
-				
+
 			},
 //			请求完
 			loaded(){
@@ -105,8 +105,8 @@
 </script>
 
 <style scoped>
-	
-	
-	
-	
+
+
+
+
 <style>

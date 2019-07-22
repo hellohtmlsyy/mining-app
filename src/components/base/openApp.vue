@@ -27,7 +27,7 @@
 					iosScheme: 'miningcircle://'
 				},
 				shareMC: 'none'
-				
+
 			}
 		},
 		mounted() {
@@ -60,7 +60,7 @@
 					this.shareMC = 'block'
 					return
 				}else if(isDevice() !== '微信浏览器'){
-					
+
 					if(isBrowser() == "iosBS") {
 						window.location.href = this.config.iosScheme
 						setTimeout(() => {
@@ -71,7 +71,7 @@
 						setTimeout(() => {
 							window.location.href = this.config.downloadUrl
 						}, 2000)
-					} 
+					}
 				}
 			},
 			close() {
@@ -100,13 +100,13 @@
 		height: 30px;
 		background: url('../../../static/img/close.png') center center no-repeat;
 	}
-	
+
 	.openApp img {
 		display: block;
 		width: 7.5rem;
 		height: 0.95rem;
 	}
-	
+
 	.tip{
 		z-index: 10001;
 		position: fixed;
@@ -115,7 +115,7 @@
 		background-color:#E0E0E0 ;
 		width: 100%;
 		height: 100%;
-		display: flex;		
+		display: flex;
 	}
 	.tip img{
 		width: 4.08rem;

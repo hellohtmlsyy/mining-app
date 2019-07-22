@@ -178,7 +178,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 			getCartList(callback) {
@@ -209,7 +209,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 		}

@@ -17,7 +17,7 @@
 		<my-scroll ref="scroll" @loadmore='loadmore' :isTab="isTab" :total="total" >
 			<Minerallist :investorSH="investorSH" :list="projectList"></Minerallist>
 		</my-scroll>
-		
+
 	</div>
 </template>
 
@@ -28,7 +28,7 @@
 	import Minerallist from '@/components/common/Mineral-list'
 	import Oheader from '@/components/common/header/Oheader'
 	import myScroll from '@/components/base/myScroll'
-	
+
 	const baseList = [{
 		img: '../../../static/img/banner1.jpg'
 	}, {
@@ -59,7 +59,7 @@
 				{'name':"全部",value:''},
 				{'name': "金属矿产",value:1},
 				{'name' :"有色金属",value:2},
-				{'name': "黑色金属",value:4}, 
+				{'name': "黑色金属",value:4},
 				{'name':"能源矿产",value:8},
 				{'name': "稀有金属",value:16},
 				{'name': "非金属",value:32}
@@ -79,7 +79,7 @@
 			this.getProjectList()
 		},
 		computed:{
-			
+
 		},
 		methods: {
 			loadmore(){
@@ -101,11 +101,11 @@
 						if(res.data.success) {
 							this.$refs.scroll.loaded()
 							this.isTab = false
-							
+
 							var data = res.data.data.resList
 							this.projectList = this.projectList.concat(data)
 							this.total = res.data.data.total
-							
+
 							if(this.total == this.projectList.length && this.total !== 0){
 								this.$refs.scroll.complete()
 							}else{
@@ -114,11 +114,11 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 			getInvestorList() {
-				
+
 				axios.get(this.$root.urlPath.MC + '/wap/yiinvest.do?yiInvestList', {
 						params: {
 							minera: 1,
@@ -134,7 +134,7 @@
 							var data = res.data.data.investList
 							this.total = res.data.data.total
 							this.projectList = this.projectList.concat(data)
-							
+
 							if(this.total == this.projectList.length && this.total !== 0){
 								this.$refs.scroll.complete()
 							}else{
@@ -143,7 +143,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 
@@ -162,7 +162,7 @@
 				this.isTab = true
 				this.investorSH = false
 				this.getProjectList()
-				
+
 			},
 
 		}
@@ -172,30 +172,30 @@
 <style>
 	@import url("../../static/css/oheader.css");
 	/*tab*/
-	
+
 	::-webkit-scrollbar {
 		width: 0px;
 		display: none;
 		background-color: #fff;
 	}
-	
+
 	.mineral .oHeader .centerA {
 		width: 4.1rem
 	}
-	
+
 	.mineral {
 		background-color: rgb(238, 238, 238);
 	}
-	
+
 	.mineral .icoliebiao label {
 		width: 1.18rem;
 		display: block;
 		font-size: 0.28rem;
 		text-align: center;
 	}
-	
+
 	/*nav*/
-	
+
 	.mineral .mineral_nav {
 		position: relative;
 	}
@@ -209,24 +209,24 @@
 	.mineral .mineralList{
 		margin-top: 1.94rem;
 	}
-	
+
 	.mineral .options {
 		position: absolute;
 		right: 0;
 		top: 0
 	}
-	
+
 	.mineral .options .vux-no-group-title {
 		border-left: 1px solid #ccc;
 		box-shadow: -1px 0px 2px #333333;
 		margin-top: 0;
 		height: 44px;
 	}
-	
+
 	.mineral .weui-cell__ft .vux-cell-value {
 		display: none;
 	}
-	
+
 	.mineral .weui-cell_access .weui-cell__ft:after {
 		display: none !important
 	}

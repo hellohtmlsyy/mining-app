@@ -6,7 +6,7 @@
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide" v-for="(item,index) in imgs" :key="index">
-							<img :src="item" />
+							<img width="100%" height="100%"  :src="item" />
 						</div>
 					</div>
 				</div>
@@ -298,7 +298,7 @@
 							callback()
 
 						} else {
-							alert(res.data.errMsg)
+							console.log(res.data.errMsg)
 						}
 					})
 					.catch(function(error) {
@@ -341,7 +341,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 
@@ -364,13 +364,13 @@
 							.then(res => {
 
 								if(res.data.success) {
-									this.follow = '取消关注'
+									this.follow = '已关注'
 								} else {
 									console.log(res.data.errMsg)
 								}
 							})
 							.catch(function(error) {
-								alert(error)
+								console.log(error)
 							});
 					} else {
 						axios.get(this.$root.urlPath.MC + '/wap/mall.do?cancelAttention', {
@@ -387,7 +387,7 @@
 								}
 							})
 							.catch(function(error) {
-								alert(error)
+								console.log(error)
 							});
 					}
 				} else {
@@ -420,7 +420,7 @@
 							this.companyInfo = res.data.data.companyInfo
 							this.imgs = res.data.data.imgs
 							if(res.data.data.isAttention) {
-								this.follow = '取消关注'
+								this.follow = '已关注'
 							} else {
 								this.follow = '关注'
 							}
@@ -440,7 +440,7 @@
               wxShare(this.$root.urlPath.MCT + '/wx/share', this.url, this.mallDetailsList.title, this.imgs[0], '', this.url);
           })
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 			goShop(){

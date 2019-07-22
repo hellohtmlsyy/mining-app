@@ -1745,7 +1745,7 @@
 						var data = res.data
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			}
 		}

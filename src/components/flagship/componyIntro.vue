@@ -61,16 +61,16 @@
 
 <script>
 	import axios from 'axios'
-	
+
 	import {lastPage} from '@/assets/commonjs/util.js'
 	export default{
 		components:{
-			
+
 		},
 		data(){
 			return {
 				componyIntro:'',
-				
+
 			}
 		},
 		mounted(){
@@ -82,7 +82,7 @@
 			},
 			goShopCart(){
 				window.location.href = this.$root.urlPath.MCM + "/shopCart?shopId="+this.$route.query.shopId+"&shopName="+ this.componyIntro.name +"&newpage=newpage"
-		
+
 			},
 			getComponyIntro(){
 				axios.get(this.$root.urlPath.MC + '/wap/store.do?introduction', {
@@ -91,7 +91,7 @@
 						}
 					})
 					.then(res => {
-						
+
 						var data = JSON.parse(res.data)
 						if(data.success) {
 							this.componyIntro = data.data
@@ -101,7 +101,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			}
 		}

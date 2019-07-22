@@ -53,11 +53,11 @@
 	import { } from 'vux'
 	import axios from 'axios'
 	import {isDevice,lastPage} from '@/assets/commonjs/util.js'
-	
-	
+
+
 	export default {
 		components: {
-		
+
 		},
 		data() {
 			return {
@@ -85,26 +85,26 @@
 					}
 				})
 					.then(res => {
-						
+
 						if(res.data.success) {
-							
+
 							this.orderInfo = res.data.data
 						} else {
 							console.log(res.data.errMsg)
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 			pay() {
-				
+
 				var ua = navigator.userAgent.toLowerCase()
 				var u = navigator.userAgent
 				if(ua.match(/MicroMessenger/i) == 'micromessenger') {
 //					跳转公众号支付
 					window.location.href = 'http://www.miningcircle.com/user/mn.do?rechargeBank=&v_amount='+this.orderInfo.amount + '&shopno='+ this.orderInfo.id + '&resnum=1&bank_pay=wxpay&resremark=' + this.orderInfo.resremark
-					
+
 				} else if(ua.indexOf('/mcapp') >= 0){
 //					alert("app")
 					if(u.indexOf('Android') > -1 || u.indexOf('Adr') > -1){
@@ -121,7 +121,7 @@
 
 				}
 			},
-			back() {	
+			back() {
 				this.$router.go(-2)
 			},
 			onCancel(){
@@ -133,7 +133,7 @@
 				if(this.success){
 					window.location.href=this.$root.urlPath.MCM + "/mall/orderCom_list?newpage=newpage";
 				}else{
-					
+
 					this.show1 = false
 					this.show2 = true
 					this.curPay = false
@@ -156,7 +156,7 @@
 		color: red;
 	}
 	.pay .list .type{
-		
+
 	}
 	.pay .list .type .rowm{
 		padding:0.2rem;

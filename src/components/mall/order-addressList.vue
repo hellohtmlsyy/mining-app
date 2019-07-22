@@ -11,7 +11,7 @@
 			</div>
 		</div>
 		<!--表单-->
-		
+
 		<div class="table" :class="where ? 'tableMg2' : 'tableMg1'">
 			<table>
 				<div class="list" style="width:7.5rem" v-for="(item,index) in addressList" :key="index">
@@ -62,7 +62,7 @@
 	import {isDevice} from '@/assets/commonjs/util.js'
 	export default {
 		components: {
-			
+
 		},
 		data() {
 			return {
@@ -86,11 +86,11 @@
 						}
 					})
 					.then(res => {
-						
+
 						if(res.data.success) {
 							this.getAddress()
 						} else {
-							
+
 						}
 					})
 					.catch(function(error) {
@@ -98,15 +98,15 @@
 					});
 			},
 			change(idx){
-				
-				
+
+
 				window.location.href=this.$root.urlPath.MCM + "/mall/order_address?newpage=newpage&urlType=1&idx=" + idx;
-				
+
 			},
 			getAddress(){
 				axios.get(this.$root.urlPath.MC + '/wap/trade.do?addressList')
 					.then(res => {
-						
+
 						if(res.data.success) {
 							this.addressList = res.data.data
 						} else {
@@ -114,7 +114,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 			back(){
@@ -126,7 +126,7 @@
 //					window.location.href=this.$root.urlPath.MCM + "/mall/orderCom_balance?newpage=newpage&id=" + this.$route.query.id;
 					this.$router.go(-1)
 				}
-				
+
 
 			},
 			add(){
@@ -139,24 +139,24 @@
 					this.show1 = true
 					return
 				}
-				
+
 				axios.get(this.$root.urlPath.MC + '/wap/trade.do?confirmAddress', {
 						params: {
 							id: this.addressList[this.check].id
 						}
 					})
 					.then(res => {
-						
+
 						if(res.data.success) {
 												window.location.href=this.$root.urlPath.MCM + "/mall/orderCom_balance?newpage=newpage";
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 
 			},
-			
+
 		}
 	}
 </script>
@@ -177,12 +177,12 @@
 	.addBtn {
 		background: #fff;
 	}
-	
+
 	.addressList table {
 		font-size: 0.28rem;
 	}
 	.addressList table .checkbox{
-		
+
 	    margin-left: 0.2rem;
 	    width: 0.38rem;
 	    height: 0.38rem;
@@ -204,18 +204,18 @@
 		color: #A2A2A2;
     	margin-right: 0.2rem;
 	}
-	
+
 	.addressList .vux-check-icon>.weui-icon-success:before,
 	.vux-check-icon>.weui-icon-success-circle:before {
 		color: #FB5250;
 	}
-	
+
 	.endSave {
 		position: fixed;
 		bottom: 0;
 		width: 100%;
 	}
-	
+
 	.endSave button {
 		background-color: #FF5155;
 		color: #fff;
@@ -225,7 +225,7 @@
 		line-height: 1rem;
 		width: 100%;
 	}
-	
+
 	.addressList .weui-toast__content {
 		text-align: center;
 	}

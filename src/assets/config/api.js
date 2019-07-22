@@ -15,7 +15,7 @@ axios.defaults.headers.get['MC_UID'] = cookie.get("MC_UID")
 /**
  * Created by Z97 on 2017/6/15.
  */
-var ENV = 'test' // 控制开关,dev 开发环境，release,master环境时改为prod
+var ENV = 'prod' // 控制开关,dev 开发环境，release,master环境时改为prod
 export default {
     pathUrl: function() {
         var URLS = {
@@ -38,7 +38,7 @@ export default {
             test: {
                 MC: 'http://www.miningcircle.com', //后台1.0地址
                 MCT: 'http://memberapi.miningcircle.com:8090', // 后台2.0地址,
-                MCM: 'http://m.miningcircle.com:8082', //前台地址
+                MCM: 'http://c.miningcircle.com:8082', //前台地址
                 MCL: 'http://member.miningcircle.com:8080/login?where=mcVue', //前台登录地址
                 UPLOAD: 'http://www.miningcircle.com', //本地上传
                 WEB_URL: {

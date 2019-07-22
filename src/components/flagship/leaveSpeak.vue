@@ -6,7 +6,7 @@
 			<span>留言</span>
 		</div>
 	</div>
-	
+
 	<div class="content">
 		<div class="titleBox">留言给该供应商</div>
 		<div class="inputBox">
@@ -23,7 +23,7 @@
 		</div>
 
 	</div>
-	
+
 	<div class="endSave">
 	 	<div @click="save">
 	 		<div class="btn">提交</div>
@@ -33,11 +33,11 @@
 </template>
 
 <script>
-	
+
 	import axios from 'axios'
 	import {cookie} from 'vux';
 	import {lastPage} from '@/assets/commonjs/util.js'
-	
+
 	export default{
 		data(){
 			return {
@@ -83,23 +83,23 @@
 				}
 			},
 			save(){
-				
+
 //				如果都为空全部错误信息提示,如果有其中一个错了则不往下执行
 				if(!this.form.name && !this.form.tel && !this.form.depict){
 					this.errorName = true
 					this.errorTip = true
 					this.errorTextarea = true
-					
+
 //					this.show1 = true
 //					this.endError = "留言错误，请重新填写"
-					return 
+					return
 				}else if(this.errorName || this.errorTip || this.errorTextarea){
 //					this.show1 = true
 //					this.endError = "留言错误，请重新填写"
 					return
 				}
-				
-				
+
+
 				this.$vux.loading.show({
  					text: '正在留言请稍后'
 				})
@@ -127,16 +127,16 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
-				
-				
-				
-				
-				
-				
+
+
+
+
+
+
 			},
-			
+
 		}
 	}
 </script>
@@ -169,6 +169,6 @@
 	.leaveSpeak .content .error{
 		color:red;
 		font-size:0.22rem
-		
+
 	}
 </style>

@@ -15,7 +15,7 @@
 							</div>
 						</div>
 						<div class="componyIntro">
-							<span>{{item.vdesc|subStr(20)}}</span>
+							<span>{{ item.vdesc|subStr(20) }}</span>
 						</div>
 					</div>
 					<div class="btnEnter fr" @click="goShop(item)">
@@ -46,9 +46,6 @@
 				title: "旗舰店",
 				index: 0,
 			}
-		},
-		mounted(){
-			console.log(this.list)
 		},
 		methods:{
 			goShop(item){

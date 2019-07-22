@@ -17,7 +17,7 @@
 				</div>
 			</sticky>
 		</div>
-		
+
 		<div class="listA" :class="iosmargintop ? 'iosmargintop' : 'margintop'">
 			<my-scroll ref="scroll" @loadmore='getNewsList' :isTab="isTab" :total="total" >
 				<Newslist :shohid="shohid" :list="newsList" ></Newslist>
@@ -97,13 +97,13 @@
 				}else{
 					this.showHeader = true
 					this.iosmargintop = false
-				}	
+				}
 			}else if(isDevice() == 'adr'){
 				this.iosmargintop = false
 			}else{
 				this.iosmargintop = false
-			}			
-			
+			}
+
 		},
 		methods: {
 			fbtime() {
@@ -125,7 +125,7 @@
 				}
 			},
 			getNewsList() {
-				
+
 				axios.get(this.$root.urlPath.MC + '/wap/news.do?newsList', {
 						params: {
 							catId: this.catId,
@@ -138,11 +138,11 @@
 							this.isTab = false
 							this.$refs.scroll.loaded()
 							var data = res.data.data.newsList
-							
+
 							this.newsList = this.newsList.concat(data)
 							this.fbtime(res.data.data.newsList)
 							this.total = res.data.data.totalCount
-							
+
 							if(this.total == this.newsList.length && this.total !== 0){
 								this.$refs.scroll.complete()
 							}else{
@@ -151,7 +151,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 			tabClick(val) {
@@ -159,7 +159,7 @@
 				this.pageNum = 1
 				this.newsList = []
 				this.catId = val
-				
+
 				this.isTab = true
 				this.getNewsList()
 			},
@@ -172,13 +172,13 @@
 	/*tab部分*/
 	/*头部*/
 	/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸,在这里设置滚动条宽度为0px*/
-	
+
 	 ::-webkit-scrollbar {
 		width: 0px;
 		display: none;
 		background-color: #fff;
 	}
-	
+
 	.news .icoliebiao {
 		line-height: 0.8rem;
 		background-color: #fff;
@@ -186,44 +186,44 @@
 		box-shadow: -2px 0 0 rgb(203, 203, 203);
 		max-width: 1.188rem;
 	}
-	
+
 	.news .icon-liebiao {
 		font-size: 0.35rem;
 		margin-right: 0.1rem;
 		padding-left: 0.15rem;
 	}
-	
+
 	.news .icon-liebiao1 {
 		font-size: 0.35rem;
 		margin-right: 0.15rem;
 	}
-	
+
 	.news {
 		background: #EEEEEE
 	}
 	.news .news_nav .vux-tab .vux-tab-item {
 		background: none
 	}
-	
+
 	.news .oHeader .centerA {
 		width: 4.8rem
 	}
-	
+
 	.newsHeader {
 		padding: 0.2rem;
 		font-size: 0.36rem;
 		background-color: #333333;
 		color: #fff
 	}
-	
+
 	.news .leftA {
 		margin-right: 0.36rem;
 	}
-	
+
 	.news .icon-jiantou-copy {
 		font-size: 0.36rem;
 	}
-	
+
 	.news .centerA {
 		width: 4.8rem;
 		border-radius: 0.3rem;
@@ -231,19 +231,19 @@
 		line-height: 0.52rem;
 		margin-right: 0.3rem;
 	}
-	
+
 	.news .searchText {
 		font-size: 0.28rem;
 		color: rgb(108, 108, 108);
 	}
-	
+
 	.news .rightA {}
-	
+
 	.news .icon-fensuijipinpaidaquan {
 		font-size: 0.45rem;
 	}
 	/*nav*/
-	
+
 	.news .news_nav {
 		margin-bottom: 0.15rem;
 		background-color: #fff;
@@ -257,7 +257,7 @@
 	.news .posiabsole{
 		top: 0.98rem;
 	}
-	
+
 	/*list*/
 	.news .margintop{
 		margin-top: 1.94rem;
@@ -265,12 +265,12 @@
 	.news .iosmargintop{
 		margin-top: 1rem;
 	}
-	
-	
+
+
 	.news .news_nav .vux-tab-wrap {
 		width: 6.6rem;
 	}
-	
+
 	.droploadDowm {
 		text-align: center;
 	}

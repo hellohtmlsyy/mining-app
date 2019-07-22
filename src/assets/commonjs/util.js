@@ -143,9 +143,15 @@ export function lastPage() {
 
 //调app登录方法
 export function appLogin() {
+  if(location.pathname == '/mineral/projectDetails' || location.pathname == '/mineral'){
+    var content = '请登录/注册认证后，查看项目资料点击确定去登录'
+  }else{
+    var content = '您当前尚未登录,点击确定去登陆！'
+  }
+
 	Vue.$vux.alert.show({
-		title: '提示',
-		content: '您当前尚未登录,点击确定去登陆！',
+		title: '温馨提示',
+		content: content,
 		onShow() {
 
 		},

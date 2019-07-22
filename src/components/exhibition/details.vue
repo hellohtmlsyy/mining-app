@@ -40,13 +40,13 @@
 					</div>
 					<div class="row">
 						<label class="spanBox">售价</label>
-						<span class="price_span colorr" style="color:red">{{ticketlist[checkTicket-1] && ticketlist[checkTicket-1].ticket_money | converAmount(2)}}</span>
+						<span class="price_span colorr" style="color:red">{{ticketlist[checkTicket-1].ticket_money | converAmount(2)}}</span>
 					</div>
-					<div class="row clearfix">
-						<label class="spanBox fl">票种</label>
-						<div class="fl">
+					<div class="row d-f">
+						<label class="spanBox min-w">票种</label>
+						<div>
 							<checker v-model="checkTicket" default-item-class="demo5-item" selected-item-class="demo5-item-selected" >
-								<checker-item v-for="i in indexTicketType" :key="i" :value="i">{{ticketType[i-1]}}<span class="priceColor">{{ticketlist[checkTicket-1].ticket_money | converAmount(2)}}</span></checker-item>
+								<checker-item v-for="i in indexTicketType" :key="i" :value="i">{{ticketType[i-1]}}<span class="priceColor">{{ticketlist[i-1].ticket_money | converAmount(2)}}</span></checker-item>
 							</checker>
 						</div>
 					</div>
@@ -344,7 +344,12 @@ import { setTimeout } from 'timers';
 	.content p {
 		margin-left: 0 !important;
 	}
-
+  .ExhibitionDetails .small_content .min-w{
+    min-width: 0.48rem;
+  }
+  .ExhibitionDetails .small_content .vux-tap-active{
+    margin-bottom: 0.08rem;
+  }
 	.ExhibitionDetails .content table{
 		width: 100% !important;
 	}

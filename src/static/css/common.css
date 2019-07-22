@@ -42,7 +42,7 @@ body {
 /*body{
   -webkit-overflow-scrolling: touch;
 }*/
-body{overflow-x: hidden}
+body{overflow-x: hidden;}
 fieldset,
 img {
 	border: 0;
@@ -140,6 +140,13 @@ a:focus {
 	-webkit-user-select: none;
 	-moz-user-focus: none;
 	-moz-user-select: none;
+}
+
+.va-t{
+  vertical-align: top;
+}
+.d-f{
+  display: flex;
 }
 
 

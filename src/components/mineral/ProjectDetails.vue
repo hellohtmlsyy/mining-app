@@ -3,7 +3,7 @@
 		<div>
 			<open-app></open-app>
 			<div class="channelDetalImage_box">
-				<img :src="projectInfoList.img" />
+				<img :src="projectInfoList.img ? projectInfoList.img : defaultUrl" />
 				<div class="revert" @click="back">
 					<i class="icon iconfont icon-jiantou3"></i>
 				</div>
@@ -219,8 +219,8 @@
 				minMovingDistance:100,
         test:2000,
         wxDevice:false,
-        url:window.location.href
-
+        url:window.location.href,
+        defaultUrl:'../../../static/img/default.png'
 			}
     },
     created(){
@@ -335,7 +335,9 @@
 
 							this.projectDetailsList.prd.insert_time = getTime1(this.projectDetailsList.prd.insert_time)
 
-						}
+						}else{
+              console.log(res.data)
+            }
           })
           .then(()=>{
               wxShare(this.$root.urlPath.MCT + '/wx/share', this.url,this.projectInfoList.title, this.projectInfoList.img, this.mapAttrib.productvdesc, this.url);
@@ -388,7 +390,8 @@
 				this.showDiaLog = true
 			},
 			speakSubmit() {
-        if(this.speakText == ''){
+        let reg = /^\s*$/g
+        if(this.speakText == '' || reg.test(this.speakText)){
           this.$vux.toast.show({
  								text: '不能为空',
  								type:'cancel'

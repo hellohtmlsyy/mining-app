@@ -122,9 +122,11 @@ Vue.filter('convertTime', function(timeStr) {
 	return Moment(timeStr).format('YYYY-MM-DD');
 });
 Vue.filter('subStr', function(titleStr, num) {
-	if (titleStr.length <= num) return titleStr;
-	else
-		return titleStr.substr(0, num) + '...';
+	if( titleStr ) {
+		if ( titleStr.length <= num) return titleStr;
+		else
+			return titleStr.substr(0, num) + '...';
+	}
 })
 //金额转换为用逗号隔开2位小数
 Vue.filter('converAmount', function(s, n) {

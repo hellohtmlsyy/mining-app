@@ -55,8 +55,6 @@ import vip from '@/components/vip/vip'
 
 import activity from '@/components/activity/activity-20190106'
 
-//好礼
-//import courtesy from '@/components/courtesy/courtesy'
 
 
 //com
@@ -101,6 +99,12 @@ import Act2019020903 from '@/components/act/20190209/03'
 import Act2019020904 from '@/components/act/20190209/04'
 import Act2019020905 from '@/components/act/20190209/05'
 import Act2019020906 from '@/components/act/20190209/06'
+
+//第二届矿业大会
+import Act2019053101 from '@/components/act/20190531/01'
+
+// 2019矿业圈新疆考察之旅
+import Act2019051001 from '@/components/act/20190510/01'
 
 import test from '@/components/test/test'
 import test1 from '@/components/test/test1'
@@ -314,6 +318,7 @@ const router = new Router({
     name: 'activity',
     component: activity,
   },
+
   { path: '/user/ordlistdetail', name: 'ordlistdetail', component: ordlistdetail, meta: { requireAuth: true } },
   { path: '/user/purordlist', name: 'purOrdlist', component: purOrdlist, meta: { requireAuth: true } },
   { path: '/user/purcommOrdlist', name: 'purcommOrdlist', component: purcommOrdlist, meta: { requireAuth: true } },
@@ -389,6 +394,22 @@ const router = new Router({
     name: 'act.act2019020906',
     component: Act2019020906,
     meta: { title: '矿业圈邀你参加三亚财神节庙会' },
+  },
+  //第二届矿业圈大会
+  {
+    path: '/activity2019053101',
+    name: 'activity',
+    component: Act2019053101,
+    meta: { title: '2019第二届中国国际矿业交易大会' }
+  },
+  // 矿业圈新疆考察之旅活动页
+  {
+    path: '/act/act2019051001',
+    name: 'act.act2019051001',
+    component: Act2019051001,
+    meta: {
+      title: '2019矿业圈新疆考察之旅'
+    }
   },
   ]
 });

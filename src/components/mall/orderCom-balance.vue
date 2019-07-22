@@ -176,7 +176,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 			getBill() {
@@ -192,7 +192,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 			balance() {
@@ -304,7 +304,7 @@
 										}
 									})
 									.catch(function(error) {
-										alert(error)
+										console.log(error)
 									});
 
 							}else if(isDevice() == '微信浏览器') {
@@ -315,7 +315,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 
 			},
@@ -344,7 +344,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 			onCancel() {

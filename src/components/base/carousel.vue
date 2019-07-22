@@ -4,7 +4,7 @@
     <div class="swiper-container" id="swiper1">
       <div class="swiper-wrapper">
         <div class="swiper-slide swiperBox2" @click="goDetails">
-          <img :src="imgUrl" />
+          <img width="100%" height="100%" class="va-t" :src="imgUrl" />
         </div>
       </div>
     </div>

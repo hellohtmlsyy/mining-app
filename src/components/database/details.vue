@@ -266,7 +266,7 @@
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			},
 			getProject() {
@@ -275,14 +275,14 @@
 							id: this.id
 						}
 					}).then(res => {
-						
+
 						var data = res.data
 						if(data.success){
 							this.project = data.data.list
 						}
 					})
 					.catch(function(error) {
-						alert(error)
+						console.log(error)
 					});
 			}
 		}
@@ -290,9 +290,9 @@
 </script>
 
 <style>
-	
-	
-	
+
+
+
 	.databaseDetails .icon-tubiao212 {
 		font-size: 0.36rem;
 	}
@@ -302,20 +302,20 @@
 	.databaseDetails .tab {
 		margin-top: 1rem;
 	}
-	
+
 	.databaseDetails .shares .baseInfo {
 		background: url(../../../static/img/sharesBg.png) no-repeat;
 		background-size: 7.5rem 2.5rem;
 		padding: 0.2rem;
 		margin-top: 0.15rem
 	}
-	
+
 	.databaseDetails .shares .baseInfo .title {
 		font-size: 0.24rem;
 		color: #fff;
 		line-height: 0.3rem;
 	}
-	
+
 	.databaseDetails .shares .baseInfo .content {
 		color: #fff;
 		line-height: 0.5rem;
@@ -324,12 +324,12 @@
 		font-size: 0.36rem;
 		margin-right: 0.3rem;
 	}
-	
+
 	.databaseDetails .shares .baseInfo .date {
 		font-size: 0.24rem;
 		margin-left: 1rem;
 	}
-	
+
 	.databaseDetails .shares .baseInfo .content .colorL {
 		color: #11d251;
 		font-size: 0.3rem;
@@ -342,42 +342,42 @@
 		display: flex;
 		margin: 0.04rem 0;
 	}
-	
+
 	.databaseDetails .shares .baseInfo .btn1 {
 		background-color: #F28C10;
 		margin-right: 0.3rem;
 	}
-	
+
 	.databaseDetails .shares .baseInfo .btn2 {
 		background-color: #1B50CE;
 	}
-	
+
 	.databaseDetails .shares .baseInfo .btn {
 		font-size: 0.28rem;
 		color: #fff;
 		padding: 0.16rem 0.3rem;
 		border-radius: 0.05rem;
 	}
-	
+
 	.databaseDetails .shares .details {
 		background-color: #fff;
 		padding: 0 0.24rem;
 	}
-	
+
 	.databaseDetails .shares .details label {
 		font-size: 0.26rem;
 	}
-	
+
 	.databaseDetails .shares .details span {
 		font-size: 0.24rem;
 	}
-	
+
 	.databaseDetails .shares .rowM {
 		border-bottom: 0.01rem solid rgb(230, 230, 230);
 		height: 0.74rem;
 		line-height: 0.74rem;
 	}
-	
+
 	/*联系方式*/
 	.databaseDetails .contact{
 		font-size: 0.24rem;
@@ -389,10 +389,10 @@
 		line-height: 0.48rem;
 	}
 	/*.databaseDetails .contact .fa-phone:before{
-		background:url(../../../static/img/tel.png) no-repeat; 
+		background:url(../../../static/img/tel.png) no-repeat;
 	}
 	.databaseDetails .contact .phone:before{
-		background:url(../../../static/img/phone.png) no-repeat; 
+		background:url(../../../static/img/phone.png) no-repeat;
 
 	}
 
@@ -405,7 +405,7 @@
 		vertical-align: top;
     	margin-top: 0.08rem;
 	}*/
-		
+
 	.databaseDetails .contact .numBox{
 		margin-top: 0.15rem;
 	}
